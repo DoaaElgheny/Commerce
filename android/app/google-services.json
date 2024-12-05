@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "41724890763",
+    "project_id": "qubeCommerce-3b26d",
+    "storage_bucket": "qubeCommerce-3b26d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41724890763:android:555ac7fb61d35d26414e8e",
+        "android_client_info": {
+          "package_name": "com.soforx.qubeCommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQU3h709orFLgoS_6PxQHWXSpMRf7BjEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
