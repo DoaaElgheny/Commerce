@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import '../../../../config/locale/app_localizations.dart';
 
+import '../../../../config/locale/app_localizations.dart';
 import 'verification_state.dart';
 
 class VerificationCubit extends Cubit<VerificationState> {
@@ -45,9 +47,8 @@ class VerificationCubit extends Cubit<VerificationState> {
         ));
         clearTextiled();
         Navigator.pop(context);
-        
       } else {
-        print('code == 1234');
+        log('code == 1234');
         emit(state.copyWith(
             isVerifying: false,
             errorMessage:

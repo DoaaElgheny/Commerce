@@ -1,8 +1,11 @@
+import 'dart:developer';
+
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
+
 import '../../config/routes/app_routes.dart';
 import '../prefs/my_shared_prefs.dart';
 
@@ -15,7 +18,7 @@ class qubeCommerceFirebaseRemoteConfig {
 
     //Get Latest version info from firebase config
     final remoteConfig = FirebaseRemoteConfig.instance;
-    print('currentVersion $currentVersion');
+    log('currentVersion $currentVersion');
 
     try {
       // Using default duration to force fetching from remote server.
@@ -36,7 +39,7 @@ class qubeCommerceFirebaseRemoteConfig {
       _goNext(context: context);
       //}
     } catch (exception) {
-      print('Unable to fetch remote config. Cached or default values will be '
+      log('Unable to fetch remote config. Cached or default values will be '
           'used');
     }
   }

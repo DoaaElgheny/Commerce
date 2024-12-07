@@ -1,16 +1,13 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:qubeCommerce/config/routes/app_routes.dart';
-import 'package:qubeCommerce/core/api/success_response.dart';
-import 'package:qubeCommerce/core/error/Failure.dart';
 import 'package:qubeCommerce/core/utils/map_failure_msg.dart';
 import 'package:qubeCommerce/features/login/domain/entities/login_parameter.dart';
 import 'package:qubeCommerce/features/login/domain/usecases/login_usecase.dart';
-
-import 'package:dio/dio.dart';
 import 'package:qubeCommerce/features/login/presentation/cubit/login_state.dart';
 
 import '../widgets/otp_verification_sheet.dart';
@@ -21,7 +18,8 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController passwordLogin = TextEditingController();
   TextEditingController emailLogin = TextEditingController();
   TextEditingController phoneLogin = TextEditingController();
-  LoginCubit({required this.loginUseCase}) : super(LoginState());
+
+  LoginCubit({required this.loginUseCase}) : super(const LoginState());
 
   void loginWithPhone({required BuildContext context}) {
     emit(state.copyWith(isVerifying: true));
@@ -53,45 +51,48 @@ class LoginCubit extends Cubit<LoginState> {
     });
   }
 
+  Future<void> loginWithEmail({
+    required BuildContext context,
+    required LoginParameter loginParameter,
+  }) async {
+    // Show loading indicator before starting the login process
+    EasyLoading.show(status: 'Logging in...');
 
-Future<void> loginWithEmail({
-  required BuildContext context,
-  required LoginParameter loginParameter,
-}) async {
-  // Show loading indicator before starting the login process
-  EasyLoading.show(status: 'Logging in...');
+    try {
+      // Call the use case for login
+      final response = await loginUseCase(loginParameter);
 
-  try {
-    // Call the use case for login
-    Either<Failure, ApiResponse> response = await loginUseCase(loginParameter);
+      // Handle the response based on whether it's a success or failure
+      response.fold(
+        (failure) {
+          // If there is a failure, dismiss the loading indicator and show an error message
+          EasyLoading.dismiss();
+          log("Login failed: ${failure.toString()}"); // Log the failure
+          // Optionally show a failure message
+          EasyLoading.showError(
+              'Login failed: ${MapFailureToMsg.mapFailureToMsg(failure)}');
+        },
+        (response) {
+          // If login is successful, dismiss the loading indicator and proceed
+          EasyLoading.dismiss();
+          EasyLoading.showSuccess(response.message);
 
-    // Handle the response based on whether it's a success or failure
-    response.fold(
-      (failure) {
-        // If there is a failure, dismiss the loading indicator and show an error message
-        EasyLoading.dismiss();
-        print("Login failed: ${failure.toString()}"); // Log the failure
-        // Optionally show a failure message
-        EasyLoading.showError('Login failed: ${MapFailureToMsg.mapFailureToMsg(failure)}');
-      },
-      (respons) {
-        // If login is successful, dismiss the loading indicator and proceed
-        EasyLoading.dismiss();
-        print("Login successful: ${respons.message}");
-        EasyLoading.showSuccess(respons.message);
-
-        // Navigate to the next screen after successful login
-        Navigator.pushReplacementNamed(context, Routes.homeScreen);
-      },
-    );
-  } catch (error) {
-    // Catch any unexpected errors and dismiss the loading indicator
-    EasyLoading.dismiss();
-    print("Unexpected error during login: $error");
-    // Optionally, show a generic error message
-    EasyLoading.showError('An unexpected error occurred. Please try again.');
+          // Navigate to the next screen after successful login
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.homeScreen,
+            (_) => false,
+          );
+        },
+      );
+    } catch (error) {
+      // Catch any unexpected errors and dismiss the loading indicator
+      EasyLoading.dismiss();
+      log("Unexpected error during login: $error");
+      // Optionally, show a generic error message
+      EasyLoading.showError('An unexpected error occurred. Please try again.');
+    }
   }
-}
 
   // void loginWithEmail({required BuildContext context,
   //  required String email,
@@ -149,8 +150,8 @@ Future<void> loginWithEmail({
 //         msg: MapFailureToMsg.mapFailureToMsg(failure),
 //       ));
 //     }, (LoginRespons) {
-//       print(LoginRespons.toString());
-//       print("LoginRespons.accessToken"+LoginRespons.accessToken.toString());
+//       log(LoginRespons.toString());
+//       log("LoginRespons.accessToken"+LoginRespons.accessToken.toString());
 //       return emit(LoginSuccess());
 //     });
 //   } catch (error) {
@@ -191,13 +192,13 @@ Future<void> loginWithEmail({
 //           // "Password": passwordLogin.text
 //         },
 //         options: Options(contentType: Headers.formUrlEncodedContentType));
-//     print('userData' + userData.statusCode.toString());
+//     log('userData' + userData.statusCode.toString());
 //     if (userData.statusCode == 200 || userData.statusCode == 204) {
 //       LoginRespons response = LoginRespons.fromJson(userData.data);
 //       emailLogin.clear();
 //       passwordLogin.clear();
 //       context.read<SignUpCubit>().clearData(context: context);
-//       print("userData.data" + userData.data.toString());
+//       log("userData.data" + userData.data.toString());
 //       await SharedPrefController().setToken(response.accessToken!);
 //       await SharedPrefController().setLoggedIn(true);
 //       Either<Failure, bool> isLJobSeekerResponse =
@@ -212,7 +213,7 @@ Future<void> loginWithEmail({
 //               .read<LocaleCubit>()
 //               .getConditionsCurrentUserList(context: context);
 //           String? fcmoken = await FbNotifications.getFCMTonken();
-//           print('fcmoken '+fcmoken.toString());
+//           log('fcmoken '+fcmoken.toString());
 //           await setFcmToken(deviceId: fcmoken ?? '');
 //           emit(LoginSuccess());
 //           if (SharedPrefController().isPayment) {
@@ -266,8 +267,8 @@ Future<void> loginWithEmail({
 //     emit(LoginError(
 //       msg: error.toString(),
 //     ));
-//     print('DioError');
-//     print('DioError' + error.message);
+//     log('DioError');
+//     log('DioError' + error.message);
 //     // if(error.response!.statusCode==403){
 //     //   EasyLoading.showError( AppLocalizations.of(context)!.translate('account_not_found')!);
 //     // }else{
@@ -294,12 +295,12 @@ Future<void> loginWithEmail({
 //   try {
 //     Either<Failure, int> response = await setFcmTokenUseCase(deviceId);
 //     response.fold((failure) {
-//       print("Failure" + failure.toString());
+//       log("Failure" + failure.toString());
 //     }, (fcmTokenUseCaseRespons) {
-//       print("fcmTokenUseCaseRespons" + fcmTokenUseCaseRespons.toString());
+//       log("fcmTokenUseCaseRespons" + fcmTokenUseCaseRespons.toString());
 //     });
 //   } catch (error) {
-//     print("error" + error.toString());
+//     log("error" + error.toString());
 //     // emit(SignUpError(
 //     //   msg: 'error',
 //     // ));
@@ -318,14 +319,14 @@ Future<void> loginWithEmail({
 //     Either<Failure, int> response = await deleteFcmTokenUseCase(deviceId);
 //     response.fold((failure) {
 //       EasyLoading.dismiss();
-//       print("Failure" + failure.toString());
+//       log("Failure" + failure.toString());
 //     }, (fcmTokenUseCaseRespons) {
 //       EasyLoading.dismiss();
-//       print("fcmTokenUseCaseRespons" + fcmTokenUseCaseRespons.toString());
+//       log("fcmTokenUseCaseRespons" + fcmTokenUseCaseRespons.toString());
 //     });
 //   } catch (error) {
 //     EasyLoading.dismiss();
-//     print("error" + error.toString());
+//     log("error" + error.toString());
 //     // emit(SignUpError(
 //     //   msg: 'error',
 //     // ));

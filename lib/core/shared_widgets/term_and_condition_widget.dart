@@ -21,9 +21,7 @@ class TermAndConditionWidget extends StatelessWidget {
             align: TextAlign.start),
         InkWell(
           onTap: () {
-
-            termAndCondition(context, 'EndPoints.termAndCondition' );
-
+            termAndCondition(context, 'EndPoints.termAndCondition');
           },
           child: AppText(
               text:

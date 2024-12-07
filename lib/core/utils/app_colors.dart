@@ -50,8 +50,7 @@ class AppColors {
   static Color productTextGreenColor = HexColor("#38A169");
   static Color productTextBlueColor = HexColor("#06A6F1");
   static Color productSvg2Color = HexColor("#3AC1FF");
- static Color withdrawAddBalanceColorLeft = HexColor("#0D05D2");
- 
+  static Color withdrawAddBalanceColorLeft = HexColor("#0D05D2");
 }
 
 Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {

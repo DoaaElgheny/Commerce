@@ -14,10 +14,8 @@ class SignUpRemoteDataSourceImpl implements SignUpRemoteDataSource {
 
   @override
   Future<ApiResponse> register({required RegisterParameter parameter}) async {
-    final response = await apiConsumer.post(
-      EndPoints.register,
-      body: parameter.toJson()
-    );
+    final response =
+        await apiConsumer.post(EndPoints.register, body: parameter.toJson());
     return response;
   }
 }

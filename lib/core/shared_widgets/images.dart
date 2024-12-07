@@ -26,7 +26,7 @@ abstract class Images {
 
   static const crescentIcon = '$_svgIconPath/crescent.svg';
   static const backGroundPng = '$_folderPath/png/Login.png';
-  
+
   static const authbackGroundPng = '$_folderPath/png/authBack.png';
   static const AutofillHints = '$_folderPath/png/Login.png';
 
@@ -44,8 +44,6 @@ abstract class Images {
   static const freePlayImage = '$_folderPath/free play.jpg';
   static const gymsImage = '$_folderPath/gyms.jpg';
 
-
-
   static const findCityImageSvg = '$_folderPath/city.svg';
   static const introImage = '$_folderPath/intro.png';
   static const NewintroImage = '$_folderPath/new_intro.png';
@@ -53,7 +51,7 @@ abstract class Images {
 
   static const logoSvg = 'assets/icons/logo.svg';
   // static const newLogoSvg = 'assets/icons/new_logo.svg';
- // static const newLogoSvg = 'assets/icons/gotgame_new_logo.svg';
+  // static const newLogoSvg = 'assets/icons/gotgame_new_logo.svg';
   static const newLogoSvg = 'assets/icons/logo_with_text.png';
   static getIconSvg(String iconName) => 'assets/icons/svg/$iconName.svg';
 

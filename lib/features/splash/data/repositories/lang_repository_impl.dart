@@ -12,7 +12,7 @@ class LangRepositoryImpl implements LangRepository {
   Future<Either<Failure, bool>> changeLang({required String langCode}) async {
     try {
       final langIsChanged =
-      await langLocalDataSource.changeLang(langCode: langCode);
+          await langLocalDataSource.changeLang(langCode: langCode);
       return Right(langIsChanged);
     } on CacheException {
       return Left(CacheFailure());
@@ -28,5 +28,4 @@ class LangRepositoryImpl implements LangRepository {
       return Left(CacheFailure());
     }
   }
-
 }

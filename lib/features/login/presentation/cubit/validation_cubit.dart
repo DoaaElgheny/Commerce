@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:qubeCommerce/features/login/presentation/cubit/validation_state.dart';
 
 class FormValidationCubit extends Cubit<FormValidationState> {
@@ -11,14 +12,15 @@ class FormValidationCubit extends Cubit<FormValidationState> {
   bool isValidConfirmPassword = true;
 
   bool validateRegxEmail(String value) {
-    String pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = RegExp(pattern);
-    if (!regex.hasMatch(value)) {
-      return true;
-    } else {
-      return false;
-    }
+    // String pattern =
+    //     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    // RegExp regex = RegExp(pattern);
+    // if (!regex.hasMatch(value)) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+    return EmailValidator.validate(value);
   }
 
   void validateFullName(String value) {
@@ -32,14 +34,10 @@ class FormValidationCubit extends Cubit<FormValidationState> {
   }
 
   bool validateRegxPassword(String value) {
-    String pattern =
+    const pattern =
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-    RegExp regex = RegExp(pattern);
-    if (!regex.hasMatch(value)) {
-      return true;
-    } else {
-      return false;
-    }
+    final RegExp regex = RegExp(pattern);
+    return regex.hasMatch(value);
   }
 
   bool validateRegxPhoneNumber(String value) {

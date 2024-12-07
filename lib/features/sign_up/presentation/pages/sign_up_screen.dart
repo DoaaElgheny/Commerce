@@ -1,9 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 import 'package:qubeCommerce/core/shared_widgets/app_text_field.dart';
 import 'package:qubeCommerce/core/shared_widgets/elevated_button.dart';
 import 'package:qubeCommerce/core/shared_widgets/images.dart';
@@ -19,7 +17,7 @@ import 'package:sizer/sizer.dart';
 class SignUpScreen extends StatefulWidget {
   static const String routeName = "/sign_up_mail_screen";
 
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -51,8 +49,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         EasyLoading.dismiss();
         Navigator.pop(context);
       },
-      appBarBottom:  Center(
-        child: Image.asset("${Images.backGroundPng}"),
+      appBarBottom: Center(
+        child: Image.asset(Images.backGroundPng),
       ),
       appBarHeight: (230),
       body: Padding(
@@ -77,7 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           context.read<FormValidationCubit>().isValidName,
                       validationText: 'required_field',
                       textHint: 'full_name',
-                      label: Text('full_name'),
+                      label: const Text('full_name'),
                       prefix: SvgPicture.asset(Images.getIconSvg('user')),
                       onTextChange: (val) {
                         context
@@ -94,7 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           context.read<FormValidationCubit>().isValidEmail,
                       validationText: 'required_field',
                       textHint: 'email',
-                      label: Text('email'),
+                      label: const Text('email'),
                       prefix: SvgPicture.asset(Images.getIconSvg('email')),
                       onTextChange: (val) {
                         context.read<FormValidationCubit>().validateEmail(val);
@@ -109,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           context.read<FormValidationCubit>().isValidPassword,
                       validationText: 'password_validation',
                       textHint: '**********',
-                      label: Text('password'),
+                      label: const Text('password'),
                       prefix: SvgPicture.asset(Images.getIconSvg('lock')),
                       isPassword: _obscureText,
                       suffix: IconButton(
@@ -146,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       validationText:
                           'this field is required or Enter valid age',
                       textHint: 'Phone',
-                      label: Text('Phone'),
+                      label: const Text('Phone'),
                       prefix: SvgPicture.asset(Images.getIconSvg('age')),
                       onTextChange: (val) {
                         context

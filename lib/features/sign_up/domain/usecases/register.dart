@@ -1,4 +1,3 @@
-
 import 'package:qubeCommerce/core/api/success_response.dart';
 
 import '../../../../core/error/Failure.dart';
@@ -13,6 +12,6 @@ class Register implements UseCase<ApiResponse, RegisterParameter> {
   Register({required this.signUpRepository});
 
   @override
-  Future<Either<Failure,ApiResponse>> call(RegisterParameter params) =>
+  Future<Either<Failure, ApiResponse>> call(RegisterParameter params) =>
       signUpRepository.register(registerParameter: params);
 }

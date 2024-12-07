@@ -1,5 +1,6 @@
-import 'package:bloc/bloc.dart';
+import 'dart:developer';
 
+import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:qubeCommerce/config/routes/app_routes.dart';
 import 'package:qubeCommerce/core/api/success_response.dart';
+
 import '../../../../core/error/Failure.dart';
 import '../../../../core/utils/map_failure_msg.dart';
 import '../../domain/entities/register_parameter.dart';
 import '../../domain/usecases/register.dart';
+
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -20,7 +23,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   TextEditingController emailSignUp = TextEditingController();
   TextEditingController phoneSignUp = TextEditingController();
 
-  SignUpCubit({required this.registerUseCase}) : super(SignUpState());
+  SignUpCubit({required this.registerUseCase}) : super(const SignUpState());
 
   Future<void> register({
     required RegisterParameter registerParameter,
@@ -36,16 +39,14 @@ class SignUpCubit extends Cubit<SignUpState> {
         return SignUpError(
           msg: MapFailureToMsg.mapFailureToMsg(failure),
         );
-      }, (signUpRespons) {
-        print("LoginRespons" + signUpRespons.toString());
+      }, (signUpResponse) {
+        log("signUpResponse $signUpResponse");
         emit(SignUpSuccess());
-        EasyLoading.showSuccess(signUpRespons.message);
+        EasyLoading.showSuccess(signUpResponse.message);
         Navigator.pushReplacementNamed(context, Routes.loginScreen);
       });
     } catch (error) {
-      emit(SignUpError(
-        msg: 'error',
-      ));
+      emit(const SignUpError(msg: 'error'));
     }
   }
 

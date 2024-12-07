@@ -1,13 +1,15 @@
+import 'dart:developer';
 import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
 import 'package:ffmpeg_kit_flutter/return_code.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 import 'package:qubeCommerce/core/shared_widgets/classes/image_attachment.dart';
 import 'package:qubeCommerce/core/shared_widgets/expanded_image_screen.dart';
 import 'package:sizer/sizer.dart';
-import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart' as http;
 
 class ProductImages extends StatefulWidget {
   const ProductImages({required this.itemList, Key? key}) : super(key: key);
@@ -48,7 +50,8 @@ class _ProductImagesState extends State<ProductImages> {
             },
           ),
           itemCount: widget.itemList.length,
-          itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+          itemBuilder:
+              (BuildContext context, int itemIndex, int pageViewIndex) {
             return InkWell(
               onTap: () async {
                 List<String?> image = [];
@@ -76,42 +79,45 @@ class _ProductImagesState extends State<ProductImages> {
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
                 child: widget.itemList[itemIndex].type == 2
                     ? Container(
-                  height: 157,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(widget.itemList[itemIndex].attachmentUrl!),
-                    ),
-                  ),
-                )
+                        height: 157,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                widget.itemList[itemIndex].attachmentUrl!),
+                          ),
+                        ),
+                      )
                     : Container(
-                  height: 157,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey.withOpacity(0.5),
-                  ),
-                  child: thumbnails.containsKey(widget.itemList[itemIndex].attachmentUrl!)
-                      ? Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Image.file(
-                        File(thumbnails[widget.itemList[itemIndex].attachmentUrl!]!),
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: double.infinity,
+                        height: 157,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey.withOpacity(0.5),
+                        ),
+                        child: thumbnails.containsKey(
+                                widget.itemList[itemIndex].attachmentUrl!)
+                            ? Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Image.file(
+                                    File(thumbnails[widget
+                                        .itemList[itemIndex].attachmentUrl!]!),
+                                    fit: BoxFit.cover,
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                  ),
+                                  const Icon(
+                                    Icons.play_circle_filled,
+                                    color: Colors.white,
+                                    size: 50,
+                                  ),
+                                ],
+                              )
+                            : _buildPlaceholder(),
                       ),
-                      const Icon(
-                        Icons.play_circle_filled,
-                        color: Colors.white,
-                        size: 50,
-                      ),
-                    ],
-                  )
-                      : _buildPlaceholder(),
-                ),
               ),
             );
           },
@@ -131,7 +137,8 @@ class _ProductImagesState extends State<ProductImages> {
                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: _currentIndex == index ? Colors.blueAccent : Colors.grey,
+                  color:
+                      _currentIndex == index ? Colors.blueAccent : Colors.grey,
                 ),
               );
             }).toList(),
@@ -147,40 +154,41 @@ class _ProductImagesState extends State<ProductImages> {
       if (attachment.type == 1 && attachment.attachmentUrl != null) {
         try {
           final tempDir = await getTemporaryDirectory();
-          final videoPath = '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.mp4';
-          final outputPath = '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.png';
-          print('Downloading video: ${attachment.attachmentUrl}');
+          final videoPath =
+              '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.mp4';
+          final outputPath =
+              '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.png';
+          log('Downloading video: ${attachment.attachmentUrl}');
 
           // Download the video
           final response = await http.get(Uri.parse(attachment.attachmentUrl!));
           if (response.statusCode == 200) {
             final file = File(videoPath);
             await file.writeAsBytes(response.bodyBytes);
-            print('Video downloaded: $videoPath');
+            log('Video downloaded: $videoPath');
 
             // Execute FFmpeg command to generate the thumbnail
             final session = await FFmpegKit.execute(
-                '-i $videoPath -ss 00:00:01.000 -vframes 1 $outputPath'
-            );
+                '-i $videoPath -ss 00:00:01.000 -vframes 1 $outputPath');
 
             final returnCode = await session.getReturnCode();
             if (ReturnCode.isSuccess(returnCode)) {
               // Check if the file was created successfully
               final thumbnailFile = File(outputPath);
               if (await thumbnailFile.exists()) {
-                print('Thumbnail generated: $outputPath');
+                log('Thumbnail generated: $outputPath');
                 thumbnails[attachment.attachmentUrl!] = outputPath;
               } else {
-                print('Failed to generate thumbnail: File does not exist');
+                log('Failed to generate thumbnail: File does not exist');
               }
             } else {
-              print('FFmpeg command failed with return code $returnCode');
+              log('FFmpeg command failed with return code $returnCode');
             }
           } else {
-            print('Failed to download video: HTTP status ${response.statusCode}');
+            log('Failed to download video: HTTP status ${response.statusCode}');
           }
         } catch (e) {
-          print('Error generating thumbnail: $e');
+          log('Error generating thumbnail: $e');
         }
       }
     }

@@ -1,9 +1,10 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:overlay_support/overlay_support.dart';
 
@@ -17,7 +18,7 @@ Future<void> firebaseMessagingBackgroundHandler(
     RemoteMessage remoteMessage) async {
   //BACKGROUND Notifications - iOS & Android
   await Firebase.initializeApp();
-  print('Message: ${remoteMessage.messageId}');
+  log('Message: ${remoteMessage.messageId}');
 }
 
 // late AndroidNotificationChannel channel;
@@ -27,7 +28,7 @@ mixin FbNotifications {
   /// CALLED IN main function between ensureInitialized <-> runApp(widget);
   static Future<void> initNotifications() async {
     //var token=await FirebaseMessaging.instance.getToken();
-    //print('Message: ${token}');
+    //log('Message: ${token}');
 
     //Connect the previous created function with onBackgroundMessage to enable
     //receiving notification when app in Background.
@@ -64,7 +65,7 @@ mixin FbNotifications {
 
   //iOS Notification Permission
   Future<void> requestNotificationPermissions() async {
-    print('requestNotificationPermissions');
+    log('requestNotificationPermissions');
     NotificationSettings notificationSettings =
         await FirebaseMessaging.instance.requestPermission(
       alert: true,
@@ -77,10 +78,10 @@ mixin FbNotifications {
     );
     if (notificationSettings.authorizationStatus ==
         AuthorizationStatus.authorized) {
-      print('GRANT PERMISSION');
+      log('GRANT PERMISSION');
     } else if (notificationSettings.authorizationStatus ==
         AuthorizationStatus.denied) {
-      print('Permission Denied');
+      log('Permission Denied');
     }
   }
 
@@ -88,12 +89,11 @@ mixin FbNotifications {
   void initializeForegroundNotificationForAndroid(
       {required BuildContext context}) {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Message Received: ${message.messageId}');
-      print('Message:message $message');
-      print('Message data: ${message.data}');
-      print(
-          'SharedPrefController().languageCode: ${SharedPrefController().languageCode}');
-      print('Message data: ${message.data['titleEn']}');
+      log('Message Received: ${message.messageId}');
+      log('Message:message $message');
+      log('Message data: ${message.data}');
+      log('SharedPrefController().languageCode: ${SharedPrefController().languageCode}');
+      log('Message data: ${message.data['titleEn']}');
       RemoteNotification? notification = message.notification;
       AndroidNotification? androidNotification = notification?.android;
       if (notification != null && androidNotification != null) {
@@ -150,16 +150,16 @@ mixin FbNotifications {
   //GENERAL (Android & iOS)
   void manageNotificationAction({required BuildContext context}) {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('DataControlmessage: $message');
+      log('DataControlmessage: $message');
       _controlNotificationNavigation(message.data, context);
     });
   }
 
   void _controlNotificationNavigation(
       Map<String, dynamic> data, BuildContext context) {
-    print('DataControlNotificationNavigation: $data');
+    log('DataControlNotificationNavigation: $data');
     context.read<ButtomnavigationbarCubit>().setTabIndex(3);
-    print(context.read<ButtomnavigationbarCubit>().state.index);
+    log(context.read<ButtomnavigationbarCubit>().state.index.toString());
     // if (data['page'] != null) {
     //   switch (data['page']) {
     //     case 'products':

@@ -36,7 +36,6 @@ class SharedPrefController {
   String get token =>
       _sharedPreferences.getString(PrefsConstant.userToken) ?? '';
 
-
   Future<bool> setLanguage(String languageCode) async {
     return await _sharedPreferences.setString(AppStrings.locale, languageCode);
   }
@@ -51,7 +50,6 @@ class SharedPrefController {
   bool get firstLoginFlag =>
       _sharedPreferences.getBool(AppStrings.firstLogin) ?? false;
 
-
   Future<bool> setNumberDeepLinkPost(int value) async {
     return await _sharedPreferences.setInt(
         AppStrings.numberDeepLinkPost, value);
@@ -59,7 +57,6 @@ class SharedPrefController {
 
   int get numberNumberDeepLinkPost =>
       _sharedPreferences.getInt(AppStrings.numberDeepLinkPost) ?? 0;
-
 
   clear(String key) {
     _sharedPreferences.remove(key);

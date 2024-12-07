@@ -1,7 +1,10 @@
+import 'dart:developer';
 import 'dart:io';
+
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
+
 import '../../../../core/prefs/my_shared_prefs.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -24,10 +27,10 @@ class LocaleCubit extends Cubit<LocaleState> {
     final response = await getSavedLangUseCase.call(NoParams());
     response.fold((failure) => debugPrint(AppStrings.cacheFailure),
         (value) async {
-      print('value$value');
-      print('Platform.localeName${Platform.localeName}');
-      print('value$value');
-      print('Platform.localeName${Platform.localeName}');
+      log('value$value');
+      log('Platform.localeName${Platform.localeName}');
+      log('value$value');
+      log('Platform.localeName${Platform.localeName}');
       if (Platform.localeName == 'en' ||
           Platform.localeName.contains('en') ||
           Platform.localeName == 'en_US' ||

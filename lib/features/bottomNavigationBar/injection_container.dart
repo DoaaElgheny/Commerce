@@ -6,7 +6,7 @@ final sl = GetIt.instance;
 Future<void> initButtomnavigationbarGotGame() async {
 //bloc
   sl.registerFactory<ButtomnavigationbarCubit>(
-          () => ButtomnavigationbarCubit());
+      () => ButtomnavigationbarCubit());
 
   // Use cases
   // sl.registerLazySingleton<LoginUsecase>(
@@ -20,6 +20,4 @@ Future<void> initButtomnavigationbarGotGame() async {
   // // Data Sources
   // sl.registerLazySingleton<LoginRemoteDataSource>(
   //         () => LoginRemoteDataSourceImpl(apiConsumer: sl()));
-
-
 }

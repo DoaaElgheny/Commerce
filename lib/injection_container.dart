@@ -11,7 +11,6 @@ import 'features/home/injection_container.dart';
 import 'features/login/injection_container.dart';
 import 'features/splash/injection_container.dart';
 
-
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -27,8 +26,6 @@ Future<void> init() async {
   initSignUp();
   initButtomnavigationbarGotGame();
 
-
-
   //! Core
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(client: sl()));
   sl.registerLazySingleton<DioConsumer>(() => DioConsumer(client: sl()));
@@ -37,8 +34,8 @@ Future<void> init() async {
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-   sl.registerLazySingleton(() => AppIntercepters());
-   //هادا لطباعة اللوج
+  sl.registerLazySingleton(() => AppIntercepters());
+  //هادا لطباعة اللوج
   sl.registerLazySingleton(() => LogInterceptor(
       request: true,
       requestBody: true,

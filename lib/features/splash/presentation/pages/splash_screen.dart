@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:qubeCommerce/features/login/presentation/pages/login_screen.dart';
 
@@ -26,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     });
 
     // Show the second section for another 3 seconds
-    await Future.delayed(const Duration(seconds:1));
+    await Future.delayed(const Duration(seconds: 1));
     setState(() {
       _currentSection = 3;
     });
@@ -39,8 +40,9 @@ class _SplashScreenState extends State<SplashScreen> {
     // After that, navigate to the next screen or display all sections
     await Future.delayed(const Duration(seconds: 4));
     //we put Logic here if he logged go to home if not go to login
-    Navigator.of(context).pushReplacement(
+    Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => const LoginScreen()),
+      (r) => false,
     );
   }
 
@@ -189,10 +191,6 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 }
-
-
-
-
 
 // class SplashScreen extends StatefulWidget {
 //   const SplashScreen({super.key});

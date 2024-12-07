@@ -29,13 +29,12 @@ class FiltersCubit extends Cubit<FiltersState> {
             FilterOption('Option 3', false),
           ],
           ratingOptions: [
-            FilterRatingOption('All', false,false,''),
-            FilterRatingOption('40', false,true,ImageAssets.star_ratings5),
-            FilterRatingOption('123', false,true,ImageAssets.star_ratings4),
-            FilterRatingOption('432', false,true,ImageAssets.star_ratings3),
-            FilterRatingOption('342', false,true,ImageAssets.star_ratings2),
-            FilterRatingOption('430', false,true,ImageAssets.star_ratings1),
-
+            FilterRatingOption('All', false, false, ''),
+            FilterRatingOption('40', false, true, ImageAssets.star_ratings5),
+            FilterRatingOption('123', false, true, ImageAssets.star_ratings4),
+            FilterRatingOption('432', false, true, ImageAssets.star_ratings3),
+            FilterRatingOption('342', false, true, ImageAssets.star_ratings2),
+            FilterRatingOption('430', false, true, ImageAssets.star_ratings1),
           ],
         ));
 
@@ -82,6 +81,7 @@ class FiltersCubit extends Cubit<FiltersState> {
       ratingOptions: List.from(state.ratingOptions),
     ));
   }
+
   void updateRatingOption(int index, bool value) {
     state.ratingOptions[index].value = value;
     emit(FiltersState(
@@ -120,6 +120,7 @@ class FiltersCubit extends Cubit<FiltersState> {
         .map((option) => option.label)
         .toList();
   }
+
   List<String> getSelectedRatingOptions() {
     return state.ratingOptions
         .where((option) => option.value)

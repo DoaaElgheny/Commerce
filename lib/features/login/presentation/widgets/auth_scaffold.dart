@@ -7,7 +7,6 @@ import 'package:qubeCommerce/core/utils/app_colors.dart';
 import 'package:sizer/sizer.dart';
 
 class AuthScaffold extends StatelessWidget implements PreferredSizeWidget {
- 
   String? appBarSubTitle;
   final Widget body;
   double? bodyStart;
@@ -21,8 +20,7 @@ class AuthScaffold extends StatelessWidget implements PreferredSizeWidget {
   Function()? customBackFunction;
 
   AuthScaffold(
-      {super.key, 
-    
+      {super.key,
       this.appBarSubTitle,
       required this.body,
       this.appBarBottom,
@@ -47,7 +45,6 @@ class AuthScaffold extends StatelessWidget implements PreferredSizeWidget {
       },
       child: Scaffold(
         backgroundColor: Colors.transparent,
-     
         body: SizedBox(
           height: 100.h,
           width: 100.w,
@@ -57,10 +54,9 @@ class AuthScaffold extends StatelessWidget implements PreferredSizeWidget {
                   height: appBarSubTitle != null ? 50.h : 30.h,
                   width: 130.w,
                   decoration: const BoxDecoration(
-                    
                       image: DecorationImage(
                     image: AssetImage(
-                    Images.authbackGroundPng,
+                      Images.authbackGroundPng,
                     ),
                     fit: BoxFit.cover,
                   )),
@@ -68,8 +64,8 @@ class AuthScaffold extends StatelessWidget implements PreferredSizeWidget {
                     margin: EdgeInsets.only(
                         bottom: 15, right: 5.w, left: 5.w, top: 1.h),
                     child: Container(
-                     // height: 15.h,
-                      child: Text(''),//getAppBar(context, isleadingIcon),
+                      // height: 15.h,
+                      child: Text(''), //getAppBar(context, isleadingIcon),
                       padding: const EdgeInsets.only(bottom: 15),
                     ),
                   )),
@@ -125,7 +121,7 @@ class AuthScaffold extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.of(context).pop();
               },
           icon: Transform.scale(
-            scale:1,// current?.languageCode == 'ar' ? -1 : 1,
+            scale: 1, // current?.languageCode == 'ar' ? -1 : 1,
             child: SvgPicture.asset(
               "assets/svg/back.svg",
               width: 10.w,
@@ -133,21 +129,21 @@ class AuthScaffold extends StatelessWidget implements PreferredSizeWidget {
             ),
           ));
     }
-    return  AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            toolbarHeight: appBarHeight != null ? appBarHeight! : 30.h,
-            leading: leadingIcon,
-            // title: Text(appBarTitle, style: _titleStyle),
-            actions: actions,
-            centerTitle: true,
-            bottom: appBarBottom != null
-                ? PreferredSize(
-                    preferredSize: const Size(0, 0),
-                    child: appBarBottom!,
-                  )
-                : null,
-          );
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      toolbarHeight: appBarHeight != null ? appBarHeight! : 30.h,
+      leading: leadingIcon,
+      // title: Text(appBarTitle, style: _titleStyle),
+      actions: actions,
+      centerTitle: true,
+      bottom: appBarBottom != null
+          ? PreferredSize(
+              preferredSize: const Size(0, 0),
+              child: appBarBottom!,
+            )
+          : null,
+    );
   }
 
   @override

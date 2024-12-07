@@ -3,15 +3,13 @@ class RegisterParameter {
   String email;
   String password;
   String phoneNumber;
- 
 
-  RegisterParameter(
-      { this.fullName,
-        required this.email,
-        required this.password,
-        required this.phoneNumber,
-   });
-
+  RegisterParameter({
+    this.fullName,
+    required this.email,
+    required this.password,
+    required this.phoneNumber,
+  });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

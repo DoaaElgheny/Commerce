@@ -2,7 +2,7 @@ class ApiResponse<T> {
   final bool succeeded;
   final String message;
   final List<String> errors;
-   var data;
+  var data;
 
   ApiResponse({
     required this.succeeded,
@@ -17,7 +17,7 @@ class ApiResponse<T> {
       succeeded: json['succeeded'] as bool,
       message: json['message'] as String,
       errors: List<String>.from(json['errors']),
-      data:json['data'] ,
+      data: json['data'],
     );
   }
 

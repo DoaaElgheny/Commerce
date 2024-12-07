@@ -1,7 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:qubeCommerce/core/utils/app_colors.dart';
-
 import 'package:sizer/sizer.dart';
 
 // import 'package:taharak_app/utilty/size_utility.dart';
@@ -9,7 +7,7 @@ import 'package:sizer/sizer.dart';
 class AppTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final bool isEnabled;
-  final bool isNumber;
+  // final bool isNumber;
   final bool isValidated;
   final String validationText;
   final Widget? prefix;
@@ -26,11 +24,11 @@ class AppTextField extends StatelessWidget {
   final Widget? suffix;
   final FocusNode? firstFocusNode;
   final bool isFocus;
-
+  final TextInputType? textInputType;
   const AppTextField(
       {required this.textEditingController,
       this.isEnabled = true,
-      this.isNumber = false,
+      // this.isNumber = false,
       this.isFocus = false,
       required this.isValidated,
       required this.validationText,
@@ -47,6 +45,7 @@ class AppTextField extends StatelessWidget {
       this.maxLength,
       this.hasMargin = true,
       this.suffix,
+      this.textInputType,
 
       ///isDecorated to show or hide the decoration of textField
       Key? key})
@@ -69,8 +68,8 @@ class AppTextField extends StatelessWidget {
                 controller: textEditingController,
                 maxLines: isMultiLine ? 4 : 1,
                 maxLength: maxLength,
-                keyboardType:
-                    isNumber ? TextInputType.number : TextInputType.text,
+                keyboardType: textInputType,
+                // isNumber ? TextInputType.number : TextInputType.text,
                 enabled: isEnabled,
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
@@ -88,7 +87,7 @@ class AppTextField extends StatelessWidget {
                   hintText: textHint,
                   suffixIcon: suffix,
                   contentPadding:
-                  const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+                      const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
                   hintStyle: TextStyle(
                       color: AppColors.borderGrey,
                       fontSize: 12.sp,

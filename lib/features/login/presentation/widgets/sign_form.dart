@@ -1,11 +1,8 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-import 'package:qubeCommerce/core/shared_widgets/app_text_field.dart';
 import 'package:qubeCommerce/core/shared_widgets/elevated_button.dart';
-import 'package:qubeCommerce/core/shared_widgets/images.dart';
 import 'package:qubeCommerce/core/utils/app_colors.dart';
 import 'package:qubeCommerce/features/login/domain/entities/login_parameter.dart';
 import 'package:qubeCommerce/features/login/presentation/cubit/login_cubit.dart';
@@ -26,10 +23,12 @@ class _SignFormState extends State<SignForm> {
   bool _obscureText = true;
 
   _login() => BlocProvider.of<LoginCubit>(context).loginWithEmail(
-      context: context,
-      loginParameter: LoginParameter(
+        context: context,
+        loginParameter: LoginParameter(
           email: context.read<LoginCubit>().emailLogin.text,
-          password: context.read<LoginCubit>().passwordLogin.text));
+          password: context.read<LoginCubit>().passwordLogin.text,
+        ),
+      );
 
   @override
   void initState() {
@@ -40,11 +39,13 @@ class _SignFormState extends State<SignForm> {
     //   await Firebase.initializeApp(
     //       options: DefaultFirebaseOptions.currentPlatform);
     // });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     final formValidationCubit = BlocProvider.of<FormValidationCubit>(context);
+
     return Form(
       key: _formKey,
       child: BlocConsumer<FormValidationCubit, FormValidationState>(
@@ -52,56 +53,117 @@ class _SignFormState extends State<SignForm> {
           builder: (context, state) {
             return Column(
               children: [
-                AppTextField(
-                  hasMargin: false,
-                  textEditingController: context.read<LoginCubit>().emailLogin,
-                  isValidated: context.read<FormValidationCubit>().isValidEmail,
-                  validationText: 'required_field',
-                  textHint: 'email',
-                  label: Text('email'),
-                  prefix: Icon(
-                    Icons.email_outlined,
-                    color: Colors.grey,
+                // AppTextField(
+                //   hasMargin: false,
+                //   textEditingController: context.read<LoginCubit>().emailLogin,
+                //   isValidated: context.read<FormValidationCubit>().isValidEmail,
+                //   textInputType: TextInputType.emailAddress,
+                //   validationText: 'required_field',
+                //   textHint: 'Email',
+                //   label: const Text('Email'),
+                //   prefix: const Icon(
+                //     Icons.email_outlined,
+                //     color: Colors.grey,
+                //   ),
+                //   onTextChange: (val) {
+                //     context.read<FormValidationCubit>().validateEmail(val);
+                //   },
+                // ),
+                TextFormField(
+                  controller: context.read<LoginCubit>().emailLogin,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    hintText: 'Enter Your Email',
+                    contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                    prefixIcon: Icon(
+                      Icons.email_outlined,
+                      color: Colors.grey,
+                    ),
                   ),
-                  onTextChange: (val) {
-                    context.read<FormValidationCubit>().validateEmail(val);
+                  validator: (value) {
+                    if (EmailValidator.validate(value ?? '')) {
+                      return null;
+                    }
+                    return 'Not valid email';
                   },
                 ),
-                AppTextField(
-                  hasMargin: false,
-                  textEditingController:
-                      context.read<LoginCubit>().passwordLogin,
-                  isValidated:
-                      context.read<FormValidationCubit>().isValidPassword,
-                  validationText: 'password_validation',
-                  isPassword: _obscureText,
-                  textHint: '**********',
-                  label: Text('password'),
-                  prefix: Icon(
-                    Icons.lock_outline_rounded,
-                    color: Colors.grey,
+                const SizedBox(height: 20.0),
+                TextFormField(
+                  controller: context.read<LoginCubit>().passwordLogin,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: _obscureText,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    hintText: 'Enter Your Password',
+                    contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
+                    prefixIcon: const Icon(
+                      Icons.lock_outline_rounded,
+                      color: Colors.grey,
+                    ),
+                    suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText
+                              ? Icons.visibility_off_outlined
+                              : Icons.remove_red_eye_outlined,
+                          color: _obscureText
+                              ? AppColors.textGrey
+                              : AppColors.primaryColor,
+                          size: (20),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                        }),
                   ),
-                  suffix: IconButton(
-                      icon: Icon(
-                        _obscureText
-                            ? Icons.visibility_off_outlined
-                            : Icons.remove_red_eye_outlined,
-                        color: _obscureText
-                            ? AppColors.textGrey
-                            : AppColors.primaryColor,
-                        size: (20),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _obscureText = !_obscureText;
-                        });
-                      }),
-                  onTextChange: (val) {
-                    context.read<FormValidationCubit>().validatePassword(
-                        password:
-                            context.read<LoginCubit>().passwordLogin.text);
+                  validator: (value) {
+                    if (formValidationCubit.validateRegxPassword(value ?? '')) {
+                      return null;
+                    }
+
+                    return 'Not valid password';
                   },
                 ),
+
+                // AppTextField(
+                //   hasMargin: false,
+                //   textEditingController:
+                //       context.read<LoginCubit>().passwordLogin,
+                //   textInputType: TextInputType.visiblePassword,
+                //   isValidated:
+                //       context.read<FormValidationCubit>().isValidPassword,
+                //   validationText: 'password_validation',
+                //   isPassword: _obscureText,
+                //   textHint: '**********',
+                //   label: const Text('password'),
+                //   prefix: const Icon(
+                //     Icons.lock_outline_rounded,
+                //     color: Colors.grey,
+                //   ),
+                //   suffix: IconButton(
+                //       icon: Icon(
+                //         _obscureText
+                //             ? Icons.visibility_off_outlined
+                //             : Icons.remove_red_eye_outlined,
+                //         color: _obscureText
+                //             ? AppColors.textGrey
+                //             : AppColors.primaryColor,
+                //         size: (20),
+                //       ),
+                //       onPressed: () {
+                //         setState(() {
+                //           _obscureText = !_obscureText;
+                //         });
+                //       }),
+                //   onTextChange: (val) {
+                //     context.read<FormValidationCubit>().validatePassword(
+                //         password:
+                //             context.read<LoginCubit>().passwordLogin.text);
+                //   },
+                // ),
+                const SizedBox(height: (10.0)),
+
                 Row(
                   children: [
                     const Spacer(),
@@ -109,7 +171,7 @@ class _SignFormState extends State<SignForm> {
                       // onTap: () => Navigator.pushNamed(
                       //     context, ForgotPasswordScreen.routeName),
                       child: Text(
-                        "forgot_pass",
+                        "Forget Password",
                         style: TextStyle(
                             decoration: TextDecoration.underline,
                             color: AppColors.primaryColor,
@@ -121,6 +183,16 @@ class _SignFormState extends State<SignForm> {
                   ],
                 ),
                 const SizedBox(height: (30)),
+                const Text(
+                  'Or log in through',
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xFF06A6F1),
+                  ),
+                ),
+                const SizedBox(height: (14)),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -137,13 +209,13 @@ class _SignFormState extends State<SignForm> {
                             color:
                                 Colors.black.withOpacity(0.1), // Shadow color
                             blurRadius: 6.0, // Soft blur effect
-                            offset: Offset(2, 2), // Slight shadow offset
+                            offset: const Offset(2, 2), // Slight shadow offset
                           ),
                         ],
                         color: Colors.white, // Button background color
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.only(left:15.0,right: 15.0),
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                         child: TextButton.icon(
                           onPressed: () {},
                           icon: SvgPicture.asset(
@@ -157,7 +229,7 @@ class _SignFormState extends State<SignForm> {
                         ),
                       ),
                     ),
-                     Container(
+                    Container(
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Colors.transparent, // Border color
@@ -170,21 +242,21 @@ class _SignFormState extends State<SignForm> {
                             color:
                                 Colors.black.withOpacity(0.1), // Shadow color
                             blurRadius: 6.0, // Soft blur effect
-                            offset: Offset(2, 2), // Slight shadow offset
+                            offset: const Offset(2, 2), // Slight shadow offset
                           ),
                         ],
                         color: Colors.white, // Button background color
                       ),
                       child: Padding(
-                       padding: const EdgeInsets.only(left:15.0,right: 15.0),
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                         child: TextButton.icon(
                           onPressed: () {},
-                          icon:
-                              SvgPicture.asset("assets/images/svg/Phone_icon.svg"),
+                          icon: SvgPicture.asset(
+                              "assets/images/svg/Phone_icon.svg"),
                           label: const Text(
-                            "رقم الجوال",
+                            "Mobile Numer",
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
                           ),
@@ -193,31 +265,36 @@ class _SignFormState extends State<SignForm> {
                     ),
                   ],
                 ),
-                const SizedBox(height: (15)),
+                const SizedBox(height: (40)),
                 BlocConsumer<LoginCubit, LoginState>(
                   listener: (context, state) {
                     // TODO: implement listener
                   },
                   builder: (context, state) {
                     return elevatedButton(
-                      title: "sign_in",
+                      title: "Sign In",
                       onpressed: () {
-                        formValidationCubit.validatePassword(
-                            password:
-                                context.read<LoginCubit>().passwordLogin.text);
-                        formValidationCubit.validateEmail(
-                            context.read<LoginCubit>().emailLogin.text);
-
-                        bool isValidEmail =
-                            context.read<FormValidationCubit>().isValidEmail;
-                        bool isValidPassword =
-                            context.read<FormValidationCubit>().isValidPassword;
-                        if (isValidEmail && isValidPassword) {
-                          EasyLoading.show(
-                              status: 'loading',
-                              maskType: EasyLoadingMaskType.black);
-                          _login();
+                        if (!_formKey.currentState!.validate()) {
+                          return;
                         }
+
+                        // formValidationCubit.validatePassword(
+                        //     password:
+                        //         context.read<LoginCubit>().passwordLogin.text);
+                        // formValidationCubit.validateEmail(
+                        //     context.read<LoginCubit>().emailLogin.text);
+
+                        // bool isValidEmail =
+                        //     context.read<FormValidationCubit>().isValidEmail;
+                        // bool isValidPassword =
+                        //     context.read<FormValidationCubit>().isValidPassword;
+                        // if (isValidEmail && isValidPassword) {
+                        //   EasyLoading.show(
+                        //       status: 'loading',
+                        //       maskType: EasyLoadingMaskType.black);
+                        //   _login();
+                        // }
+                        _login();
                       },
                       primaryColor: AppColors.primaryColor,
                       height: 7.h,

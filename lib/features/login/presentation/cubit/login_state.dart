@@ -24,6 +24,5 @@ class LoginState extends Equatable {
   }
 
   @override
-  List<Object> get props => [isVerifying,isValidPhoneNumber,isValidEmail];
+  List<Object> get props => [isVerifying, isValidPhoneNumber, isValidEmail];
 }
-

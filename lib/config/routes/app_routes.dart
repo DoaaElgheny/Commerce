@@ -40,7 +40,7 @@ class AppRoutes {
       //   }));
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: ((context) {
-          return  SignUpScreen();
+          return SignUpScreen();
         }));
       // case Routes.forgetPasswordScreen:
       //   return MaterialPageRoute(builder: ((context) {

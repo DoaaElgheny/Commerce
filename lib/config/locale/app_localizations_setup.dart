@@ -9,7 +9,7 @@ class AppLocalizationsSetup {
   ];
 
   static const Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates =
-  [
+      [
     AppLocalizations.delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,

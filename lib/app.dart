@@ -1,8 +1,17 @@
+import 'dart:async';
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:qubeCommerce/features/sign_up/presentation/cubit/sign_up_cubit.dart';
-import 'package:qubeCommerce/injection_container.dart' as di;
+import 'package:flutter/services.dart' show PlatformException;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:qubeCommerce/features/sign_up/presentation/cubit/sign_up_cubit.dart';
+import 'package:qubeCommerce/injection_container.dart' as di;
+import 'package:sizer/sizer.dart';
+import 'package:uni_links/uni_links.dart';
+
 import 'config/locale/app_localizations_setup.dart';
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
@@ -11,8 +20,6 @@ import 'core/prefs/my_shared_prefs.dart';
 import 'core/remote_config/restart_widget.dart';
 import 'core/shared_widgets/disconnected_screen.dart';
 import 'core/utils/app_strings.dart';
-import 'package:sizer/sizer.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/bottomNavigationBar/presentation/cubit/buttomnavigationbar_cubit.dart';
 import 'features/home/presentation/cubit/filters_cubit.dart';
 import 'features/login/presentation/cubit/login_cubit.dart';
@@ -20,17 +27,9 @@ import 'features/login/presentation/cubit/terms_and_conditions_cubit.dart';
 import 'features/login/presentation/cubit/validation_cubit.dart';
 import 'features/login/presentation/cubit/verification_cubit.dart';
 import 'features/splash/presentation/cubit/locale_cubit.dart';
-import 'dart:async';
-import 'dart:io';
-import 'package:uni_links/uni_links.dart';
-import 'package:flutter/services.dart' show PlatformException;
 
 class qubeCommerceApp extends StatefulWidget {
-  //Uri? uri;
-
-  const qubeCommerceApp({super.key
-      // ,required this.uri
-      });
+  const qubeCommerceApp({super.key});
 
   @override
   State<qubeCommerceApp> createState() => _qubeCommerceAppState();
@@ -75,13 +74,13 @@ class _qubeCommerceAppState extends State<qubeCommerceApp> {
   }
 
   Future<void> handleDeepLink(String link) async {
-    print('link $link');
+    log('link $link');
     setState(() {
       _latestLink = link;
     });
     Uri uri = Uri.parse(link);
     String number = uri.pathSegments.last;
-    print('number $number');
+    log('number $number');
 
     await SharedPrefController().setNumberDeepLinkPost(int.parse(number));
     if (Platform.isIOS) RestartWidget.restartApp(context);
@@ -134,8 +133,8 @@ class _qubeCommerceAppState extends State<qubeCommerceApp> {
                       return MaterialApp(
                         navigatorKey: navigatorKey,
                         title: AppStrings.appName,
-                        locale: state.locale,
-                        // locale: Locale(AppStrings.arabicCode),
+                        // locale: state.locale,
+                        locale: const Locale(AppStrings.englishCode),
                         debugShowCheckedModeBanner: false,
                         theme: appTheme(),
                         builder: EasyLoading.init(),

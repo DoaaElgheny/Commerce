@@ -14,18 +14,15 @@ final sl = GetIt.instance;
 
 Future<void> initLoginqubeCommerce() async {
 //bloc
-  sl.registerFactory<LoginCubit>(() => LoginCubit(
-      loginUseCase:  sl()
-      ));
+  sl.registerFactory<LoginCubit>(() => LoginCubit(loginUseCase: sl()));
   sl.registerFactory<FormValidationCubit>(() => FormValidationCubit());
   sl.registerFactory<VerificationCubit>(() => VerificationCubit());
-  
+
   sl.registerFactory<TermsAndConditionsCubit>(() => TermsAndConditionsCubit());
 
   // Use cases
   sl.registerLazySingleton<LoginUsecase>(
-          () => LoginUsecase(authRepository:  sl()));
-
+      () => LoginUsecase(authRepository: sl()));
 
   // Repository
   sl.registerLazySingleton<AuthRepository>(
@@ -33,6 +30,5 @@ Future<void> initLoginqubeCommerce() async {
 
   // Data Sources
   sl.registerLazySingleton<AuthRemoteDataSource>(
-      () => AuthRemoteDataSourceImpl(apiConsumer: sl()));    
-
+      () => AuthRemoteDataSourceImpl(apiConsumer: sl()));
 }

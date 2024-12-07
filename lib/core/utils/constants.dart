@@ -1,10 +1,13 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
+
 import '../../config/locale/app_localizations.dart';
 import '../shared_widgets/app_text.dart';
-import 'package:intl/intl.dart';
 
 class Constants {
   // Future<void> launchUrlSocialMedia(String url) async {
@@ -130,8 +133,8 @@ class Constants {
     required BuildContext context,
     required DateTime postDate,
   }) {
-    print('difference$difference');
-    print('difference$difference');
+    log('difference$difference');
+    log('difference$difference');
     String formattedDate = DateFormat('dd/MM/yyyy').format(postDate);
 
     if (difference.inDays >= 7) {

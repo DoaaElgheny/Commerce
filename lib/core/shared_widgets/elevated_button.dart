@@ -35,14 +35,16 @@ class elevatedButton extends StatelessWidget {
       width: width,
       child: ElevatedButton.icon(
         icon: loading
-            ? jobDetalis?const SizedBox.shrink(): SizedBox(
-          height: 15,
-          width: 15,
-          child: CircularProgressIndicator(
-            strokeWidth: 1.5,
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-          ),
-        )
+            ? jobDetalis
+                ? const SizedBox.shrink()
+                : SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 1.5,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  )
             : SizedBox.shrink(),
         style: ElevatedButton.styleFrom(
             elevation: 0,
@@ -51,7 +53,8 @@ class elevatedButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius),
             ),
-            padding: const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16)),
+            padding:
+                const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16)),
         onPressed: loading ? null : onpressed,
         label: AppText(
           text: title,

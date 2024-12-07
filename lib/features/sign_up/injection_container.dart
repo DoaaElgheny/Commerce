@@ -1,5 +1,3 @@
-
-
 import 'package:qubeCommerce/features/sign_up/presentation/cubit/sign_up_cubit.dart';
 
 import 'package:get_it/get_it.dart';
@@ -15,12 +13,10 @@ final sl = GetIt.instance;
 Future<void> initSignUp() async {
 //bloc
 
- 
-
   sl.registerFactory<SignUpCubit>(() => SignUpCubit(registerUseCase: sl()));
 
   // Use cases
-  
+
   sl.registerLazySingleton<Register>(() => Register(signUpRepository: sl()));
 
   // Repository

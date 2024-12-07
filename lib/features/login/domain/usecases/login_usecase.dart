@@ -1,4 +1,3 @@
-
 import 'package:qubeCommerce/core/api/success_response.dart';
 import 'package:qubeCommerce/features/login/domain/entities/login_parameter.dart';
 import 'package:qubeCommerce/features/login/domain/repositories/auth_repository.dart';

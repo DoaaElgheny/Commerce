@@ -1,6 +1,6 @@
 part of 'sign_up_cubit.dart';
 
- class SignUpState extends Equatable {
+class SignUpState extends Equatable {
   const SignUpState();
 
   @override
@@ -9,14 +9,14 @@ part of 'sign_up_cubit.dart';
 
 class SignUploading extends SignUpState {}
 
-class SignUpSuccess extends SignUpState {
-  
-}
+class SignUpSuccess extends SignUpState {}
 
 class SignUpError extends SignUpState {
   final String msg;
 
-  const SignUpError({required this.msg,});
+  const SignUpError({
+    required this.msg,
+  });
 
   @override
 // TODO: implement props

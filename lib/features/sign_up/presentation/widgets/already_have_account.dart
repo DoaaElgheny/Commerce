@@ -26,12 +26,11 @@ class AlreadyHaveAccountWidget extends StatelessWidget {
         ),
         InkWell(
             onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (_) =>  LoginScreen()));
-            
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (_) => LoginScreen()));
             },
             child: Text("sign_in".tr(),
-                style:  TextStyle(
+                style: TextStyle(
                     color: AppColors.primaryColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w500)))

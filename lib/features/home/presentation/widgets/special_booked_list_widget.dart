@@ -56,9 +56,12 @@ class _SpecialBookedListCardState extends State<SpecialBookedListCard> {
             height: widget.specialBookedCard[itemIndex].height,
             showButton: widget.specialBookedCard[itemIndex].showButton,
             numberOfPeople: widget.specialBookedCard[itemIndex].numberOfPeople,
-            showNumberOfPeople: widget.specialBookedCard[itemIndex].showNumberOfPeople,
-            linearProgressIndicator: widget.specialBookedCard[itemIndex].linearProgressIndicator,
-            showCarouselSliderTwo: widget.specialBookedCard[itemIndex].showCarouselSliderTwo,
+            showNumberOfPeople:
+                widget.specialBookedCard[itemIndex].showNumberOfPeople,
+            linearProgressIndicator:
+                widget.specialBookedCard[itemIndex].linearProgressIndicator,
+            showCarouselSliderTwo:
+                widget.specialBookedCard[itemIndex].showCarouselSliderTwo,
           ),
         );
       },

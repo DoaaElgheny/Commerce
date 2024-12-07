@@ -55,7 +55,8 @@ class _ExpandedImageScreenState extends State<ExpandedImageScreen> {
     String outputPath = '$tempDir/${DateTime.now().millisecondsSinceEpoch}.png';
 
     // Generate thumbnail using FFmpeg
-    await FFmpegKit.execute('-i $videoUrl -ss 00:00:01.000 -vframes 1 $outputPath');
+    await FFmpegKit.execute(
+        '-i $videoUrl -ss 00:00:01.000 -vframes 1 $outputPath');
 
     final file = File(outputPath);
     if (await file.exists()) {
@@ -123,17 +124,21 @@ class _ExpandedImageScreenState extends State<ExpandedImageScreen> {
                     PageView.builder(
                       onPageChanged: (index) {
                         setState(() {
-                          if (index >= 0 && index < widget.imageUrls.length + widget.videoUrls.length) {
+                          if (index >= 0 &&
+                              index <
+                                  widget.imageUrls.length +
+                                      widget.videoUrls.length) {
                             selectedIndex = index;
                           }
                         });
                       },
-                      itemCount: widget.imageUrls.length + widget.videoUrls.length,
+                      itemCount:
+                          widget.imageUrls.length + widget.videoUrls.length,
                       controller: _pageController,
                       itemBuilder: (context, index) {
                         if (index < widget.imageUrls.length) {
                           return _buildImage(index);
-                        } 
+                        }
                       },
                     ),
                     Positioned(
@@ -146,7 +151,8 @@ class _ExpandedImageScreenState extends State<ExpandedImageScreen> {
                           height: 50,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: widget.imageUrls.length + widget.videoUrls.length,
+                            itemCount: widget.imageUrls.length +
+                                widget.videoUrls.length,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               if (index < widget.imageUrls.length) {
@@ -156,7 +162,8 @@ class _ExpandedImageScreenState extends State<ExpandedImageScreen> {
                                   onTap: () {
                                     _pageController.animateToPage(
                                       index,
-                                      duration: const Duration(milliseconds: 500),
+                                      duration:
+                                          const Duration(milliseconds: 500),
                                       curve: Curves.easeInOut,
                                     );
                                     setState(() {
@@ -165,15 +172,18 @@ class _ExpandedImageScreenState extends State<ExpandedImageScreen> {
                                   },
                                 );
                               } else {
-                                final videoIndex = index - widget.imageUrls.length;
+                                final videoIndex =
+                                    index - widget.imageUrls.length;
                                 return ThumbnailWidget(
                                   mediaUrl: widget.videoUrls[videoIndex],
-                                  thumbnail: _thumbnailCache[widget.videoUrls[videoIndex]],
+                                  thumbnail: _thumbnailCache[
+                                      widget.videoUrls[videoIndex]],
                                   isSelected: selectedIndex == index,
                                   onTap: () {
                                     _pageController.animateToPage(
                                       index,
-                                      duration: const Duration(milliseconds: 500),
+                                      duration:
+                                          const Duration(milliseconds: 500),
                                       curve: Curves.easeInOut,
                                     );
                                     setState(() {
@@ -210,7 +220,8 @@ class _ExpandedImageScreenState extends State<ExpandedImageScreen> {
               minScale: PhotoViewComputedScale.contained * 1,
               maxScale: PhotoViewComputedScale.covered * 2.0,
               imageProvider: CachedNetworkImageProvider(
-                widget.imageUrls[index] ?? 'https://cdn.pixabay.com/photo/2013/05/11/08/28/sunset-110305_1280.jpg',
+                widget.imageUrls[index] ??
+                    'https://cdn.pixabay.com/photo/2013/05/11/08/28/sunset-110305_1280.jpg',
               ),
             ),
           ),
@@ -246,26 +257,29 @@ class ThumbnailWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: onTap,
-        child: Container(
+      onTap: onTap,
+      child: Container(
         width: 55,
         height: 50,
         margin: const EdgeInsets.symmetric(horizontal: 4),
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(8),
-    border: isSelected ? Border.all(color: Colors.yellow, width: 3) : null,
-    ),
-    child: ClipRRect(
-    borderRadius: BorderRadius.circular(8),
-      child: _buildMediaWidget(),
-    ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border:
+              isSelected ? Border.all(color: Colors.yellow, width: 3) : null,
         ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: _buildMediaWidget(),
+        ),
+      ),
     );
   }
 
   Widget _buildMediaWidget() {
     if (mediaUrl != null) {
-      if (mediaUrl!.endsWith('.mp4') || mediaUrl!.endsWith('.mov') || mediaUrl!.endsWith('.avi')) {
+      if (mediaUrl!.endsWith('.mp4') ||
+          mediaUrl!.endsWith('.mov') ||
+          mediaUrl!.endsWith('.avi')) {
         return thumbnail ?? _buildPlaceholder();
       } else {
         return Image.network(

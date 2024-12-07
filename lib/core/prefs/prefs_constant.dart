@@ -4,8 +4,6 @@ class PrefsConstant {
 
   static const String loggedIn = 'loggedIn';
 
-
-
   static const String counterNotification = 'counter';
   static const String user = 'user';
   static const String lang = 'lang';
@@ -16,10 +14,9 @@ class PrefsConstant {
   static const String platformCloseDescEn = 'platformCloseDescEn';
   static const String platformCloseDescAr = 'platformCloseDescAr';
   static const String appUserId = 'appUserId';
-  static String currentLange='eg';
-  static const String logoUrl='logoUrl';
-  static const String guestAddress='guestAddress';
-  static const String locationLat='locationLat';
-  static const String locationLng='locationLng';
-
+  static String currentLange = 'eg';
+  static const String logoUrl = 'logoUrl';
+  static const String guestAddress = 'guestAddress';
+  static const String locationLat = 'locationLat';
+  static const String locationLng = 'locationLng';
 }

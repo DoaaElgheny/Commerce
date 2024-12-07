@@ -1,17 +1,9 @@
-import 'dart:io' show Platform;
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-
-import 'package:flutter_svg/svg.dart';
 import 'package:qubeCommerce/core/shared_widgets/images.dart';
 import 'package:qubeCommerce/core/utils/app_colors.dart';
 import 'package:qubeCommerce/features/login/presentation/widgets/auth_scaffold.dart';
 import 'package:qubeCommerce/features/login/presentation/widgets/sign_form.dart';
 import 'package:qubeCommerce/features/sign_up/presentation/pages/sign_up_screen.dart';
-
 import 'package:sizer/sizer.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -21,12 +13,12 @@ class LoginScreen extends StatelessWidget {
   );
 
   const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
-     
-       appBarBottom:  Center(
-        child: Image.asset("${Images.backGroundPng}"),
+      appBarBottom: Center(
+        child: Image.asset(Images.backGroundPng),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
@@ -49,10 +41,10 @@ class LoginScreen extends StatelessWidget {
             children: [
               _sizedBox,
               const Text(
-                "!أهلًا بيك، يلا نسجل دخولك ونبدأ",
+                "Welcome, let's log in and get started!",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16.0,
                   color: Color(0xFF06A6F1),
                 ),
               ),
@@ -63,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "don't_have_account",
+                    "Don't Have Account",
                     style: const TextStyle(
                       color: AppColors.textGrey,
                       fontWeight: FontWeight.w500,
@@ -74,15 +66,19 @@ class LoginScreen extends StatelessWidget {
                     width: 1.w,
                   ),
                   InkWell(
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (_) =>  SignUpScreen()));
-                      },
-                      child: Text("sign_up",
-                          style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontSize: (15),
-                              fontWeight: FontWeight.w600)))
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => SignUpScreen()));
+                    },
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: (15),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
                 ],
               ),
               _sizedBox,

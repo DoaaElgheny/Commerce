@@ -4,7 +4,6 @@ import '../../../../core/error/Failure.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../repositories/lang_repository.dart';
 
-
 class GetSavedLangUseCase implements UseCase<String, NoParams> {
   final LangRepository langRepository;
 
