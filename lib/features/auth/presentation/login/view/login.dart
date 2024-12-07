@@ -56,19 +56,21 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 25.h,
+                    top: 30.h,
                     left: 0,
                     right: 0,
                     bottom: 0,
                     child: Container(
                       decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              topLeft: Radius.circular(20))),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20),
+                        ),
+                      ),
                       height: double.infinity,
                       child: Container(
-                        margin: EdgeInsets.only(top: 0),
+                        margin: const EdgeInsets.only(top: 0),
                         child: CustomScrollView(
                           slivers: [
                             SliverPadding(
