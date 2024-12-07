@@ -1,4 +1,4 @@
-class EndPoints {
+final class EndPoints {
   //test
   static const String baseUrl = 'https://api.commerce.qubefyn.com/';
 
