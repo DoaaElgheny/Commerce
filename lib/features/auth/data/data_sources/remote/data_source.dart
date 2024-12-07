@@ -37,7 +37,7 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
   final AuthenticationJsonValidator _jsonValidator;
 
   @override
-  Future<Map<String, dynamic>> login({
+  Future<String> login({
     required LoginCredentials credentials,
   }) async {
     final response = await _client.post(
@@ -45,7 +45,7 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
       body: LoginCredentialsDTO.fromEntity(credentials).toMap(),
     );
 
-    return _responseHandler.handle<Map<String, dynamic>>(
+    return _responseHandler.handle<String>(
       response: response,
       expectedCases: [200],
       expectedCasesHandler: (status) {
@@ -57,7 +57,9 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
           throw const FormatException();
         }
 
-        return Map<String, dynamic>.from(jsonResponse['data'] as Map);
+        return Map<String, dynamic>.from(
+          jsonResponse['data'] as Map,
+        )['access_token'] as String;
       },
     );
   }

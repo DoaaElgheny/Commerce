@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -47,6 +48,7 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
   @override
   Future<void> init() async {
     _authStreamSubscription = authStateChanges().listen((event) async {
+      log('Event asd: $event');
       if (event == null) {
         await _cache.destroyToken();
       } else {
@@ -67,8 +69,15 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
   @override
   Future<User> login({required LoginCredentials credentials}) async {
     final useCase = Login(repository: _authRepository);
-    final user = await useCase.call(credentials: credentials);
+    final token = await useCase.call(credentials: credentials);
 
+    final details = await FetchUserByToken(repository: _userRepository).call(
+      parameters: UserByTokenParameters(token: token),
+    );
+    final user = User(
+      details: details,
+      accessToken: token,
+    );
     _authChangesStreamController.sink.add(user);
     _userChangesStreamController.sink.add(user);
 
@@ -154,6 +163,7 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
   @override
   Future<void> verifyToken() async {
     try {
+      log('verifyToken Start');
       final token = await _cache.cachedToken();
       if (token == null) {
         _authChangesStreamController.sink.add(null);
@@ -162,11 +172,14 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
       }
 
       final useCase = FetchUserByToken(repository: _userRepository);
-      final user = await useCase.call(
+      final details = await useCase.call(
         parameters: UserByTokenParameters(token: token),
       );
 
-      _userChangesStreamController.sink.add(user);
+      _userChangesStreamController.sink.add(User(
+        accessToken: token,
+        details: details,
+      ));
     } catch (_) {
       try {
         await logout();
@@ -179,9 +192,12 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
 
   @override
   Future<void> refreshUser() async {
-    final user = await FetchUserByToken(repository: _userRepository).call(
+    final details = await FetchUserByToken(repository: _userRepository).call(
       parameters: UserByTokenParameters(token: currentUser!.accessToken),
     );
-    _userChangesStreamController.sink.add(user);
+    _userChangesStreamController.sink.add(User(
+      details: details,
+      accessToken: currentUser!.accessToken,
+    ));
   }
 }

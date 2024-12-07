@@ -1,9 +1,7 @@
 import '../../domain/entities/details.dart';
 import '../../domain/entities/parameters/add_fcm_token.dart';
 import '../../domain/entities/parameters/read.dart';
-import '../../domain/entities/parameters/toggle_notification.dart';
 import '../../domain/entities/parameters/user_by_token.dart';
-import '../../domain/entities/parameters/user_toggle_online.dart';
 import '../../domain/entities/parameters/verify_account.dart';
 import '../../domain/entities/profile_modification_data.dart';
 import '../../domain/entities/user.dart';
@@ -46,12 +44,12 @@ final class UserRepository implements UserBaseRepository {
   }
 
   @override
-  Future<User> userByToken({
+  Future<UserDetails> userByToken({
     required UserByTokenParameters parameters,
   }) async {
     final json = await _dataSource.userByToken(parameters: parameters);
 
-    return UserDTO.fromMap(json);
+    return UserDetailsDTO.fromMap(json);
   }
 
   @override
@@ -61,22 +59,6 @@ final class UserRepository implements UserBaseRepository {
     final json = await _dataSource.update(data: data);
 
     return UserDetailsDTO.fromMap(json);
-  }
-
-  @override
-  Future<UserDetails> userToggleOnline({
-    required UserToggleOnlineParameters parameters,
-  }) async {
-    final json = await _dataSource.userToggleOnline(parameters: parameters);
-
-    return UserDetailsDTO.fromMap(json);
-  }
-
-  @override
-  Future<bool> toggleNotification({
-    required ToggleNotificationParameters parameters,
-  }) {
-    return _dataSource.toggleNotification(parameters: parameters);
   }
 
   @override

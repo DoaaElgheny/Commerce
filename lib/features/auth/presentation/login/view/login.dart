@@ -169,6 +169,7 @@ void _stateHandler(BuildContext context, LoginState state) {
       );
     case ExceptionState():
       final error = state.error;
+
       SnackBarUtility.errorSnackBar(
         context,
         (error is ResponseException) ? error.message : 'Try Again',

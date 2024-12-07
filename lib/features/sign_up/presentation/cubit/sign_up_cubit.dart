@@ -6,11 +6,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:qubeCommerce/config/routes/app_routes.dart';
 import 'package:qubeCommerce/core/api/success_response.dart';
 
 import '../../../../core/error/Failure.dart';
 import '../../../../core/utils/map_failure_msg.dart';
+import '../../../auth/presentation/login/view/login.dart';
 import '../../domain/entities/register_parameter.dart';
 import '../../domain/usecases/register.dart';
 
@@ -43,7 +43,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         log("signUpResponse $signUpResponse");
         emit(SignUpSuccess());
         EasyLoading.showSuccess(signUpResponse.message);
-        Navigator.pushReplacementNamed(context, Routes.loginScreen);
+        Navigator.pushReplacementNamed(context, LoginView.routeName);
       });
     } catch (error) {
       emit(const SignUpError(msg: 'error'));

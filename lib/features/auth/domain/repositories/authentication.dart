@@ -14,7 +14,8 @@ abstract interface class AuthenticationBaseRepository {
     required OtpConfirmationParameters parameters,
   });
 
-  Future<User> login({
+  /// Return token.
+  Future<String> login({
     required LoginCredentials credentials,
   });
 

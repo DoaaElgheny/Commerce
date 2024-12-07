@@ -13,7 +13,7 @@ abstract interface class AuthenticationDataSource {
     required OtpConfirmationParameters parameters,
   });
 
-  Future<Map<String, dynamic>> login({
+  Future<String> login({
     required LoginCredentials credentials,
   });
 

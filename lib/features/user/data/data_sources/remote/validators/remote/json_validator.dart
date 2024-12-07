@@ -35,9 +35,19 @@ final class UserPatternJsonValidator implements UserJsonValidator {
 
   @override
   bool userByToken(Object json) {
-    if (json case {'data': Map _}) {
-      final jsonData = Map<String, dynamic>.from(json);
-      return validUser(jsonData['data']);
+    if (json
+        case {
+          "succeeded": true,
+          "data": {
+            "id": int _,
+            "fullName": String _,
+            "email": String _,
+            "phoneNumber": String _,
+            "appUserId": String _,
+            "isActive": bool _,
+          }
+        }) {
+      return true;
     }
     return false;
   }

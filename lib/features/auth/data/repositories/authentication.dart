@@ -25,12 +25,10 @@ final class AuthenticationRepository implements AuthenticationBaseRepository {
   }
 
   @override
-  Future<User> login({
+  Future<String> login({
     required LoginCredentials credentials,
   }) async {
-    final json = await _dataSource.login(credentials: credentials);
-
-    return UserDTO.fromMap(json);
+    return _dataSource.login(credentials: credentials);
   }
 
   @override

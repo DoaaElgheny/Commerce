@@ -1,7 +1,15 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:qubeCommerce/config/routes/app_routes.dart';
+import 'package:qubeCommerce/features/auth/presentation/login/view/login.dart';
 import 'package:qubeCommerce/features/login/presentation/pages/login_screen.dart';
+
+import '../../../../core/authentication/cache/disk/hive.dart';
+import '../../../../core/authentication/provider.dart';
+import '../../../../core/db/kv_db/hive.dart';
+import '../../../../di/dependency_injector.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -38,12 +46,54 @@ class _SplashScreenState extends State<SplashScreen> {
     });
 
     // After that, navigate to the next screen or display all sections
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 2));
+    await _initAppDatabases();
+    DependencyInjector.setup();
+
+    AuthenticationProvider.injectDelegate(
+      delegate: DependencyInjector.authenticationDelegateWithRxdart,
+    );
+
+    final firstTimeOpenedApp = HiveDatabase.firstTimeOpenedApp();
+
+    if (firstTimeOpenedApp) {
+      await HiveDatabase.cacheTheAppIsOpened();
+
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        LoginView.routeName,
+        (r) => false,
+      );
+      return;
+    } else {
+      await AuthenticationProvider.instance.init();
+      final user = AuthenticationProvider.instance.currentUser;
+
+      log('user : asdlkn $user');
+      if (user == null) {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          LoginView.routeName,
+          (r) => false,
+        );
+        return;
+      } else {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          Routes.homeScreen,
+          (r) => false,
+        );
+        return;
+      }
+    }
+
     //we put Logic here if he logged go to home if not go to login
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => const LoginScreen()),
       (r) => false,
     );
+  }
+
+  Future<void> _initAppDatabases() async {
+    await HiveDatabase.init();
+    await HiveAuthenticationCache().init();
   }
 
   @override

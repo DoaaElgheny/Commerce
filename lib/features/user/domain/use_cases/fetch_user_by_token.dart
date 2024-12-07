@@ -1,5 +1,6 @@
+import 'package:qubeCommerce/features/user/domain/entities/details.dart';
+
 import '../entities/parameters/user_by_token.dart';
-import '../entities/user.dart';
 import '../repositories/user.dart';
 
 final class FetchUserByToken {
@@ -9,7 +10,7 @@ final class FetchUserByToken {
 
   final UserBaseRepository _repository;
 
-  Future<User> call({
+  Future<UserDetails> call({
     required UserByTokenParameters parameters,
   }) {
     return _repository.userByToken(parameters: parameters);

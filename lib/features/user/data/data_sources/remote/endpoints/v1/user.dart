@@ -38,7 +38,7 @@ final class UserEndpointsV1 implements UserEndpoints {
 
   @override
   Uri get userByToken {
-    return Uri.parse('api/v1/users/by-token');
+    return Uri.parse('api/Users/me');
   }
 
   @override

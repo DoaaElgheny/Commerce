@@ -31,10 +31,9 @@ final class LoginCubit extends Cubit<LoginState> {
           password: passwordController.text,
         ),
       );
-
       emit(LoggedInState(user: user));
-    } catch (e) {
-      log('Exception: $e');
+    } catch (e, s) {
+      log('Exception: $e $s');
       emit(ExceptionState(error: e));
     }
   }

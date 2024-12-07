@@ -5,15 +5,15 @@ import 'package:qubeCommerce/injection_container.dart' as di;
 
 import '../../core/utils/app_strings.dart';
 import '../../features/auth/presentation/forget_password/view/forget_password_view.dart';
+import '../../features/auth/presentation/login/view/login.dart';
 import '../../features/bottomNavigationBar/presentation/pages/bottom_navigation_bar.dart';
 import '../../features/home/presentation/pages/home_screen.dart';
-import '../../features/login/presentation/pages/login_screen.dart';
 import '../../features/splash/presentation/cubit/locale_cubit.dart';
 import '../../features/splash/presentation/pages/splash_screen.dart';
 
 class Routes {
   static const String initialRoute = '/';
-  static const String loginScreen = '/login';
+  // static const String loginScreen = '/login';
   static const String homeScreen = '/homeScreen';
   static const String signUpScreen = '/signUpScreen';
 
@@ -31,10 +31,10 @@ class AppRoutes {
             child: SplashScreen(),
           );
         });
-      case Routes.loginScreen:
-        return MaterialPageRoute(builder: ((context) {
-          return const LoginScreen();
-        }));
+      // case Routes.loginScreen:
+      //   return MaterialPageRoute(builder: ((context) {
+      //     return const LoginScreen();
+      //   }));
       // case Routes.exploreScreen:
       //   return MaterialPageRoute(builder: ((context) {
       //     return const ExploreScreen();
@@ -88,6 +88,10 @@ class AppRoutes {
       case ForgetPasswordView.routeName:
         return MaterialPageRoute(
           builder: (context) => const ForgetPasswordView(),
+        );
+      case LoginView.routeName:
+        return MaterialPageRoute(
+          builder: (context) => const LoginView(),
         );
       // case Routes.changePasswordScreen:
       //   return MaterialPageRoute(builder: ((context) {

@@ -20,10 +20,8 @@ final class AuthenticationPatternJsonValidator
             },
             "access_token": String _,
           }
-        }) {}
-    if (json case <String, dynamic>{"data": Map _}) {
-      final jsonData = Map<String, dynamic>.from(json);
-      return const UserPatternJsonValidator().validUser(jsonData['data']);
+        }) {
+      return true;
     }
     return false;
   }
