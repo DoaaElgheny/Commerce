@@ -189,7 +189,7 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
   }
 
   @override
-  Future<Map<String, dynamic>> resetPasswordByOtp({
+  Future<String> resetPasswordByOtp({
     required ResetPasswordParameters parameters,
   }) async {
     final response = await _client.post(
@@ -197,7 +197,7 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
       body: ResetPasswordParametersDTO.fromEntity(parameters).toMap(),
     );
 
-    return _responseHandler.handle<Map<String, dynamic>>(
+    return _responseHandler.handle<String>(
       response: response,
       expectedCases: [200],
       expectedCasesHandler: (status) {
@@ -205,11 +205,7 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
           jsonDecode(response.body) as Map,
         );
 
-        if (!_jsonValidator.resetPasswordByOtp(jsonResponse)) {
-          throw const FormatException();
-        }
-
-        return Map<String, dynamic>.from(jsonResponse['data'] as Map);
+        return jsonResponse['message'] as String;
       },
     );
   }

@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:qubeCommerce/config/routes/app_routes.dart';
 import 'package:qubeCommerce/features/auth/presentation/login/view/login.dart';
-import 'package:qubeCommerce/features/login/presentation/pages/login_screen.dart';
 
 import '../../../../core/authentication/cache/disk/hive.dart';
 import '../../../../core/authentication/provider.dart';
@@ -84,11 +83,11 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     }
 
-    //we put Logic here if he logged go to home if not go to login
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => const LoginScreen()),
-      (r) => false,
-    );
+    // //we put Logic here if he logged go to home if not go to login
+    // Navigator.of(context).pushAndRemoveUntil(
+    //   MaterialPageRoute(builder: (_) => const LoginScreen()),
+    //   (r) => false,
+    // );
   }
 
   Future<void> _initAppDatabases() async {

@@ -9,6 +9,7 @@ enum AuthField {
   gender(name: 'Gender', value: 'gender'),
   lastName(name: 'Last Name', value: 'last_name'),
   otp(name: 'OTP', value: 'otp'),
+  userName(name: 'Username', value: 'userName'),
   password(name: 'Password', value: 'password'),
   newPassword(name: 'New Password', value: 'newPassword'),
   passwordConfirmation(

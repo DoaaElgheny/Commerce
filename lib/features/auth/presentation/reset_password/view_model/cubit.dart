@@ -33,7 +33,7 @@ final class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       }
 
       final useCase = ResetPasswordByOtp(repository: _repository);
-      final user = await useCase.call(
+      final message = await useCase.call(
         parameters: ResetPasswordParameters(
           otp: _parameters.otp,
           email: _parameters.email,
@@ -41,7 +41,7 @@ final class ResetPasswordCubit extends Cubit<ResetPasswordState> {
         ),
       );
 
-      emit(PasswordHasBeenResetState(user: user));
+      emit(PasswordHasBeenResetState(message: message));
     } catch (e) {
       emit(ExceptionState(error: e));
     }

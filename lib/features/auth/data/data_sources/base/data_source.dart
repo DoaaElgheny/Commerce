@@ -40,7 +40,7 @@ abstract interface class AuthenticationDataSource {
     required PasswordResetRequestParameters parameters,
   });
 
-  Future<Map<String, dynamic>> resetPasswordByOtp({
+  Future<String> resetPasswordByOtp({
     required ResetPasswordParameters parameters,
   });
 }

@@ -43,7 +43,7 @@ abstract interface class AuthenticationBaseRepository {
     required RegisterCredentials credentials,
   });
 
-  Future<User> resetPasswordByOtp({
+  Future<String> resetPasswordByOtp({
     required ResetPasswordParameters parameters,
   });
 }

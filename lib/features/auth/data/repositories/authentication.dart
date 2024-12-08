@@ -74,11 +74,9 @@ final class AuthenticationRepository implements AuthenticationBaseRepository {
   }
 
   @override
-  Future<User> resetPasswordByOtp({
+  Future<String> resetPasswordByOtp({
     required ResetPasswordParameters parameters,
   }) async {
-    final json = await _dataSource.resetPasswordByOtp(parameters: parameters);
-
-    return UserDTO.fromMap(json);
+    return _dataSource.resetPasswordByOtp(parameters: parameters);
   }
 }

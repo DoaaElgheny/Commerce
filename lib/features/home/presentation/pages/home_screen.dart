@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:qubeCommerce/core/authentication/provider.dart';
 import 'package:qubeCommerce/core/shared_widgets/elevated_btn.dart';
 import 'package:qubeCommerce/core/utils/app_colors.dart';
+import 'package:qubeCommerce/features/auth/presentation/login/view/login.dart';
 import 'package:qubeCommerce/features/home/presentation/widgets/container_box.dart';
+
 import '../../../../core/shared_widgets/app_text.dart';
-import '../../../../core/utils/assets_manager.dart';
 import '../../domain/entities/popurlar_destinations_list.dart';
 import '../widgets/special_booked_list_widget.dart';
 import '../widgets/special_booked_widget.dart';
@@ -78,6 +82,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        label: const Text('Logout'),
+        onPressed: () async {
+          log(
+            'Token: ${AuthenticationProvider.instance.currentUser?.accessToken}',
+          );
+          return;
+          await AuthenticationProvider.instance.logout();
+          if (context.mounted) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              LoginView.routeName,
+              (r) => false,
+            );
+          }
+        },
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -146,7 +167,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             AppText(
-                              text: 'أحمد قرواش',
+                              text: AuthenticationProvider
+                                      .instance.currentUser?.details.fullName ??
+                                  '',
                               color: AppColors.primaryColor,
                               weight: FontWeight.bold,
                               fontSize: 16,

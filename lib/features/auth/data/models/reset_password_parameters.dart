@@ -34,7 +34,7 @@ final class ResetPasswordParametersDTO extends ResetPasswordParameters {
 
   factory ResetPasswordParametersDTO.fromMap(Map<String, dynamic> json) {
     return ResetPasswordParametersDTO(
-      email: json[AuthField.email.value] as String,
+      email: json[AuthField.userName.value] as String,
       otp: json[AuthField.otp.value] as String,
       password: json[AuthField.newPassword.value] as String,
     );
@@ -52,7 +52,7 @@ final class ResetPasswordParametersDTO extends ResetPasswordParameters {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      AuthField.email.value: email,
+      AuthField.userName.value: email,
       AuthField.otp.value: otp,
       AuthField.newPassword.value: password,
     };

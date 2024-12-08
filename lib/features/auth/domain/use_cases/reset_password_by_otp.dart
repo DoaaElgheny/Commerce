@@ -1,4 +1,3 @@
-import '../../../user/domain/entities/user.dart';
 import '../entities/reset_password_parameters.dart';
 import '../repositories/authentication.dart';
 
@@ -9,7 +8,7 @@ final class ResetPasswordByOtp {
 
   final AuthenticationBaseRepository _repository;
 
-  Future<User> call({
+  Future<String> call({
     required ResetPasswordParameters parameters,
   }) async {
     return _repository.resetPasswordByOtp(parameters: parameters);

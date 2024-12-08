@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qubeCommerce/features/sign_up/presentation/pages/sign_up_screen.dart';
 import 'package:qubeCommerce/injection_container.dart' as di;
 
 import '../../core/utils/app_strings.dart';
@@ -21,7 +20,7 @@ class Routes {
 
   // static const String loginScreen = '/login';
   static const String homeScreen = '/homeScreen';
-  static const String signUpScreen = '/signUpScreen';
+  // static const String signUpScreen = '/signUpScreen';
 
   static const String bottomNavigationBarScreen = '/bottomNavigationBarScreen';
   static const String exploreScreen = '/exploreScreen';
@@ -45,10 +44,10 @@ class AppRoutes {
       //   return MaterialPageRoute(builder: ((context) {
       //     return const ExploreScreen();
       //   }));
-      case Routes.signUpScreen:
-        return MaterialPageRoute(builder: ((context) {
-          return const SignUpScreen();
-        }));
+      // case Routes.signUpScreen:
+      //   return MaterialPageRoute(builder: ((context) {
+      //     return const SignUpScreen();
+      //   }));
 
       case VerifyResetPasswordOTPView.routeName:
         assert(

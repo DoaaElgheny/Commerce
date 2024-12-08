@@ -208,11 +208,8 @@ void _stateHandler(BuildContext context, ResetPasswordState state) {
       //   notValidData,
       // );
       return;
-    case PasswordHasBeenResetState():
-      SnackBarUtility.successSnackBar(
-        context,
-        'Password Reset Successfully',
-      );
+    case PasswordHasBeenResetState(message: final message):
+      SnackBarUtility.successSnackBar(context, message);
       Navigator.pushNamedAndRemoveUntil(
         context,
         LoginView.routeName,

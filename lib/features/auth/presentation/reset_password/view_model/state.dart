@@ -1,13 +1,11 @@
-import '../../../../user/domain/entities/user.dart';
-
 sealed class ResetPasswordState {}
 
 final class InitState extends ResetPasswordState {}
 
 final class PasswordHasBeenResetState extends ResetPasswordState {
-  PasswordHasBeenResetState({required this.user});
+  PasswordHasBeenResetState({required this.message});
 
-  final User user;
+  final String message;
 }
 
 final class NotValidDataState extends ResetPasswordState {}

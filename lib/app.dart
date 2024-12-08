@@ -6,7 +6,6 @@ import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'package:qubeCommerce/features/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:qubeCommerce/injection_container.dart' as di;
 import 'package:sizer/sizer.dart';
 import 'package:uni_links/uni_links.dart';
@@ -21,10 +20,6 @@ import 'core/shared_widgets/disconnected_screen.dart';
 import 'core/utils/app_strings.dart';
 import 'features/bottomNavigationBar/presentation/cubit/buttomnavigationbar_cubit.dart';
 import 'features/home/presentation/cubit/filters_cubit.dart';
-import 'features/login/presentation/cubit/login_cubit.dart';
-import 'features/login/presentation/cubit/terms_and_conditions_cubit.dart';
-import 'features/login/presentation/cubit/validation_cubit.dart';
-import 'features/login/presentation/cubit/verification_cubit.dart';
 import 'features/splash/presentation/cubit/locale_cubit.dart';
 
 class qubeCommerceApp extends StatefulWidget {
@@ -98,21 +93,6 @@ class _qubeCommerceAppState extends State<qubeCommerceApp> {
             ),
             BlocProvider<ButtomnavigationbarCubit>(
               create: (context) => di.sl<ButtomnavigationbarCubit>(),
-            ),
-            BlocProvider<LoginCubit>(
-              create: (context) => di.sl<LoginCubit>(),
-            ),
-            BlocProvider<FormValidationCubit>(
-              create: (context) => di.sl<FormValidationCubit>(),
-            ),
-            BlocProvider<VerificationCubit>(
-              create: (context) => di.sl<VerificationCubit>(),
-            ),
-            BlocProvider<SignUpCubit>(
-              create: (context) => di.sl<SignUpCubit>(),
-            ),
-            BlocProvider<TermsAndConditionsCubit>(
-              create: (context) => di.sl<TermsAndConditionsCubit>(),
             ),
             BlocProvider<FiltersCubit>(
               create: (context) => di.sl<FiltersCubit>(),
