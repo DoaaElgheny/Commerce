@@ -30,9 +30,9 @@ class _ResetCodeBtnState extends State<ResetCodeBtn> {
               }
             },
       style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        disabledForegroundColor: Colors.grey,
-      ),
+          // foregroundColor: Colors.white,
+          // disabledForegroundColor: Colors.grey,
+          ),
       child: const Text('Resend Code'),
     );
   }

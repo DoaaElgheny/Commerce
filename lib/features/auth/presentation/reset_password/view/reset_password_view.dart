@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../network/exception/response.dart';
 import '../../../../../shared/widget/snack_bar.dart';
-import '../../../domain/entities/screen_arguments/reset_password.dart';
+import '../../../domain/entities/reset_password_response.dart';
 import '../../../domain/validators/auth.dart';
 import '../../../domain/validators/enums/confirm_password_valid_state.dart';
 import '../../login/view/login.dart';
@@ -22,7 +22,7 @@ class ResetPasswordView extends StatelessWidget {
     super.key,
   });
 
-  final ResetPasswordViewParameters parameters;
+  final ResetPasswordResponse parameters;
 
   static const routeName = '/reset-password';
 

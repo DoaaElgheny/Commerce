@@ -4,10 +4,13 @@ import 'package:qubeCommerce/features/sign_up/presentation/pages/sign_up_screen.
 import 'package:qubeCommerce/injection_container.dart' as di;
 
 import '../../core/utils/app_strings.dart';
+import '../../features/auth/domain/entities/reset_password_response.dart';
 import '../../features/auth/presentation/forget_password/view/forget_password_view.dart';
 import '../../features/auth/presentation/login/view/login.dart';
 import '../../features/auth/presentation/login_with_phone/view/login.dart';
 import '../../features/auth/presentation/register/view/register_view.dart';
+import '../../features/auth/presentation/reset_password/view/reset_password_view.dart';
+import '../../features/auth/presentation/verify_otp/view/verify_otp_view.dart';
 import '../../features/bottomNavigationBar/presentation/pages/bottom_navigation_bar.dart';
 import '../../features/home/presentation/pages/home_screen.dart';
 import '../../features/splash/presentation/cubit/locale_cubit.dart';
@@ -31,7 +34,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) {
           return BlocProvider(
             create: (context) => di.sl<LocaleCubit>(),
-            child: SplashScreen(),
+            child: const SplashScreen(),
           );
         });
       // case Routes.loginScreen:
@@ -44,8 +47,33 @@ class AppRoutes {
       //   }));
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: ((context) {
-          return SignUpScreen();
+          return const SignUpScreen();
         }));
+
+      case VerifyResetPasswordOTPView.routeName:
+        assert(
+          routeSettings.arguments is ResetPasswordResponse,
+          'The argument must be of type ResetPasswordResponse',
+        );
+
+        return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (context) => VerifyResetPasswordOTPView(
+            parameters: routeSettings.arguments! as ResetPasswordResponse,
+          ),
+        );
+      case ResetPasswordView.routeName:
+        assert(
+          routeSettings.arguments is ResetPasswordResponse,
+          'The argument must be of type ResetPasswordResponse',
+        );
+
+        return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (context) => ResetPasswordView(
+            parameters: routeSettings.arguments! as ResetPasswordResponse,
+          ),
+        );
       // case Routes.forgetPasswordScreen:
       //   return MaterialPageRoute(builder: ((context) {
       //     return const ForgetPasswordScreen();

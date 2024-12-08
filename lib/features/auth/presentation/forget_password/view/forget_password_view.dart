@@ -8,7 +8,6 @@ import '../../../../../core/shared_widgets/images.dart';
 import '../../../../../network/exception/response.dart';
 import '../../../../../shared/widget/loading_btn.dart';
 import '../../../../../shared/widget/snack_bar.dart';
-import '../../../domain/entities/screen_arguments/verify_reset_password_otp.dart';
 import '../../verify_otp/view/verify_otp_view.dart';
 import '../view_model/forget_password.dart';
 import '../view_model/states.dart';
@@ -165,10 +164,6 @@ void _stateHandler(BuildContext context, ForgetPasswordStates state) {
     case InitState():
       return;
     case NotValidDataState():
-      // SnackBarUtility.errorSnackBar(
-      //   context,
-      //   notValidData,
-      // );
       return;
     case OtpSentState(response: final response):
       SnackBarUtility.successSnackBar(context, response.message);
@@ -176,7 +171,7 @@ void _stateHandler(BuildContext context, ForgetPasswordStates state) {
       Navigator.pushNamed(
         context,
         VerifyResetPasswordOTPView.routeName,
-        arguments: VerifyResetPasswordOTPViewParameters(phone: response.otp),
+        arguments: response,
       );
     case ExceptionState():
       final error = state.error;

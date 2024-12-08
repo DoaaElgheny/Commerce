@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/entities/otp_confirmation_parameters.dart';
 import '../../../domain/entities/password_reset_request_params.dart';
+import '../../../domain/entities/reset_password_response.dart';
 import '../../../domain/repositories/authentication.dart';
-import '../../../domain/use_cases/confirm_otp_to_reset_password.dart';
 import '../../../domain/use_cases/send_otp_to_reset_password.dart';
 import 'states.dart';
 
 final class VerifyResetPasswordOTPCubit
     extends Cubit<VerifyResetPasswordOTPState> {
   VerifyResetPasswordOTPCubit({
-    required this.phone,
+    required ResetPasswordResponse params,
     required AuthenticationBaseRepository repository,
-  })  : _repository = repository,
+  })  : _params = params,
+        _repository = repository,
         super(InitState());
 
-  final String phone;
+  final ResetPasswordResponse _params;
   final AuthenticationBaseRepository _repository;
   final pinCodeController = TextEditingController();
 
@@ -26,12 +26,14 @@ final class VerifyResetPasswordOTPCubit
 
   Future<void> resendOTP() async {
     try {
-      final usecase = SendOtpToResetPassword(repository: _repository);
-      await usecase.call(
-        parameters: PasswordResetRequestParameters(phone: phone),
+      final useCase = SendOtpToResetPassword(repository: _repository);
+      await useCase.call(
+        parameters: PasswordResetRequestParameters(
+          email: _params.email,
+        ),
       );
 
-      emit(OtpSentState(phone: phone));
+      emit(OtpSentState(email: _params.email));
     } catch (e) {
       emit(ExceptionState(error: e));
     }
@@ -40,17 +42,12 @@ final class VerifyResetPasswordOTPCubit
   Future<void> verifyOTP() async {
     try {
       final otp = pinCodeController.text;
-      if (otp.length != 6) {
+      if (otp.length != 5 || _params.otp != otp) {
         emit(NotValidOTPState(otp: otp));
         return;
       }
 
-      final usecase = ConfirmOtpToResetPassword(repository: _repository);
-      await usecase.call(
-        parameters: OtpConfirmationParameters(otp: otp, phone: phone),
-      );
-
-      emit(OtpVerifiedState(phone: phone, otp: otp));
+      emit(OtpVerifiedState(response: _params));
     } catch (e) {
       emit(ExceptionState(error: e));
     }
