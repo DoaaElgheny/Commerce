@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -85,10 +83,10 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Logout'),
         onPressed: () async {
-          log(
-            'Token: ${AuthenticationProvider.instance.currentUser?.accessToken}',
-          );
-          return;
+          // log(
+          //   'Token: ${AuthenticationProvider.instance.currentUser?.accessToken}',
+          // );
+          // return;
           await AuthenticationProvider.instance.logout();
           if (context.mounted) {
             Navigator.pushNamedAndRemoveUntil(

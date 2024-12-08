@@ -113,7 +113,7 @@ class _qubeCommerceAppState extends State<qubeCommerceApp> {
                         navigatorKey: navigatorKey,
                         title: AppStrings.appName,
                         // locale: state.locale,
-                        locale: Locale(AppStrings.arabicCode),
+                        locale: const Locale(AppStrings.englishCode),
                         debugShowCheckedModeBanner: false,
                         theme: appTheme(),
                         builder: EasyLoading.init(),
