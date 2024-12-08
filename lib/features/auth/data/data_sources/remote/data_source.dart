@@ -12,6 +12,7 @@ import '../../../domain/entities/otp_confirmation_parameters.dart';
 import '../../../domain/entities/password_reset_request_params.dart';
 import '../../../domain/entities/register_credentials.dart';
 import '../../../domain/entities/reset_password_parameters.dart';
+import '../../../domain/entities/reset_password_response.dart';
 import '../../../domain/entities/social_media_credentials.dart';
 import '../../models/login_credentials.dart';
 import '../../models/logout_parameters.dart';
@@ -214,7 +215,7 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
   }
 
   @override
-  Future<void> sendOtpToResetPassword({
+  Future<ResetPasswordResponse> sendOtpToResetPassword({
     required PasswordResetRequestParameters parameters,
   }) async {
     final response = await _client.post(
@@ -222,10 +223,31 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
       body: PasswordResetRequestParametersDTO.fromEntity(parameters).toMap(),
     );
 
-    return _responseHandler.handle<void>(
+    return _responseHandler.handle<ResetPasswordResponse>(
       response: response,
-      expectedCases: [200],
-      expectedCasesHandler: (status) {},
+      expectedCases: [200, 400],
+      expectedCasesHandler: (status) {
+        final jsonResponse = Map<String, dynamic>.from(
+          jsonDecode(response.body) as Map,
+        );
+
+        if (status == 400) {
+          throw ResponseException(jsonResponse['errors'].first);
+        }
+        if (jsonResponse
+            case {
+              "succeeded": true,
+              "message": String _,
+              "data": {"value": String _}
+            }) {
+          return ResetPasswordResponse(
+            message: jsonResponse['message'] as String,
+            otp: jsonResponse['data']['value'] as String,
+          );
+        }
+
+        throw const FormatException();
+      },
     );
   }
 

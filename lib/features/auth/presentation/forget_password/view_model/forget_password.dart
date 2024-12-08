@@ -14,7 +14,7 @@ final class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
 
   final AuthenticationBaseRepository _repository;
   final formKey = GlobalKey<FormState>();
-  final phoneController = TextEditingController();
+  final emailController = TextEditingController();
 
   factory ForgetPasswordCubit.of(BuildContext context) {
     return BlocProvider.of<ForgetPasswordCubit>(context);
@@ -27,14 +27,14 @@ final class ForgetPasswordCubit extends Cubit<ForgetPasswordStates> {
         return;
       }
 
-      final phone = phoneController.text;
+      final email = emailController.text;
 
-      final usecase = SendOtpToResetPassword(repository: _repository);
-      await usecase.call(
-        parameters: PasswordResetRequestParameters(phone: phone),
+      final useCase = SendOtpToResetPassword(repository: _repository);
+      final response = await useCase.call(
+        parameters: PasswordResetRequestParameters(email: email),
       );
 
-      emit(OtpSentState(phone: phone));
+      emit(OtpSentState(response: response));
     } catch (e) {
       emit(ExceptionState(error: e));
     }

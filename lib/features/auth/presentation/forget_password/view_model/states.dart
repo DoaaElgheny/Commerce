@@ -1,3 +1,5 @@
+import '../../../domain/entities/reset_password_response.dart';
+
 sealed class ForgetPasswordStates {}
 
 final class InitState extends ForgetPasswordStates {
@@ -6,9 +8,9 @@ final class InitState extends ForgetPasswordStates {
 
 final class OtpSentState extends ForgetPasswordStates {
   OtpSentState({
-    required this.phone,
+    required this.response,
   }) : super();
-  final String phone;
+  final ResetPasswordResponse response;
 }
 
 final class NotValidDataState extends ForgetPasswordStates {

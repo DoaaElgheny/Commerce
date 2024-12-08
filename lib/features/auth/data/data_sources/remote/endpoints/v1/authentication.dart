@@ -5,7 +5,7 @@ final class AuthenticationEndpointsV1 implements AuthenticationEndpoints {
 
   @override
   Uri get sendOtpToResetPassword {
-    return Uri.parse('api/v1/forget-password');
+    return Uri.parse('api/Auth/sendOtp');
   }
 
   @override

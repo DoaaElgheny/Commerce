@@ -1,4 +1,5 @@
 import '../entities/password_reset_request_params.dart';
+import '../entities/reset_password_response.dart';
 import '../repositories/authentication.dart';
 
 final class SendOtpToResetPassword {
@@ -8,7 +9,7 @@ final class SendOtpToResetPassword {
 
   final AuthenticationBaseRepository _repository;
 
-  Future<void> call({
+  Future<ResetPasswordResponse> call({
     required PasswordResetRequestParameters parameters,
   }) async {
     return _repository.sendOtpToResetPassword(parameters: parameters);

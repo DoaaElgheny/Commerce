@@ -7,6 +7,7 @@ import '../entities/otp_confirmation_parameters.dart';
 import '../entities/password_reset_request_params.dart';
 import '../entities/register_credentials.dart';
 import '../entities/reset_password_parameters.dart';
+import '../entities/reset_password_response.dart';
 import '../entities/social_media_credentials.dart';
 
 abstract interface class AuthenticationBaseRepository {
@@ -34,7 +35,7 @@ abstract interface class AuthenticationBaseRepository {
     required LogoutParameters parameters,
   });
 
-  Future<void> sendOtpToResetPassword({
+  Future<ResetPasswordResponse> sendOtpToResetPassword({
     required PasswordResetRequestParameters parameters,
   });
 
