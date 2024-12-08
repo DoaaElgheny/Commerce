@@ -7,6 +7,7 @@ import '../../core/utils/app_strings.dart';
 import '../../features/auth/presentation/forget_password/view/forget_password_view.dart';
 import '../../features/auth/presentation/login/view/login.dart';
 import '../../features/auth/presentation/login_with_phone/view/login.dart';
+import '../../features/auth/presentation/register/view/register_view.dart';
 import '../../features/bottomNavigationBar/presentation/pages/bottom_navigation_bar.dart';
 import '../../features/home/presentation/pages/home_screen.dart';
 import '../../features/splash/presentation/cubit/locale_cubit.dart';
@@ -98,6 +99,10 @@ class AppRoutes {
       case LoginWithPhoneView.routeName:
         return MaterialPageRoute(
           builder: (context) => const LoginWithPhoneView(),
+        );
+      case RegisterView.routeName:
+        return MaterialPageRoute(
+          builder: (context) => const RegisterView(),
         );
       // case Routes.changePasswordScreen:
       //   return MaterialPageRoute(builder: ((context) {

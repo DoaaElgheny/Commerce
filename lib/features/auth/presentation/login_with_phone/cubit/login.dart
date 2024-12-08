@@ -20,7 +20,6 @@ final class LoginWithPhoneCubit extends Cubit<LoginWithPhoneState> {
 
   Future<void> login() async {
     try {
-      log('Phone: ${phoneController.text}');
       if (phoneController.text.isEmpty) {
         emit(NotValidDataState());
         return;

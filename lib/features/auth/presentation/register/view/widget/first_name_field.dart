@@ -36,7 +36,7 @@ class FirstNameField extends StatelessWidget {
       },
       style: const TextStyle(color: AppColors.white),
       decoration: const InputDecoration(
-        hintText: 'First Name',
+        hintText: 'Full Name',
         errorStyle: TextStyle(color: AppColors.appRed),
       ),
     );

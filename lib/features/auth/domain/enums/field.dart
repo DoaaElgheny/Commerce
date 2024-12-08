@@ -2,6 +2,7 @@ enum AuthField {
   bio(name: 'Bio', value: 'bio'),
   birthDay(name: 'Birthday', value: 'birthday'),
   countryId(name: 'Country ID', value: 'country_id'),
+  fullName(name: 'Full Name', value: 'fullName'),
   email(name: 'Email', value: 'email'),
   // fcmToken(name: 'FCM Token', value: 'token'),
   firstName(name: 'First Name', value: 'first_name'),
