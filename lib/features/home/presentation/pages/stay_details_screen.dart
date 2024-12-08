@@ -12,6 +12,7 @@
 // import '../../../../core/utils/assets_manager.dart';
 // import '../widgets/cotainer_calinder_details.dart';
 // import '../widgets/expandable_text_widget.dart';
+// import '../widgets/special_booked_details_widget.dart';
 // import '../widgets/special_booked_widget.dart';
 
 // class StayDetailsScreen extends StatefulWidget {
@@ -25,14 +26,22 @@
 //   int _currentIndex = 0;
 //   bool showMoreRooms = false;
 //   bool showMoreFacilities = false;
-//   SpecialBookedCard specialBookedCard = SpecialBookedCard(
-//       image: 'assets/images_new/products/bag.jpg',
-//                     productCategory: 'Bags & accessories',
-//                     productName: 'Travel bag',
-//                     productNumber: 31,
-//                     svgPath1: 'assets/icons/overview_section/Bag 1.svg',
-//                     svgPath2: 'assets/icons/overview_section/Calender 1.svg',
-//                     date: '2024-10-10',
+//   SpecialBookedCardDetails specialBookedCard = SpecialBookedCardDetails(
+//     type: 'Stays',
+//     isFavorite: true,
+//     title: 'Visit a traditional Asiri house',
+//     subTitle: 'Al Riyadh, Saudi Arabia',
+//     currency: 'SR',
+//     price: '1,500',
+//     date: '24-29 Jul',
+//     rate: '5.0',
+//     imgList: const [
+//       'https://s3-alpha-sig.figma.com/img/2730/5f24/821cb946e3048faa69e740c55b8f5aaf?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=diZUnPz73UJZyy9kCtxSuyKu14P7YdcuiPQhXmFo2fNxZTeQwjOUTaW-dyeyF30RDR8-I34wtC4qb99xFvcfXvmn0pi5vHLfqx2ssMgFPhTUyFF0ljOrFfC2fzu5RQdgz6-fq5ymBNTASHcynaae7-~yB~48KcPcov8SiIxGKGgwUiAMsGM07tddFhD-E-LPQOwkTtKxEbIThu9GD32oIvnPsc5afCo86P1xhF1qSb3f7gCZjxuDc8eb5fc8CrbzB17XfhZSEIwF25PRTYahsuz3QdiAuX6TsyYRkZhfUNlD9zEJARIY36YzVRmbLSF48qr6ZZEhdUTzOdhxMaLCBA__',
+//       'https://s3-alpha-sig.figma.com/img/d8e0/374e/81fb202170921f2d52d4d1ef983cac7d?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cqam45brUvgmQbPpnphSil3fjw6dOQyXkoDg53oHL4B-ot5PohU44UuiM8sgPAHarcTuuBp5eSQpgcoIlItr9itYzyd8dC~ifXTe0lP3pupMDEyb7-ig8Qm57FUukYOXX2YBEL6JD7qbrcgJAKY-0~m~HyYC33mvT9pB9S4IYdt1rK8NvrW6jLQR8VfiM6HfwQW5PXtARzca9F2i53IMEuQ8QkvqYgQ-CwLZidVIbGZZm-ZNa96VFKcY9a5Pv~b9MYx5WTOZCCAHlwzeip8d9eswlfaX1TGhV6vzmwnb0N26nfC~zWQv-cit2j8bcSg2Y1RxuexgvTQYYLGi-QlVNA__',
+//       'https://s3-alpha-sig.figma.com/img/215b/be31/d48ee9df771168582f050e5ec70c9a8f?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=k17QgKT2f4AXcizTE3Fo2Yxh1F30148ttonS9b0a8PvTdO7BrnZ9-W5pNRnTWyxkcGE9BkiFqBZagW6OAxDtXZYUOqijpIbfa~3B-hpCGr556t4o0~e1DzQ8D7D1GuFweIfRtyMS8ua~wYrXvdCtYH6C8cLi2CLThZHpyxgXeDeul466~bxT8RoyPO0T0yPpEz3c1zye6d16ARUwuLBC6B9ooavlHAmVmCQJwewIzlKsQL4Uov2Jnn6UhrjbWQe2OLbBaGALOX1krCUXrtdA8v2kfrWwNiH0zoZPGuahv70dVRJ5f4u2pbAhPLReaCsIH~DMaz7sN-LoLEJS5~WbVg__'
+//     ],
+//     typeImage: ImageAssets.home_location,
+//     typeColor: AppColors.green,
 //   );
 //   final List<Map<String, dynamic>> facilities = [
 //     {'icon': Icons.kitchen, 'text': 'Kitchen utensils'},
@@ -327,8 +336,7 @@
 //                           width: 4,
 //                         ),
 //                         AppText(
-//                           text: AppLocalizations.of(context)!
-//                               .translate('check_in')!,
+//                           text: 'check_in',
 //                           color: AppColors.loginTitleColor,
 //                           weight: FontWeight.w500,
 //                           fontSize: 14,
@@ -354,8 +362,7 @@
 //                           width: 4,
 //                         ),
 //                         AppText(
-//                           text: AppLocalizations.of(context)!
-//                               .translate('check_out')!,
+//                           text: 'check_out',
 //                           color: AppColors.loginTitleColor,
 //                           weight: FontWeight.w500,
 //                           fontSize: 14,
@@ -390,7 +397,7 @@
 //                   onTap: () {},
 //                   icon: ImageAssets.person,
 //                   title:
-//                       '1 ${AppLocalizations.of(context)!.translate('adults')!} 0 ${AppLocalizations.of(context)!.translate('children')!}',
+//                       '1 ${'adults'} 0 ${'children'}',
 //                 )
 //               ],
 //             ),
@@ -401,7 +408,7 @@
 //           ),
 //           ExpansionTile(
 //             title: AppText(
-//               text: AppLocalizations.of(context)!.translate('space_rooms')!,
+//               text: 'space_rooms',
 //               color: AppColors.loginTitleColor,
 //               weight: FontWeight.w500,
 //               fontSize: 18,
@@ -448,8 +455,8 @@
 //                 ListTile(
 //                   title: AppText(
 //                     text: showMoreRooms
-//                         ? AppLocalizations.of(context)!.translate('show_less')!
-//                         : AppLocalizations.of(context)!.translate('show_more')!,
+//                         ? 'show_less'
+//                         : 'show_more',
 //                     color: AppColors.loginTitleColor,
 //                     weight: FontWeight.w500,
 //                     fontSize: 14,
@@ -473,7 +480,7 @@
 //           ),
 //           ExpansionTile(
 //             title: AppText(
-//               text: AppLocalizations.of(context)!.translate('facilities')!,
+//               text: 'facilities',
 //               color: AppColors.loginTitleColor,
 //               weight: FontWeight.w500,
 //               fontSize: 18,
@@ -507,8 +514,8 @@
 //               ListTile(
 //                 title: AppText(
 //                   text: showMoreFacilities
-//                       ? AppLocalizations.of(context)!.translate('show_less')!
-//                       : AppLocalizations.of(context)!.translate('show_more')!,
+//                       ? 'show_less'
+//                       : 'show_more',
 //                   color: AppColors.loginTitleColor,
 //                   weight: FontWeight.w500,
 //                   fontSize: 14,
@@ -530,10 +537,10 @@
 //             color: AppColors.borderColor.withOpacity(0.2),
 //             height: 10,
 //           ),
-//           Padding(
-//             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+//           const Padding(
+//             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
 //             child: ExpandableText(
-//               title: AppLocalizations.of(context)!.translate('description')!,
+//               title: 'description',
 //               text:
 //                   'Blue Nature is a 5 star complemented with residence in a very strategic city center. This location offers amazing amenities and beautiful surroundings...',
 //             ),
@@ -543,7 +550,7 @@
 //             height: 10,
 //           ),
 //           AppText(
-//             text: AppLocalizations.of(context)!.translate('stays_location')!,
+//             text: 'stays_location',
 //             color: AppColors.loginTitleColor,
 //             weight: FontWeight.w500,
 //             fontSize: 18,
@@ -566,7 +573,7 @@
 //             child: ExpansionTile(
 //               title: AppText(
 //                 text:
-//                     AppLocalizations.of(context)!.translate('stays_location')!,
+//                     'stays_location',
 //                 color: AppColors.loginTitleColor,
 //                 weight: FontWeight.w500,
 //                 fontSize: 18,

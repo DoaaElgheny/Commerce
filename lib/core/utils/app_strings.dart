@@ -18,6 +18,6 @@ class AppStrings {
   static const String AcceptLanguage = 'Accept-Language';
 
 // static const String requiredMinimumVersion = 'requiredMinimumVersion';
-  // static const String appStoreUrl = 'https://apps.apple.com/il/app/cveeez/id6459511141';
-  // static const String playStoreUrl = 'https://play.google.com/store/search?q=cveeez&c=apps&hl=en';
+// static const String appStoreUrl = 'https://apps.apple.com/il/app/cveeez/id6459511141';
+// static const String playStoreUrl = 'https://play.google.com/store/search?q=cveeez&c=apps&hl=en';
 }

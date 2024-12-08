@@ -60,10 +60,8 @@ class _ExpandableTextState extends State<ExpandableText> {
                         ),
                         AppText(
                           text: _isExpanded
-                              ? AppLocalizations.of(context)!
-                                  .translate('show_less')!
-                              : AppLocalizations.of(context)!
-                                  .translate('show_more')!,
+                              ? 'show_less'
+                              : 'show_more',
                           color: AppColors.loginTitleColor,
                           weight: FontWeight.w500,
                           fontSize: 14,

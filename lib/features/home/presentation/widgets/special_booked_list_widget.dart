@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:qubeCommerce/features/home/presentation/pages/home_screen.dart';
 import 'package:qubeCommerce/features/home/presentation/widgets/special_booked_widget.dart';
 
+import '../pages/deal_details.dart';
 import '../pages/stay_details_screen.dart';
 
 class SpecialBookedListCard extends StatefulWidget {
@@ -40,7 +41,8 @@ class _SpecialBookedListCardState extends State<SpecialBookedListCard> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              MaterialPageRoute(
+                  builder: (context) => const DealDetailsScreen()),
             );
           },
           child: SpecialBookedCard(

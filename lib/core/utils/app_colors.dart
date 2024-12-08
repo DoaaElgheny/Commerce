@@ -33,7 +33,6 @@ class AppColors {
   static Color chipColor = HexColor("#F7F8FA");
   static Color BaseShimmerColor = Colors.grey.shade300;
   static Color HighlightShimmerColor = Colors.grey.shade100;
-
 //Doaa
   static const Color borderGrey = Color(0xffACB1C0);
   static const Color blackColor = Color(0xff000000);

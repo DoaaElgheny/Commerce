@@ -40,21 +40,49 @@ class LoginView extends StatelessWidget {
                     height: 30.h,
                     width: 130.w,
                     decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage(
-                        Images.authbackGroundPng,
+                      image: DecorationImage(
+                        image: AssetImage(
+                          Images.authbackGroundPng,
+                        ),
+                        fit: BoxFit.cover,
                       ),
-                      fit: BoxFit.cover,
-                    )),
-                    child: Container(
-                      margin: EdgeInsets.only(
-                          bottom: 15, right: 5.w, left: 5.w, top: 1.h),
-                      child: Container(
-                        // height: 15.h,
-                        padding: const EdgeInsets.only(bottom: 15),
-                        // height: 15.h,
-                        child: const Text(''),
-                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 50.0,
+                            horizontal: 10.0,
+                          ),
+                          alignment: AlignmentDirectional.topEnd,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                Routes.bottomNavigationBarScreen,
+                                (r) => false,
+                              );
+                            },
+                            child: Text(
+                              'Skip',
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                              bottom: 15, right: 5.w, left: 5.w, top: 1.h),
+                          child: Container(
+                            // height: 15.h,
+                            padding: const EdgeInsets.only(bottom: 15),
+                            // height: 15.h,
+                            child: const Text(''),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Positioned(

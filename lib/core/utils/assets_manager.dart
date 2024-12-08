@@ -2,8 +2,9 @@ const String imgPath = 'assets/images';
 const String svgPath = '$imgPath/svg';
 const String pngPath = '$imgPath/png';
 
+
 class ImageAssets {
-  // static const String splashImage = '$pngPath/intro.png';
+ // static const String splashImage = '$pngPath/intro.png';
   static const String splashImage = '$pngPath/splash.png';
   static const String onBording1 = '$pngPath/on_bording1.png';
   static const String onBording2 = '$pngPath/on_bording2.png';
@@ -11,6 +12,8 @@ class ImageAssets {
   static const String loginBackgorund = '$pngPath/login_backgorund.png';
   static const String footer_ar_png = '$pngPath/footer_ar.png';
   static const String footer_en_png = '$pngPath/footer_en.png';
+
+
 
   static const String logoImage = '$svgPath/logo.svg';
   static const String nextImage = '$svgPath/next.svg';

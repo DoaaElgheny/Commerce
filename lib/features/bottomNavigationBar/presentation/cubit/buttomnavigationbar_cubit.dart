@@ -8,3 +8,4 @@ class ButtomnavigationbarCubit extends Cubit<SelectedTabNavigationBar> {
     emit(SelectedTabNavigationBar.values[index]);
   }
 }
+

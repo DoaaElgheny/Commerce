@@ -4,6 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qubeCommerce/core/shared_widgets/elevated_button_full_width.dart';
 import 'package:qubeCommerce/core/utils/app_colors.dart';
 
+import '../pages/deal_details.dart';
+import '../pages/stay_details_screen.dart';
+
 class SpecialBookedCard extends StatefulWidget {
   final String image;
   final String productCategory;
@@ -239,7 +242,14 @@ class _SpecialBookedCardState extends State<SpecialBookedCard> {
                             elevatedButtonFullWidth(
                               height: 42,
                               primaryColor: Colors.blue,
-                              onpressed: () {},
+                              onpressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DealDetailsScreen()),
+                                );
+                              },
                               title: 'View details',
                               loading: false,
                             ),

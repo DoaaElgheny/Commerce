@@ -107,12 +107,17 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                                           color: const Color(0XFF000080),
                                         ),
                                       ),
-                                      child: Center(
-                                        child: Image.asset(
-                                          'assets/images/png/chevron-down.png',
-                                          width: 25,
-                                          height: 25,
-                                          color: const Color(0XFF000080),
+                                      child: InkWell(
+                                        onTap:(){
+                                          Navigator.pop(context);
+                                        },
+                                        child: Center(
+                                          child: Image.asset(
+                                            'assets/images/png/chevron-down.png',
+                                            width: 25,
+                                            height: 25,
+                                            color: const Color(0XFF000080),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -456,13 +461,23 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                                     Color(0xFF24774C)
                                   ]),
                             ),
-                            child: const Center(
-                              child: Text(
-                                "!إنضم إلى الصفقة",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const JoinDealScreen()),
+                                );
+                              },
+                              child: const Center(
+                                child: Text(
+                                  "!إنضم إلى الصفقة",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),

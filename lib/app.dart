@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -74,13 +73,13 @@ class _qubeCommerceAppState extends State<qubeCommerceApp> {
   }
 
   Future<void> handleDeepLink(String link) async {
-    log('link $link');
+    print('link $link');
     setState(() {
       _latestLink = link;
     });
     Uri uri = Uri.parse(link);
     String number = uri.pathSegments.last;
-    log('number $number');
+    print('number $number');
 
     await SharedPrefController().setNumberDeepLinkPost(int.parse(number));
     if (Platform.isIOS) RestartWidget.restartApp(context);
@@ -133,8 +132,8 @@ class _qubeCommerceAppState extends State<qubeCommerceApp> {
                       return MaterialApp(
                         navigatorKey: navigatorKey,
                         title: AppStrings.appName,
-                        // locale: state.locale,
-                        locale: const Locale(AppStrings.englishCode),
+                        locale: state.locale,
+                        // locale: Locale(AppStrings.arabicCode),
                         debugShowCheckedModeBanner: false,
                         theme: appTheme(),
                         builder: EasyLoading.init(),

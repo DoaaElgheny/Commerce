@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:qubeCommerce/features/auth/presentation/login/view/login.dart';
-
-import '../../../../core/authentication/provider.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:qubeCommerce/core/shared_widgets/elevated_btn.dart';
+import 'package:qubeCommerce/core/utils/app_colors.dart';
+import 'package:qubeCommerce/features/home/presentation/widgets/container_box.dart';
 import '../../../../core/shared_widgets/app_text.dart';
-import '../../../../core/shared_widgets/elevated_btn.dart';
-import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/assets_manager.dart';
 import '../../domain/entities/popurlar_destinations_list.dart';
-import '../widgets/container_box.dart';
 import '../widgets/special_booked_list_widget.dart';
 import '../widgets/special_booked_widget.dart';
 
@@ -79,19 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
-          await AuthenticationProvider.instance.logout();
-          if (context.mounted) {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              LoginView.routeName,
-              (r) => false,
-            );
-          }
-        },
-        label: const Text('Logout'),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

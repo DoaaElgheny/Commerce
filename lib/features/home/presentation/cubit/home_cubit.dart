@@ -52,11 +52,11 @@
 //       response.fold((failure) {
 //         MapFailureToMsg.mapFailureToMsg(failure);
 //       }, (recentJobsList) {
-//         log('classificationList' + recentJobsList.toString());
+//         print('classificationList' + recentJobsList.toString());
 //         emit(state.copyWith(recentJobsList: recentJobsList.items));
 //       });
 //     } catch (error) {
-//       log('error.toString()' + error.toString());
+//       print('error.toString()' + error.toString());
 //       emit(state.copyWith(recentJobsList: []));
 //     }
 //   }
@@ -106,7 +106,7 @@
 //         required String message}) async {
 //     if(isLogout){
 //       String? fcmtoken=await FbNotifications.getFCMTonken();
-//       log('fcmoken '+fcmtoken.toString());
+//       print('fcmoken '+fcmtoken.toString());
 //       context.read<LoginCubit>().deleteFcmToken(context: context, deviceId: fcmtoken??'');
 //     }
 //     EasyLoading.showInfo(

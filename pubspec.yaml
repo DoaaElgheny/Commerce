@@ -108,6 +108,18 @@ flutter:
     - assets/images/png/
     - assets/images/svg/
     - assets/fonts/
+    - assets/images_new/
+    - assets/images_new/products/
+    - assets/images_new/wallets/
+    - assets/images_new/hero_section/
+    - assets/icons/deal_details/
+    - assets/icons/homebar/
+    - assets/icons/home_icons/
+    - assets/icons/login/
+    - assets/icons/my_deals/
+    - assets/icons/overview_section/
+    - assets/icons/popups/
+    - assets/icons/wallet/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
