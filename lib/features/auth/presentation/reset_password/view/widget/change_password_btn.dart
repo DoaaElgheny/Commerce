@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../shared/widget/loading_btn.dart';
 
 class ChangePasswordBtn extends StatelessWidget {
@@ -16,7 +15,6 @@ class ChangePasswordBtn extends StatelessWidget {
     return LoadingButton(
       onTap: _onPressed,
       name: 'Next',
-      color: AppColors.color1,
     );
   }
 }

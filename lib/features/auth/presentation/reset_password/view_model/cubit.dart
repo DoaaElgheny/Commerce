@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/entities/reset_password_parameters.dart';
-import '../../../domain/entities/screen_arguments/reset_password.dart';
+import '../../../domain/entities/reset_password_response.dart';
 import '../../../domain/repositories/authentication.dart';
 import '../../../domain/use_cases/reset_password_by_otp.dart';
 import 'state.dart';
 
 final class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   ResetPasswordCubit({
-    required ResetPasswordViewParameters parameters,
+    required ResetPasswordResponse parameters,
     required AuthenticationBaseRepository repository,
   })  : _parameters = parameters,
         _repository = repository,
         super(InitState());
 
-  final ResetPasswordViewParameters _parameters;
+  final ResetPasswordResponse _parameters;
   final AuthenticationBaseRepository _repository;
   final formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
@@ -32,13 +32,12 @@ final class ResetPasswordCubit extends Cubit<ResetPasswordState> {
         return;
       }
 
-      final usecase = ResetPasswordByOtp(repository: _repository);
-      final user = await usecase.call(
+      final useCase = ResetPasswordByOtp(repository: _repository);
+      final user = await useCase.call(
         parameters: ResetPasswordParameters(
           otp: _parameters.otp,
-          phone: _parameters.phone,
+          email: _parameters.email,
           password: passwordController.text,
-          passwordConfirmation: passwordController.text,
         ),
       );
 

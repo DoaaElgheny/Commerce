@@ -32,13 +32,15 @@ class _ConfirmPasswordFieldState extends State<ConfirmPasswordField> {
         // ignore spaces.
         FilteringTextInputFormatter.deny(RegExp(r'\s')),
       ],
-      style: const TextStyle(
-        color: AppColors.white,
-        fontSize: 12,
-      ),
+      style: const TextStyle(color: AppColors.black),
       decoration: InputDecoration(
         labelText: 'Confirm Password',
-        errorStyle: const TextStyle(color: AppColors.appRed),
+        hintText: 'Enter Your Confirm Password',
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 15.0,
+          vertical: 10.0,
+        ),
+        errorStyle: const TextStyle(color: Colors.red),
         suffixIcon: Material(
           color: Colors.transparent,
           shape: const CircleBorder(),
@@ -48,7 +50,7 @@ class _ConfirmPasswordFieldState extends State<ConfirmPasswordField> {
             icon: Icon(
               isShowPassword ? Icons.visibility_off : Icons.visibility,
               size: 20,
-              color: AppColors.white,
+              color: AppColors.black,
             ),
           ),
         ),

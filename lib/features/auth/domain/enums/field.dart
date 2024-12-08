@@ -10,6 +10,7 @@ enum AuthField {
   lastName(name: 'Last Name', value: 'last_name'),
   otp(name: 'OTP', value: 'otp'),
   password(name: 'Password', value: 'password'),
+  newPassword(name: 'New Password', value: 'newPassword'),
   passwordConfirmation(
     name: 'Password Confirmation',
     value: 'password_confirmation',

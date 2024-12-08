@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import '../../../../shared/model/wrapped.dart';
 import '../../domain/entities/reset_password_parameters.dart';
 import '../../domain/enums/field.dart';
 
@@ -8,24 +7,18 @@ final class ResetPasswordParametersDTO extends ResetPasswordParameters {
   const ResetPasswordParametersDTO({
     required super.otp,
     required super.password,
-    required super.passwordConfirmation,
-    super.phone,
-    super.email,
+    required super.email,
   });
 
   ResetPasswordParametersDTO copyWith({
-    Wrapped<String>? email,
+    String? email,
     String? otp,
     String? password,
-    String? passwordConfirmation,
-    Wrapped<String>? phone,
   }) {
     return ResetPasswordParametersDTO(
-      email: email?.value ?? this.email,
+      email: email ?? this.email,
       otp: otp ?? this.otp,
       password: password ?? this.password,
-      passwordConfirmation: passwordConfirmation ?? this.passwordConfirmation,
-      phone: phone?.value ?? this.phone,
     );
   }
 
@@ -41,12 +34,9 @@ final class ResetPasswordParametersDTO extends ResetPasswordParameters {
 
   factory ResetPasswordParametersDTO.fromMap(Map<String, dynamic> json) {
     return ResetPasswordParametersDTO(
-      email: json[AuthField.email.value] as String?,
+      email: json[AuthField.email.value] as String,
       otp: json[AuthField.otp.value] as String,
-      password: json[AuthField.password.value] as String,
-      passwordConfirmation:
-          json[AuthField.passwordConfirmation.value] as String,
-      phone: json[AuthField.phone.value] as String?,
+      password: json[AuthField.newPassword.value] as String,
     );
   }
 
@@ -57,8 +47,6 @@ final class ResetPasswordParametersDTO extends ResetPasswordParameters {
       email: entity.email,
       otp: entity.otp,
       password: entity.password,
-      passwordConfirmation: entity.passwordConfirmation,
-      phone: entity.phone,
     );
   }
 
@@ -66,9 +54,7 @@ final class ResetPasswordParametersDTO extends ResetPasswordParameters {
     return <String, dynamic>{
       AuthField.email.value: email,
       AuthField.otp.value: otp,
-      AuthField.password.value: password,
-      AuthField.passwordConfirmation.value: passwordConfirmation,
-      AuthField.phone.value: phone,
+      AuthField.newPassword.value: password,
     };
   }
 }

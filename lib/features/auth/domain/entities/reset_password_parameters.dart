@@ -4,16 +4,12 @@ base class ResetPasswordParameters extends Equatable {
   const ResetPasswordParameters({
     required this.otp,
     required this.password,
-    required this.passwordConfirmation,
-    this.email,
-    this.phone,
+    required this.email,
   });
 
-  final String? email;
+  final String email;
   final String otp;
   final String password;
-  final String passwordConfirmation;
-  final String? phone;
 
   @override
   List<Object?> get props {
@@ -21,8 +17,6 @@ base class ResetPasswordParameters extends Equatable {
       email,
       otp,
       password,
-      passwordConfirmation,
-      phone,
     ];
   }
 }
