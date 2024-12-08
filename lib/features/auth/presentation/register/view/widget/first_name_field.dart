@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import '../../../../../../core/utils/app_colors.dart';
 import '../../../../domain/validators/auth.dart';
 import '../../../../domain/validators/enums/name_valid_state.dart';
 
@@ -19,9 +17,9 @@ class FirstNameField extends StatelessWidget {
       controller: _controller,
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.text,
-      inputFormatters: [
+      inputFormatters: const [
         // ignore spaces.
-        FilteringTextInputFormatter.deny(RegExp(r'\s')),
+        // FilteringTextInputFormatter.deny(RegExp(r'\s')),
       ],
       validator: (value) {
         final state = AuthValidator.validName(value);
@@ -34,10 +32,16 @@ class FirstNameField extends StatelessWidget {
             return 'Required Field';
         }
       },
-      style: const TextStyle(color: AppColors.white),
+      // style: const TextStyle(color: AppColors.white),
       decoration: const InputDecoration(
-        hintText: 'Full Name',
-        errorStyle: TextStyle(color: AppColors.appRed),
+        labelText: 'Name',
+        hintText: 'Enter Your Full Name',
+        contentPadding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+        errorStyle: TextStyle(color: Colors.red),
+        prefixIcon: Icon(
+          Icons.person,
+          color: Colors.grey,
+        ),
       ),
     );
   }

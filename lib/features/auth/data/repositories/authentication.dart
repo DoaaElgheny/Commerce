@@ -59,12 +59,10 @@ final class AuthenticationRepository implements AuthenticationBaseRepository {
   }
 
   @override
-  Future<User> register({
+  Future<String> register({
     required RegisterCredentials credentials,
   }) async {
-    final json = await _dataSource.register(credentials: credentials);
-
-    return UserDTO.fromMap(json);
+    return _dataSource.register(credentials: credentials);
   }
 
   @override

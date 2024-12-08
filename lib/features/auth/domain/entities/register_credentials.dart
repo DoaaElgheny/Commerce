@@ -5,13 +5,13 @@ base class RegisterCredentials extends Equatable {
     required this.email,
     required this.fullName,
     required this.password,
-    this.phone,
+    required this.phone,
   });
 
   final String email;
   final String password;
   final String fullName;
-  final String? phone;
+  final String phone;
 
   @override
   List<Object?> get props {

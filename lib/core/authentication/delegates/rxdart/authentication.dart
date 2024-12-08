@@ -138,12 +138,14 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
     required RegisterCredentials credentials,
   }) async {
     final useCase = Register(repository: _authRepository);
-    final user = await useCase.call(credentials: credentials);
+    await useCase.call(credentials: credentials);
 
-    _authChangesStreamController.sink.add(user);
-    _userChangesStreamController.sink.add(user);
-
-    return user;
+    return login(
+      credentials: LoginCredentials(
+        email: credentials.email,
+        password: credentials.password,
+      ),
+    );
   }
 
   @override

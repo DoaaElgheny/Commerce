@@ -37,9 +37,8 @@ final class AuthenticationPatternJsonValidator
 
   @override
   bool register(Object json) {
-    if (json case <String, dynamic>{"data": Map _}) {
-      final jsonData = Map<String, dynamic>.from(json);
-      return const UserPatternJsonValidator().validUser(jsonData['data']);
+    if (json case {"succeeded": true, "message": String _}) {
+      return true;
     }
     return false;
   }

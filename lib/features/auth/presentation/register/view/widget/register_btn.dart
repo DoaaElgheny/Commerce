@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../shared/widget/loading_btn.dart';
 
 class RegisterBtn extends StatelessWidget {
@@ -15,8 +14,7 @@ class RegisterBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadingButton(
       onTap: onTap,
-      name: 'Next',
-      color: AppColors.color1,
+      name: 'Register',
     );
   }
 }

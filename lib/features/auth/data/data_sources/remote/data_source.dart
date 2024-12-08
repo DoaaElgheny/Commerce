@@ -4,6 +4,7 @@ import 'package:qubeCommerce/features/auth/data/models/login_with_phone_credenti
 import 'package:qubeCommerce/features/auth/domain/entities/login_with_phone_credentials.dart';
 
 import '../../../../../network/client/base/client.dart';
+import '../../../../../network/exception/response.dart';
 import '../../../../../network/response_handler/base/response_handler.dart';
 import '../../../domain/entities/login_credentials.dart';
 import '../../../domain/entities/logout_params.dart';
@@ -138,7 +139,7 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
   }
 
   @override
-  Future<Map<String, dynamic>> register({
+  Future<String> register({
     required RegisterCredentials credentials,
   }) async {
     final response = await _client.post(
@@ -147,19 +148,25 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
         ..removeWhere((key, value) => value == null),
     );
 
-    return _responseHandler.handle<Map<String, dynamic>>(
+    return _responseHandler.handle<String>(
       response: response,
-      expectedCases: [200],
+      expectedCases: [200, 400],
       expectedCasesHandler: (status) {
         final jsonResponse = Map<String, dynamic>.from(
           jsonDecode(response.body) as Map,
         );
 
+        if (status == 400) {
+          if (jsonResponse case {"status": 400, "errors": Map _}) {
+            throw ResponseException(_extractMessages(jsonResponse));
+          }
+        }
+
         if (!_jsonValidator.register(jsonResponse)) {
           throw const FormatException();
         }
 
-        return Map<String, dynamic>.from(jsonResponse['data'] as Map);
+        return jsonResponse['message'] as String;
       },
     );
   }
@@ -220,5 +227,16 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
       expectedCases: [200],
       expectedCasesHandler: (status) {},
     );
+  }
+
+  String _extractMessages(Map<String, dynamic> jsonResponse) {
+    if (jsonResponse case {"errors": Map _}) {
+      final errors = Map<String, dynamic>.from(jsonResponse['errors']);
+      return errors.values
+          .map((e) => List<String>.from(e).firstOrNull ?? '')
+          .toList()
+          .join('\n');
+    }
+    throw 'Unknown Exception';
   }
 }

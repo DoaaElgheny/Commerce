@@ -31,7 +31,7 @@ abstract interface class AuthenticationDataSource {
     required LogoutParameters parameters,
   });
 
-  Future<Map<String, dynamic>> register({
+  Future<String> register({
     required RegisterCredentials credentials,
   });
 

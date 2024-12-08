@@ -1,4 +1,3 @@
-import '../../../user/domain/entities/user.dart';
 import '../entities/register_credentials.dart';
 import '../repositories/authentication.dart';
 
@@ -9,7 +8,7 @@ final class Register {
 
   final AuthenticationBaseRepository _repository;
 
-  Future<User> call({
+  Future<String> call({
     required RegisterCredentials credentials,
   }) async {
     return _repository.register(credentials: credentials);

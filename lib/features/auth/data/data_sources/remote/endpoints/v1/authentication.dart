@@ -30,7 +30,7 @@ final class AuthenticationEndpointsV1 implements AuthenticationEndpoints {
 
   @override
   Uri get register {
-    return Uri.parse('api/v1/register');
+    return Uri.parse('api/Users/register');
   }
 
   @override

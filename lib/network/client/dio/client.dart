@@ -61,8 +61,9 @@ final class DioClient {
     );
     _dio.interceptors.add(
       PrettyDioLogger(
-        responseBody: false,
+        responseBody: true,
         requestHeader: true,
+        requestBody: true,
         logPrint: (object) => log('$object'),
       ),
     );

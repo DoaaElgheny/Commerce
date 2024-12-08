@@ -38,7 +38,7 @@ abstract interface class AuthenticationBaseRepository {
     required PasswordResetRequestParameters parameters,
   });
 
-  Future<User> register({
+  Future<String> register({
     required RegisterCredentials credentials,
   });
 

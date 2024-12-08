@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+terial.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/authentication/provider.dart';
@@ -21,11 +21,11 @@ final class RegisterCubit extends Cubit<RegisterState> {
 
   Future<void> register() async {
     try {
-      if (phoneController.text.isEmpty) {
+      if (formKey.currentState?.validate() != true) {
         emit(NotValidDataState());
         return;
       }
-      if (formKey.currentState?.validate() != true) {
+      if (phoneController.text.isEmpty) {
         emit(NotValidDataState());
         return;
       }
