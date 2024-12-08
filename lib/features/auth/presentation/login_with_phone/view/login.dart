@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qubeCommerce/features/auth/presentation/login_with_phone/view/login.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../config/routes/app_routes.dart';
@@ -9,26 +8,23 @@ import '../../../../../network/exception/response.dart';
 import '../../../../../shared/widget/snack_bar.dart';
 import '../cubit/login.dart';
 import '../cubit/states.dart';
-import 'widget/auth_btn.dart';
-import 'widget/email_field.dart';
-import 'widget/forget_password_btn.dart';
 import 'widget/login_btn.dart';
-import 'widget/new_account_btn.dart';
 import 'widget/password_field.dart';
+import 'widget/phone_field.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class LoginWithPhoneView extends StatelessWidget {
+  const LoginWithPhoneView({super.key});
 
-  static const routeName = '/login';
+  static const routeName = '/login-with-phone';
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
-      child: BlocConsumer<LoginCubit, LoginState>(
+      create: (context) => LoginWithPhoneCubit(),
+      child: BlocConsumer<LoginWithPhoneCubit, LoginWithPhoneState>(
         listener: _stateHandler,
         builder: (context, state) {
-          final cubit = LoginCubit.of(context);
+          final cubit = LoginWithPhoneCubit.of(context);
           return Scaffold(
             backgroundColor: Colors.transparent,
             body: SizedBox(
@@ -98,43 +94,16 @@ class LoginView extends StatelessWidget {
                                         ),
                                       ),
                                       const SizedBox(height: 50),
-                                      EmailField(
-                                        controller: cubit.emailController,
+                                      LoginWithPhoneField(
+                                        controller: cubit.phoneController,
                                       ),
                                       const SizedBox(height: 20.0),
                                       PasswordField(
                                         controller: cubit.passwordController,
                                       ),
-                                      Container(
-                                        alignment:
-                                            AlignmentDirectional.centerStart,
-                                        child: const ForgetPasswordBtn(),
-                                      ),
-                                      const SizedBox(height: 20.0),
-                                      const Text(
-                                        'Or log in through',
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xFF06A6F1),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 30.0),
-                                      AuthButtons(
-                                        onGoogle: () {},
-                                        onPhone: () {
-                                          Navigator.pushNamed(
-                                            context,
-                                            LoginWithPhoneView.routeName,
-                                          );
-                                        },
-                                      ),
                                       const SizedBox(height: 30.0),
                                       LoginBtn(onPressed: cubit.login),
                                       const SizedBox(height: 5),
-                                      const NewAccountBtn(),
-                                      const SizedBox(height: 91),
-                                      const SizedBox(height: 7),
                                     ],
                                   ),
                                 ),
@@ -163,11 +132,15 @@ class LoginView extends StatelessWidget {
   }
 }
 
-void _stateHandler(BuildContext context, LoginState state) {
+void _stateHandler(BuildContext context, LoginWithPhoneState state) {
   switch (state) {
     case InitState():
       return;
     case NotValidDataState():
+      SnackBarUtility.errorSnackBar(
+        context,
+        'Not Valid Fields',
+      );
       return;
     case LoggedInState():
       // if (state.user.details.phone == null) {

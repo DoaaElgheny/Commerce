@@ -5,14 +5,14 @@ import '../../domain/enums/field.dart';
 
 final class LogoutParametersDTO extends LogoutParameters {
   const LogoutParametersDTO({
-    required super.fcmToken,
+    required super.token,
   });
 
   LogoutParametersDTO copyWith({
-    required String? fcmToken,
+    required String? token,
   }) {
     return LogoutParametersDTO(
-      fcmToken: fcmToken ?? this.fcmToken,
+      token: token ?? this.token,
     );
   }
 
@@ -28,7 +28,7 @@ final class LogoutParametersDTO extends LogoutParameters {
 
   factory LogoutParametersDTO.fromMap(Map<String, dynamic> json) {
     return LogoutParametersDTO(
-      fcmToken: json[AuthField.fcmToken.value] as String,
+      token: json[AuthField.token.value] as String,
     );
   }
 
@@ -36,13 +36,13 @@ final class LogoutParametersDTO extends LogoutParameters {
     LogoutParameters entity,
   ) {
     return LogoutParametersDTO(
-      fcmToken: entity.fcmToken,
+      token: entity.token,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      AuthField.fcmToken.value: fcmToken,
+      AuthField.token.value: token,
     };
   }
 }

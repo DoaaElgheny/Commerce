@@ -1,3 +1,5 @@
+import 'package:qubeCommerce/features/auth/domain/entities/login_with_phone_credentials.dart';
+
 import '../../features/auth/domain/entities/login_credentials.dart';
 import '../../features/auth/domain/entities/register_credentials.dart';
 import '../../features/auth/domain/entities/social_media_credentials.dart';
@@ -58,6 +60,13 @@ final class AuthenticationProvider implements AuthenticationDelegate {
     required LoginCredentials credentials,
   }) {
     return _delegate.login(credentials: credentials);
+  }
+
+  @override
+  Future<User> loginWithPhone({
+    required LoginWithPhoneCredentials credentials,
+  }) {
+    return _delegate.loginWithPhone(credentials: credentials);
   }
 
   @override

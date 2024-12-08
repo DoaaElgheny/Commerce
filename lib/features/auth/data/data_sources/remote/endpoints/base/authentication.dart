@@ -5,6 +5,8 @@ abstract interface class AuthenticationEndpoints {
 
   Uri get login;
 
+  Uri get loginWithPhone;
+
   Uri get loginWithSocialMedia;
 
   Uri get logout;

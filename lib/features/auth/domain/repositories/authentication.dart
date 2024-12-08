@@ -1,3 +1,5 @@
+import 'package:qubeCommerce/features/auth/domain/entities/login_with_phone_credentials.dart';
+
 import '../../../user/domain/entities/user.dart';
 import '../entities/login_credentials.dart';
 import '../entities/logout_params.dart';
@@ -17,6 +19,11 @@ abstract interface class AuthenticationBaseRepository {
   /// Return token.
   Future<String> login({
     required LoginCredentials credentials,
+  });
+
+  /// Return token.
+  Future<String> loginWithPhone({
+    required LoginWithPhoneCredentials credentials,
   });
 
   Future<User> loginWithSocialMedia({

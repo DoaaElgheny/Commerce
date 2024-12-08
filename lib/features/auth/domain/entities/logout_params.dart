@@ -2,15 +2,15 @@ import 'package:equatable/equatable.dart';
 
 base class LogoutParameters extends Equatable {
   const LogoutParameters({
-    required this.fcmToken,
+    required this.token,
   });
 
-  final String fcmToken;
+  final String token;
 
   @override
   List<Object> get props {
     return <Object>[
-      fcmToken,
+      token,
     ];
   }
 }

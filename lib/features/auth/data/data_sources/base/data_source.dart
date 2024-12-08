@@ -1,3 +1,5 @@
+import 'package:qubeCommerce/features/auth/domain/entities/login_with_phone_credentials.dart';
+
 import '../../../domain/entities/login_credentials.dart';
 import '../../../domain/entities/logout_params.dart';
 import '../../../domain/entities/otp_confirmation_parameters.dart';
@@ -15,6 +17,10 @@ abstract interface class AuthenticationDataSource {
 
   Future<String> login({
     required LoginCredentials credentials,
+  });
+
+  Future<String> loginWithPhone({
+    required LoginWithPhoneCredentials credentials,
   });
 
   Future<Map<String, dynamic>> loginWithSocialMedia({

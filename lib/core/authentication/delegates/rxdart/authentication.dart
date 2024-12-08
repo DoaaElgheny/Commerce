@@ -3,14 +3,18 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:qubeCommerce/features/auth/domain/entities/login_with_phone_credentials.dart';
+import 'package:qubeCommerce/features/auth/domain/use_cases/login_with_phone.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../features/auth/domain/entities/login_credentials.dart';
+import '../../../../features/auth/domain/entities/logout_params.dart';
 import '../../../../features/auth/domain/entities/register_credentials.dart';
 import '../../../../features/auth/domain/entities/social_media_credentials.dart';
 import '../../../../features/auth/domain/repositories/authentication.dart';
 import '../../../../features/auth/domain/use_cases/login.dart';
 import '../../../../features/auth/domain/use_cases/login_with_social_media.dart';
+import '../../../../features/auth/domain/use_cases/logout.dart';
 import '../../../../features/auth/domain/use_cases/register.dart';
 import '../../../../features/user/domain/entities/parameters/add_fcm_token.dart';
 import '../../../../features/user/domain/entities/parameters/user_by_token.dart';
@@ -85,6 +89,26 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
   }
 
   @override
+  Future<User> loginWithPhone({
+    required LoginWithPhoneCredentials credentials,
+  }) async {
+    final useCase = LoginWithPhoneUseCase(repository: _authRepository);
+    final token = await useCase.call(credentials: credentials);
+
+    final details = await FetchUserByToken(repository: _userRepository).call(
+      parameters: UserByTokenParameters(token: token),
+    );
+    final user = User(
+      details: details,
+      accessToken: token,
+    );
+    _authChangesStreamController.sink.add(user);
+    _userChangesStreamController.sink.add(user);
+
+    return user;
+  }
+
+  @override
   Future<User> loginWithSocialMedia({
     required SocialMediaCredentials credentials,
   }) async {
@@ -99,11 +123,11 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
 
   @override
   Future<void> logout() async {
-    // if (currentUser != null) {
-    // await Logout(repository: _authRepository).call(
-    //   parameters: const LogoutParameters(fcmToken: 'fcmToken'),
-    // );
-    // }
+    if (currentUser != null) {
+      await Logout(repository: _authRepository).call(
+        parameters: LogoutParameters(token: currentUser!.accessToken),
+      );
+    }
 
     _authChangesStreamController.sink.add(null);
     _userChangesStreamController.sink.add(null);

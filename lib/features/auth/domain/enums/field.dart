@@ -3,7 +3,7 @@ enum AuthField {
   birthDay(name: 'Birthday', value: 'birthday'),
   countryId(name: 'Country ID', value: 'country_id'),
   email(name: 'Email', value: 'email'),
-  fcmToken(name: 'FCM Token', value: 'token'),
+  // fcmToken(name: 'FCM Token', value: 'token'),
   firstName(name: 'First Name', value: 'first_name'),
   gender(name: 'Gender', value: 'gender'),
   lastName(name: 'Last Name', value: 'last_name'),
@@ -13,7 +13,7 @@ enum AuthField {
     name: 'Password Confirmation',
     value: 'password_confirmation',
   ),
-  phone(name: 'Phone', value: 'phone'),
+  phone(name: 'Phone', value: 'phoneNumber'),
   role(name: 'Role', value: 'role'),
   socialMedia(name: 'Social Media', value: 'method_id'),
   token(name: 'Token', value: 'token');

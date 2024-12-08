@@ -14,13 +14,18 @@ final class AuthenticationEndpointsV1 implements AuthenticationEndpoints {
   }
 
   @override
+  Uri get loginWithPhone {
+    return Uri.parse('/api/Auth/LoginWithPhoneNumber');
+  }
+
+  @override
   Uri get loginWithSocialMedia {
     return Uri.parse('api/v1/social/auth');
   }
 
   @override
   Uri get logout {
-    return Uri.parse('api/v1/logout');
+    return Uri.parse('api/Auth/logout');
   }
 
   @override

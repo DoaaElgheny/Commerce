@@ -1,3 +1,5 @@
+import 'package:qubeCommerce/features/auth/domain/entities/login_with_phone_credentials.dart';
+
 import '../../../../features/auth/domain/entities/login_credentials.dart';
 import '../../../../features/auth/domain/entities/register_credentials.dart';
 import '../../../../features/auth/domain/entities/social_media_credentials.dart';
@@ -15,6 +17,10 @@ abstract interface class AuthenticationDelegate {
 
   Future<User> login({
     required LoginCredentials credentials,
+  });
+
+  Future<User> loginWithPhone({
+    required LoginWithPhoneCredentials credentials,
   });
 
   Future<User> loginWithSocialMedia({

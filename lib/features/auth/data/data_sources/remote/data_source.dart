@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:qubeCommerce/features/auth/data/models/login_with_phone_credentials.dart';
+import 'package:qubeCommerce/features/auth/domain/entities/login_with_phone_credentials.dart';
+
 import '../../../../../network/client/base/client.dart';
 import '../../../../../network/response_handler/base/response_handler.dart';
 import '../../../domain/entities/login_credentials.dart';
@@ -43,6 +46,34 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
     final response = await _client.post(
       uri: _endpoints.login,
       body: LoginCredentialsDTO.fromEntity(credentials).toMap(),
+    );
+
+    return _responseHandler.handle<String>(
+      response: response,
+      expectedCases: [200],
+      expectedCasesHandler: (status) {
+        final jsonResponse = Map<String, dynamic>.from(
+          jsonDecode(response.body) as Map,
+        );
+
+        if (!_jsonValidator.login(jsonResponse)) {
+          throw const FormatException();
+        }
+
+        return Map<String, dynamic>.from(
+          jsonResponse['data'] as Map,
+        )['access_token'] as String;
+      },
+    );
+  }
+
+  @override
+  Future<String> loginWithPhone({
+    required LoginWithPhoneCredentials credentials,
+  }) async {
+    final response = await _client.post(
+      uri: _endpoints.loginWithPhone,
+      body: LoginWithPhoneCredentialsDTO.fromEntity(credentials).toMap(),
     );
 
     return _responseHandler.handle<String>(

@@ -1,3 +1,5 @@
+import 'package:qubeCommerce/features/auth/domain/entities/login_with_phone_credentials.dart';
+
 import '../../../user/data/models/user.dart';
 import '../../../user/domain/entities/user.dart';
 import '../../domain/entities/login_credentials.dart';
@@ -29,6 +31,13 @@ final class AuthenticationRepository implements AuthenticationBaseRepository {
     required LoginCredentials credentials,
   }) async {
     return _dataSource.login(credentials: credentials);
+  }
+
+  @override
+  Future<String> loginWithPhone({
+    required LoginWithPhoneCredentials credentials,
+  }) async {
+    return _dataSource.loginWithPhone(credentials: credentials);
   }
 
   @override

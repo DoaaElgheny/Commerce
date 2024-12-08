@@ -6,6 +6,7 @@ import 'package:qubeCommerce/injection_container.dart' as di;
 import '../../core/utils/app_strings.dart';
 import '../../features/auth/presentation/forget_password/view/forget_password_view.dart';
 import '../../features/auth/presentation/login/view/login.dart';
+import '../../features/auth/presentation/login_with_phone/view/login.dart';
 import '../../features/bottomNavigationBar/presentation/pages/bottom_navigation_bar.dart';
 import '../../features/home/presentation/pages/home_screen.dart';
 import '../../features/splash/presentation/cubit/locale_cubit.dart';
@@ -13,6 +14,7 @@ import '../../features/splash/presentation/pages/splash_screen.dart';
 
 class Routes {
   static const String initialRoute = '/';
+
   // static const String loginScreen = '/login';
   static const String homeScreen = '/homeScreen';
   static const String signUpScreen = '/signUpScreen';
@@ -92,6 +94,10 @@ class AppRoutes {
       case LoginView.routeName:
         return MaterialPageRoute(
           builder: (context) => const LoginView(),
+        );
+      case LoginWithPhoneView.routeName:
+        return MaterialPageRoute(
+          builder: (context) => const LoginWithPhoneView(),
         );
       // case Routes.changePasswordScreen:
       //   return MaterialPageRoute(builder: ((context) {
