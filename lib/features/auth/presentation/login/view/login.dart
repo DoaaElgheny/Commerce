@@ -49,29 +49,29 @@ class LoginView extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 50.0,
-                            horizontal: 10.0,
-                          ),
-                          alignment: AlignmentDirectional.topEnd,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                Routes.bottomNavigationBarScreen,
-                                (r) => false,
-                              );
-                            },
-                            child: Text(
-                              'Skip',
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Container(
+                        //   padding: const EdgeInsets.symmetric(
+                        //     vertical: 50.0,
+                        //     horizontal: 10.0,
+                        //   ),
+                        //   alignment: AlignmentDirectional.topEnd,
+                        //   child: GestureDetector(
+                        //     onTap: () {
+                        //       Navigator.pushNamedAndRemoveUntil(
+                        //         context,
+                        //         Routes.bottomNavigationBarScreen,
+                        //         (r) => false,
+                        //       );
+                        //     },
+                        //     child: Text(
+                        //       'Skip',
+                        //       style: TextStyle(
+                        //         color: Theme.of(context).primaryColor,
+                        //         fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         Container(
                           margin: EdgeInsets.only(
                               bottom: 15, right: 5.w, left: 5.w, top: 1.h),

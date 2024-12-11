@@ -4,6 +4,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../../config/routes/app_routes.dart';
 import '../../../../../core/shared_widgets/images.dart';
+import '../../../../../core/utils/app_colors.dart';
 import '../../../../../network/exception/response.dart';
 import '../../../../../shared/widget/snack_bar.dart';
 import '../cubit/login.dart';
@@ -104,6 +105,23 @@ class LoginWithPhoneView extends StatelessWidget {
                                       const SizedBox(height: 30.0),
                                       LoginBtn(onPressed: cubit.login),
                                       const SizedBox(height: 5),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          'Login With E-mail',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            color: AppColors.primaryColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle: FontStyle.normal,
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),

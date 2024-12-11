@@ -52,7 +52,6 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
   @override
   Future<void> init() async {
     _authStreamSubscription = authStateChanges().listen((event) async {
-      log('Event asd: $event');
       if (event == null) {
         await _cache.destroyToken();
       } else {
@@ -124,9 +123,11 @@ final class AuthenticationDelegateWithRxdart implements AuthenticationDelegate {
   @override
   Future<void> logout() async {
     if (currentUser != null) {
-      await Logout(repository: _authRepository).call(
-        parameters: LogoutParameters(token: currentUser!.accessToken),
-      );
+      try {
+        await Logout(repository: _authRepository).call(
+          parameters: LogoutParameters(token: currentUser!.accessToken),
+        );
+      } catch (_) {}
     }
 
     _authChangesStreamController.sink.add(null);
