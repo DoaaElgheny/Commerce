@@ -48,118 +48,132 @@ class _VerifyResetPasswordOTPViewState
           final cubit = VerifyResetPasswordOTPCubit.of(context);
           return Scaffold(
             backgroundColor: Colors.transparent,
-            body: SizedBox(
-              height: 100.h,
-              width: 100.w,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 30.h,
-                    width: 130.w,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          Images.authbackGroundPng,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Container(
-                      margin: EdgeInsets.only(
-                          bottom: 15, right: 5.w, left: 5.w, top: 1.h),
-                      child: Container(
-                        // height: 15.h,
-                        padding: const EdgeInsets.only(bottom: 15),
-                        // height: 15.h,
-                        child: const Text(''),
-                      ),
-                    ),
+            resizeToAvoidBottomInset: false,
+
+            body: Stack(
+              children: [
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset(
+                    'assets/images/png/SS_Bottom.png',
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width,
                   ),
-                  Positioned(
-                    top: 30.h,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          topLeft: Radius.circular(20),
-                        ),
-                      ),
-                      height: double.infinity,
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 0),
-                        child: CustomScrollView(
-                          slivers: [
-                            SliverPadding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 17,
-                                vertical: 10,
-                              ),
-                              sliver: SliverToBoxAdapter(
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(height: 40.0),
-                                    const TextVerify(),
-                                    const Text(
-                                      "Please enter the verification code that was sent to you",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black54,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 25),
-                                    PhoneField(
-                                      controller: cubit.pinCodeController,
-                                      onComplete: (v) async {
-                                        await cubit.verifyOTP();
-                                      },
-                                    ),
-                                    if (state is NotValidOTPState)
-                                      const Text(
-                                        'Invalid OTP',
-                                        style: TextStyle(
-                                          color: AppColors.appRed,
-                                        ),
-                                      ),
-                                    if (kDebugMode)
-                                      Text(
-                                        widget.parameters.otp,
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    LoadingButton(
-                                      onTap: cubit.verifyOTP,
-                                      name: 'Verify',
-                                    ),
-                                    const SizedBox(height: 15),
-                                    ResetCodeBtn(
-                                      onSend: cubit.resendOTP,
-                                    ),
-                                  ],
-                                ),
-                              ),
+                ),
+                SizedBox(
+                  height: 100.h,
+                  width: 100.w,
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 30.h,
+                        width: 130.w,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                              Images.authbackGroundPng,
                             ),
-                          ],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              bottom: 15, right: 5.w, left: 5.w, top: 1.h),
+                          child: Container(
+                            // height: 15.h,
+                            padding: const EdgeInsets.only(bottom: 15),
+                            // height: 15.h,
+                            child: const Text(''),
+                          ),
                         ),
                       ),
-                    ),
+                      Positioned(
+                        top: 30.h,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            // color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20),
+                            ),
+                          ),
+                          height: double.infinity,
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 0),
+                            child: CustomScrollView(
+                              slivers: [
+                                SliverPadding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 17,
+                                    vertical: 10,
+                                  ),
+                                  sliver: SliverToBoxAdapter(
+                                    child: Column(
+                                      // crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(height: 40.0),
+                                        const TextVerify(),
+                                        const Text(
+                                          "Please enter the verification code that was sent to you",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 25),
+                                        PhoneField(
+                                          controller: cubit.pinCodeController,
+                                          onComplete: (v) async {
+                                            await cubit.verifyOTP();
+                                          },
+                                        ),
+                                        if (state is NotValidOTPState)
+                                          const Text(
+                                            'Invalid OTP',
+                                            style: TextStyle(
+                                              color: AppColors.appRed,
+                                            ),
+                                          ),
+                                        if (kDebugMode)
+                                          Text(
+                                            widget.parameters.otp,
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        LoadingButton(
+                                          onTap: cubit.verifyOTP,
+                                          name: 'Verify',
+                                        ),
+                                        const SizedBox(height: 15),
+                                        ResetCodeBtn(
+                                          onSend: cubit.resendOTP,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        top: 13.h,
+                        child: Center(
+                          child: Image.asset(Images.backGroundPng),
+                        ),
+                      ),
+                    ],
                   ),
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    top: 13.h,
-                    child: Center(
-                      child: Image.asset(Images.backGroundPng),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             // body: CustomScrollView(
             //   slivers: [
