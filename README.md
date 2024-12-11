@@ -27,4 +27,3 @@ https://api.commerce.qubefyn.com/index.html#/
 Ui Design :-
 https://www.figma.com/design/GdFsOhHvIktEE8YwB4WeqA/Qube-Commerce?node-id=2-4&node-type=canvas&t=mbGnu09bEBFI927I-0
 
-English Version
