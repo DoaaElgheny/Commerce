@@ -10,15 +10,14 @@ import 'states.dart';
 final class VerifyResetPasswordOTPCubit
     extends Cubit<VerifyResetPasswordOTPState> {
   VerifyResetPasswordOTPCubit({
-    required ResetPasswordResponse params,
+    required this.params,
     required AuthenticationBaseRepository repository,
-  })  : _params = params,
-        _repository = repository,
+  })  : _repository = repository,
         super(InitState());
 
-  final ResetPasswordResponse _params;
   final AuthenticationBaseRepository _repository;
   final pinCodeController = TextEditingController();
+  ResetPasswordResponse params;
 
   factory VerifyResetPasswordOTPCubit.of(BuildContext context) {
     return BlocProvider.of<VerifyResetPasswordOTPCubit>(context);
@@ -27,13 +26,13 @@ final class VerifyResetPasswordOTPCubit
   Future<void> resendOTP() async {
     try {
       final useCase = SendOtpToResetPassword(repository: _repository);
-      await useCase.call(
+      params = await useCase.call(
         parameters: PasswordResetRequestParameters(
-          email: _params.email,
+          email: params.email,
         ),
       );
 
-      emit(OtpSentState(email: _params.email));
+      emit(OtpSentState(email: params.email));
     } catch (e) {
       emit(ExceptionState(error: e));
     }
@@ -42,12 +41,12 @@ final class VerifyResetPasswordOTPCubit
   Future<void> verifyOTP() async {
     try {
       final otp = pinCodeController.text;
-      if (otp.length != 5 || _params.otp != otp) {
+      if (otp.length != 5 || params.otp != otp) {
         emit(NotValidOTPState(otp: otp));
         return;
       }
 
-      emit(OtpVerifiedState(response: _params));
+      emit(OtpVerifiedState(response: params));
     } catch (e) {
       emit(ExceptionState(error: e));
     }

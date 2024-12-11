@@ -28,7 +28,6 @@ class LoginWithPhoneView extends StatelessWidget {
           final cubit = LoginWithPhoneCubit.of(context);
           return Scaffold(
             backgroundColor: Colors.transparent,
-            resizeToAvoidBottomInset: false,
             body: Stack(
               children: [
                 Container(

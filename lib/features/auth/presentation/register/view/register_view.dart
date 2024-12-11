@@ -29,7 +29,6 @@ class RegisterView extends StatelessWidget {
           final cubit = RegisterCubit.of(context);
           return Scaffold(
             backgroundColor: Colors.transparent,
-            resizeToAvoidBottomInset: false,
             body: Stack(
               children: [
                 Container(
@@ -127,7 +126,9 @@ class RegisterView extends StatelessWidget {
                                           const SizedBox(height: 12),
                                           const SizedBox(height: 60),
                                           RegisterBtn(
-                                            onTap: cubit.register,
+                                            onTap: () async {
+                                              await cubit.register(context);
+                                            },
                                           ),
                                         ],
                                       ),
@@ -183,7 +184,11 @@ void _stateHandler(BuildContext context, RegisterState state) {
       final error = state.error;
       SnackBarUtility.errorSnackBar(
         context,
-        (error is ResponseException) ? error.message : 'Try Again',
+        (error is ResponseException)
+            ? error.message
+            : (error is String)
+                ? error
+                : 'Try Again',
       );
     case CompleteState():
       SnackBarUtility.successSnackBar(

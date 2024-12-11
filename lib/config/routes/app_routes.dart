@@ -20,6 +20,7 @@ class Routes {
 
   // static const String loginScreen = '/login';
   static const String homeScreen = '/homeScreen';
+
   // static const String signUpScreen = '/signUpScreen';
 
   static const String bottomNavigationBarScreen = '/bottomNavigationBarScreen';
@@ -73,6 +74,7 @@ class AppRoutes {
             parameters: routeSettings.arguments! as ResetPasswordResponse,
           ),
         );
+
       // case Routes.forgetPasswordScreen:
       //   return MaterialPageRoute(builder: ((context) {
       //     return const ForgetPasswordScreen();

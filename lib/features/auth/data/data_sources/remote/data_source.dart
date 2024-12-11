@@ -240,6 +240,7 @@ final class AuthenticationRemoteDataSource implements AuthenticationDataSource {
             message: jsonResponse['message'] as String,
             otp: jsonResponse['data']['value'] as String,
             email: parameters.email,
+            popAfterVerify: false,
           );
         }
 

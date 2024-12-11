@@ -30,7 +30,6 @@ class LoginView extends StatelessWidget {
         builder: (context, state) {
           final cubit = LoginCubit.of(context);
           return Scaffold(
-            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.transparent,
             body: Stack(
               children: [

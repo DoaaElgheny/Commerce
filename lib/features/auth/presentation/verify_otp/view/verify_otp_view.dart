@@ -48,7 +48,6 @@ class _VerifyResetPasswordOTPViewState
           final cubit = VerifyResetPasswordOTPCubit.of(context);
           return Scaffold(
             backgroundColor: Colors.transparent,
-            resizeToAvoidBottomInset: false,
 
             body: Stack(
               children: [
@@ -140,7 +139,7 @@ class _VerifyResetPasswordOTPViewState
                                           ),
                                         if (kDebugMode)
                                           Text(
-                                            widget.parameters.otp,
+                                            cubit.params.otp,
                                             style: const TextStyle(
                                               color: Colors.black,
                                             ),
@@ -196,39 +195,43 @@ class _VerifyResetPasswordOTPViewState
       ),
     );
   }
-}
 
-void _stateHandler(BuildContext context, VerifyResetPasswordOTPState state) {
-  switch (state) {
-    case InitState():
-      return;
-    case NotValidOTPState():
-      // SnackBarUtility.errorSnackBar(
-      //   context,
-      //   notValidData,
-      // );
-      return;
-    case OtpVerifiedState(response: final response):
-      SnackBarUtility.successSnackBar(
-        context,
-        'OTP Verified Successfully',
-      );
-      Navigator.pushReplacementNamed(
-        context,
-        ResetPasswordView.routeName,
-        arguments: response,
-      );
-    case ExceptionState():
-      final error = state.error;
-      SnackBarUtility.errorSnackBar(
-        context,
-        (error is ResponseException) ? error.message : 'Try Again',
-      );
+  void _stateHandler(BuildContext context, VerifyResetPasswordOTPState state) {
+    switch (state) {
+      case InitState():
+        return;
+      case NotValidOTPState():
+        // SnackBarUtility.errorSnackBar(
+        //   context,
+        //   notValidData,
+        // );
+        return;
+      case OtpVerifiedState(response: final response):
+        SnackBarUtility.successSnackBar(
+          context,
+          'OTP Verified Successfully',
+        );
+        if (widget.parameters.popAfterVerify) {
+          Navigator.pop(context, response);
+          return;
+        }
+        Navigator.pushReplacementNamed(
+          context,
+          ResetPasswordView.routeName,
+          arguments: response,
+        );
+      case ExceptionState():
+        final error = state.error;
+        SnackBarUtility.errorSnackBar(
+          context,
+          (error is ResponseException) ? error.message : 'Try Again',
+        );
 
-    case OtpSentState():
-      SnackBarUtility.successSnackBar(
-        context,
-        'OTP Sent Successfully',
-      );
+      case OtpSentState():
+        SnackBarUtility.successSnackBar(
+          context,
+          'OTP Sent Successfully',
+        );
+    }
   }
 }

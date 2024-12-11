@@ -5,11 +5,13 @@ final class ResetPasswordResponse extends Equatable {
     required this.message,
     required this.otp,
     required this.email,
+    required this.popAfterVerify,
   });
 
   final String message;
   final String otp;
   final String email;
+  final bool popAfterVerify;
 
   @override
   List<Object?> get props {
@@ -17,6 +19,7 @@ final class ResetPasswordResponse extends Equatable {
       message,
       otp,
       email,
+      popAfterVerify,
     ];
   }
 }

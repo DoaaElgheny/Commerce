@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // log(
           //   'Token: ${AuthenticationProvider.instance.currentUser?.accessToken}',
           // );
-          // return;
+
           await AuthenticationProvider.instance.logout();
           if (context.mounted) {
             Navigator.pushNamedAndRemoveUntil(

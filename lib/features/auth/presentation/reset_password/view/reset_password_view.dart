@@ -40,7 +40,6 @@ class ResetPasswordView extends StatelessWidget {
           final cubit = ResetPasswordCubit.of(context);
           return Scaffold(
             backgroundColor: Colors.transparent,
-            resizeToAvoidBottomInset: false,
 
             body: Stack(
               children: [

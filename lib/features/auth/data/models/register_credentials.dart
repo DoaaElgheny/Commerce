@@ -9,6 +9,7 @@ final class RegisterCredentialsDTO extends RegisterCredentials {
     required super.fullName,
     required super.password,
     required super.phone,
+    required super.otp,
   });
 
   factory RegisterCredentialsDTO.fromJson(String json) {
@@ -27,6 +28,7 @@ final class RegisterCredentialsDTO extends RegisterCredentials {
       email: json[AuthField.email.value] as String,
       password: json[AuthField.password.value] as String,
       phone: json[AuthField.phone.value] as String,
+      otp: json[AuthField.otp.value] as String,
     );
   }
 
@@ -38,6 +40,7 @@ final class RegisterCredentialsDTO extends RegisterCredentials {
       email: entity.email,
       password: entity.password,
       phone: entity.phone,
+      otp: entity.otp,
     );
   }
 
@@ -47,6 +50,7 @@ final class RegisterCredentialsDTO extends RegisterCredentials {
       AuthField.email.value: email,
       AuthField.password.value: password,
       AuthField.phone.value: phone,
+      AuthField.otp.value: otp,
     };
   }
 }

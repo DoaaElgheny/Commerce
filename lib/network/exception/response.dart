@@ -6,7 +6,7 @@ class ResponseException {
   ]);
 
   @override
-  String toString() => 'ResponseException: $message';
+  String toString() => message;
 }
 
 class ContinueException extends ResponseException {

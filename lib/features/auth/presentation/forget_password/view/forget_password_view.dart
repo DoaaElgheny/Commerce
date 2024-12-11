@@ -30,7 +30,6 @@ class ForgetPasswordView extends StatelessWidget {
           final cubit = ForgetPasswordCubit.of(context);
           return Scaffold(
             backgroundColor: Colors.transparent,
-            resizeToAvoidBottomInset: false,
 
             body: Stack(
               children: [
