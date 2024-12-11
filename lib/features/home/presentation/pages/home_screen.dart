@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-        label: const Text('Logout'),
+        label: const Text('تسجيل الخروج'),
         onPressed: () async {
           // log(
           //   'Token: ${AuthenticationProvider.instance.currentUser?.accessToken}',
