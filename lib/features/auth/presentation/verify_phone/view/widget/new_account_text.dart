@@ -8,7 +8,7 @@ class NewAccountText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-      'Phone Number',
+      'رقم الهاتف',
       style: TextStyle(
         color: AppColors.white,
         fontSize: 20,

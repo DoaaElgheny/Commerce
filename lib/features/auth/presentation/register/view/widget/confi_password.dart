@@ -34,7 +34,9 @@ class _ConfirmPasswordFieldState extends State<ConfirmPasswordField> {
         FilteringTextInputFormatter.deny(RegExp(r'\s')),
       ],
       decoration: InputDecoration(
-        hintText: 'Confirm Password',
+        fillColor: Colors.white,
+        filled: true,
+        hintText: 'تأكيد كلمة المرور',
         errorStyle: const TextStyle(color: AppColors.appRed),
         suffixIcon: Material(
           color: Colors.transparent,

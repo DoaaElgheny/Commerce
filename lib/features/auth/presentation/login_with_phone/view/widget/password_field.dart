@@ -26,6 +26,7 @@ class _PasswordFieldState extends State<PasswordField> {
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.visiblePassword,
       obscureText: !isShowPassword,
+
       inputFormatters: [
         // ignore spaces.
         FilteringTextInputFormatter.deny(RegExp(r'\s')),
@@ -39,11 +40,11 @@ class _PasswordFieldState extends State<PasswordField> {
           case PasswordValidState.valid:
             return null;
           case PasswordValidState.notValid:
-            return 'Not valid';
+            return 'غير صالحة';
           case PasswordValidState.cannotBeEmpty:
-            return 'Required Field';
+            return 'هذا الحقل مطلوب';
           case PasswordValidState.lessThan8Char:
-            return 'Password Must Be At Least 8 Characters';
+            return 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل';
         }
       },
       // style: const TextStyle(
@@ -51,8 +52,10 @@ class _PasswordFieldState extends State<PasswordField> {
       //   fontSize: 12,
       // ),
       decoration: InputDecoration(
-        labelText: 'Password',
-        hintText: 'Enter your password',
+        fillColor: Colors.white,
+        filled: true,
+        labelText: 'كلمة المرور',
+        hintText: 'أكتب كلمة المرور هنا',
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 0.0,
           vertical: 12.0,

@@ -8,9 +8,9 @@ class ForgetPasswordText extends StatelessWidget {
     return const Column(
       children: [
         Text(
-          'Forget Password',
+          'نيست كلمة المرور',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 22,
             fontWeight: FontWeight.w700,
           ),

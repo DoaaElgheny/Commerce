@@ -14,7 +14,7 @@ class RegisterBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadingButton(
       onTap: onTap,
-      name: 'Register',
+      name: 'تسجيل',
     );
   }
 }

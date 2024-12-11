@@ -33,7 +33,7 @@ class _ResetCodeBtnState extends State<ResetCodeBtn> {
           // foregroundColor: Colors.white,
           // disabledForegroundColor: Colors.grey,
           ),
-      child: const Text('Resend Code'),
+      child: const Text('إعادة ارسال رمز التحقق'),
     );
   }
 }

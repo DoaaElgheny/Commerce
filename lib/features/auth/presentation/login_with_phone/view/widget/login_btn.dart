@@ -16,7 +16,7 @@ class LoginBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadingButton(
       onTap: _onPressed,
-      name: 'Login',
+      name: 'تسجيل الدخول',
     );
   }
 }

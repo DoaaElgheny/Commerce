@@ -8,7 +8,7 @@ class TextVerify extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Text(
-      'Phone Verification',
+      'تأكيد الحساب',
       textAlign: TextAlign.center,
       style: TextStyle(
         color: AppColors.black,

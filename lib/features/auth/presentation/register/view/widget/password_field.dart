@@ -37,16 +37,18 @@ class _PasswordFieldState extends State<PasswordField> {
           case PasswordValidState.valid:
             return null;
           case PasswordValidState.notValid:
-            return 'Not Valid';
+            return 'غير صالح';
           case PasswordValidState.cannotBeEmpty:
-            return 'Require dField';
+            return 'هذا الحقل مطلوب';
           case PasswordValidState.lessThan8Char:
-            return 'Password Must Be At Least 8 Characters';
+            return '"يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل"';
         }
       },
       style: const TextStyle(color: AppColors.white),
       decoration: InputDecoration(
-        hintText: 'password',
+        fillColor: Colors.white,
+        filled: true,
+        hintText: 'كلمة المرور',
         errorStyle: const TextStyle(color: AppColors.appRed),
         suffixIcon: Material(
           color: Colors.transparent,

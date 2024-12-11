@@ -96,7 +96,7 @@ class LoginWithPhoneView extends StatelessWidget {
                                           const SizedBox(height: 25.0),
                                           const Center(
                                             child: Text(
-                                              "Welcome, let's log in and get started!",
+                                              "مرحبًا، لنقم بتسجيل الدخول ونبدأ!",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 16.0,
@@ -121,7 +121,7 @@ class LoginWithPhoneView extends StatelessWidget {
                                               Navigator.pop(context);
                                             },
                                             child: Text(
-                                              'Login With E-mail',
+                                              'التسجيل عن طريق البريد الإلكترونى',
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 decoration:
@@ -190,7 +190,7 @@ void _stateHandler(BuildContext context, LoginWithPhoneState state) {
 
       SnackBarUtility.errorSnackBar(
         context,
-        (error is ResponseException) ? error.message : 'Try Again',
+        (error is ResponseException) ? error.message : 'حاول مجددا',
       );
       return;
   }

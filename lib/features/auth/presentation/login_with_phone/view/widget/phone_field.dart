@@ -13,21 +13,28 @@ class LoginWithPhoneField extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntlPhoneField(
       autovalidateMode: AutovalidateMode.disabled,
-      style: const TextStyle(color: Colors.black),
+      style: const TextStyle(
+        color: Colors.black,
+        locale: Locale('ar'),
+      ),
       validator: (v) {
         if (!(v?.isValidNumber() ?? false)) {
-          return 'Not Valid Number';
+          return 'رقم هاتف غير صالح';
         }
         return null;
       },
       decoration: const InputDecoration(
+        fillColor: Colors.white,
+        filled: true,
         contentPadding: EdgeInsets.symmetric(
           horizontal: 0.0,
           vertical: 12.0,
         ),
-        hintText: 'Phone Number',
+        labelText: 'رقم الهاتف',
       ),
       initialCountryCode: 'EG',
+      textAlign: TextAlign.start,
+      dropdownTextStyle: const TextStyle(color: Colors.black),
       onChanged: (v) {
         _controller.text = v.completeNumber;
       },

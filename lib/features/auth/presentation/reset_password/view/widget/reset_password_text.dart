@@ -10,7 +10,7 @@ class ResetPasswordText extends StatelessWidget {
     return const Column(
       children: [
         Text(
-          'Reset Password',
+          'إعادة تعيين كلمة المرور',
           style: TextStyle(
             color: AppColors.black,
             fontSize: 20,

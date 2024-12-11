@@ -12,7 +12,7 @@ class WelcomeMes extends StatelessWidget {
         SizedBox(
           width: MediaQuery.sizeOf(context).width * 0.75,
           child: const Text(
-            "Welcome, let's log in and get started!",
+            "مرحبًا، لنقم بتسجيل الدخول ونبدأ!",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: AppColors.white,

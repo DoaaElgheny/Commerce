@@ -97,7 +97,7 @@ class RegisterView extends StatelessWidget {
                                           const SizedBox(height: 25.0),
                                           const Center(
                                             child: Text(
-                                              "Welcome, let's log in and get started!",
+                                              "مرحبًا، لنقم بتسجيل الدخول ونبدأ!",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 16.0,
@@ -167,13 +167,13 @@ void _stateHandler(BuildContext context, RegisterState state) {
     case NotValidDataState():
       SnackBarUtility.errorSnackBar(
         context,
-        'Not Valid Fields',
+        'معطيات غير صالحة',
       );
       return;
     case RegisteredState():
       SnackBarUtility.successSnackBar(
         context,
-        'Registered Successfully',
+        'تم الإنشاء بنجاح',
       );
       Navigator.pushNamedAndRemoveUntil(
         context,
@@ -188,12 +188,12 @@ void _stateHandler(BuildContext context, RegisterState state) {
             ? error.message
             : (error is String)
                 ? error
-                : 'Try Again',
+                : 'حاول مجددا',
       );
     case CompleteState():
       SnackBarUtility.successSnackBar(
         context,
-        'Created Successfully',
+        'تم الإنشاء بنجاح',
       );
   }
 }

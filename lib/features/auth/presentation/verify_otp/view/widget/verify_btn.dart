@@ -15,7 +15,7 @@ class VerifyBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadingButton(
       onTap: _onPressed,
-      name: 'Verify',
+      name: 'تأكيد',
       color: AppColors.color1,
     );
   }

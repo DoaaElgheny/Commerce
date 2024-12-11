@@ -108,7 +108,7 @@ class LoginView extends StatelessWidget {
                                           const SizedBox(height: 25.0),
                                           const Center(
                                             child: Text(
-                                              "Welcome, let's log in and get started!",
+                                              "مرحبًا، لنقم بتسجيل الدخول ونبدأ!",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 16.0,
@@ -132,7 +132,7 @@ class LoginView extends StatelessWidget {
                                           ),
                                           const SizedBox(height: 20.0),
                                           const Text(
-                                            'Or log in through',
+                                            'أو قم بتسجيل الدخول من خلال',
                                             style: TextStyle(
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.w400,
@@ -208,7 +208,7 @@ void _stateHandler(BuildContext context, LoginState state) {
 
       SnackBarUtility.errorSnackBar(
         context,
-        (error is ResponseException) ? error.message : 'Try Again',
+        (error is ResponseException) ? error.message : 'حاول مجددا',
       );
       return;
   }

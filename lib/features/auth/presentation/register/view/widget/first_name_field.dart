@@ -27,15 +27,17 @@ class FirstNameField extends StatelessWidget {
           case NameValidState.valid:
             return null;
           case NameValidState.notValid:
-            return 'Minimum 3 Characters';
+            return '3 أحرف على الأقل';
           case NameValidState.cannotBeEmpty:
-            return 'Required Field';
+            return 'هذا الحقل مطلوب';
         }
       },
       // style: const TextStyle(color: AppColors.white),
       decoration: const InputDecoration(
-        labelText: 'Name',
-        hintText: 'Enter Your Full Name',
+        fillColor: Colors.white,
+        filled: true,
+        labelText: 'الإسم',
+        hintText: 'أكتب إسمك هنا',
         contentPadding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
         errorStyle: TextStyle(color: Colors.red),
         prefixIcon: Icon(

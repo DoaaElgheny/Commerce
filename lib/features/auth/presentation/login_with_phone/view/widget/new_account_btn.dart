@@ -13,7 +13,7 @@ class NewAccountBtn extends StatelessWidget {
         Navigator.pushNamed(context, RegisterView.routeName);
       },
       child: Text(
-        'Create new account',
+        'إنشاء حساب جديد',
         textAlign: TextAlign.center,
         style: TextStyle(
           decoration: TextDecoration.underline,

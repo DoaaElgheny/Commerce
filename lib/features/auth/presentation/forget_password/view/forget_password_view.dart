@@ -99,7 +99,7 @@ class ForgetPasswordView extends StatelessWidget {
                                           const SizedBox(height: 25.0),
                                           const Center(
                                             child: Text(
-                                              "Welcome, let's log in and get started!",
+                                              "مرحبًا، دعنا نسجل الدخول ونبدأ!",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 16.0,
@@ -114,7 +114,7 @@ class ForgetPasswordView extends StatelessWidget {
                                           const SizedBox(height: 30),
                                           LoadingButton(
                                             onTap: cubit.sendOtpToResetPassword,
-                                            name: 'Send OTP',
+                                            name: "إرسال رمز التحقق",
                                           )
                                         ],
                                       ),
@@ -190,7 +190,7 @@ void _stateHandler(BuildContext context, ForgetPasswordStates state) {
       final error = state.error;
       SnackBarUtility.errorSnackBar(
         context,
-        (error is ResponseException) ? error.message : 'Try Again',
+        (error is ResponseException) ? error.message : 'حاول مجددا',
       );
   }
 }

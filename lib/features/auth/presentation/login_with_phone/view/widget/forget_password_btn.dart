@@ -13,7 +13,7 @@ class ForgetPasswordBtn extends StatelessWidget {
         Navigator.pushNamed(context, ForgetPasswordView.routeName);
       },
       child: Text(
-        'Forgot Your Password',
+        'نسيت كلمة المرور',
         textAlign: TextAlign.start,
         style: TextStyle(
           decoration: TextDecoration.underline,

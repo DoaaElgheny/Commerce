@@ -46,7 +46,7 @@ class AuthButtons extends StatelessWidget {
                     ),
                     const SizedBox(width: 10.0),
                     const Text(
-                      'Google',
+                      'جوجل',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.0,
@@ -87,7 +87,7 @@ class AuthButtons extends StatelessWidget {
                     ),
                     const SizedBox(width: 10.0),
                     const Text(
-                      'Mobile Phone',
+                      'رقم الهاتف',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.0,

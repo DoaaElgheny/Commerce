@@ -14,7 +14,7 @@ class ChangePasswordBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadingButton(
       onTap: _onPressed,
-      name: 'Next',
+      name: 'التالى',
     );
   }
 }

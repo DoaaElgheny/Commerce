@@ -28,15 +28,17 @@ class EmailField extends StatelessWidget {
           case EmailValidState.valid:
             return null;
           case EmailValidState.notValid:
-            return 'Not Valid Email';
+            return 'بريد إلكتروني غير صالح';
           case EmailValidState.cannotBeEmpty:
-            return 'Required Field';
+            return 'هذا الحقل مطلوب';
         }
       },
       // style: const TextStyle(fontSize: 12),
       decoration: const InputDecoration(
-        labelText: 'Email',
-        hintText: 'Enter Your Email',
+        fillColor: Colors.white,
+        filled: true,
+        labelText: 'البريد الإلكتروني',
+        hintText: 'أكتب بريدك الإلكتروني هنا',
         contentPadding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
         errorStyle: TextStyle(color: Colors.red),
         prefixIcon: Icon(

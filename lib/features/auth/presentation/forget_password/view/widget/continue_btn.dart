@@ -14,7 +14,7 @@ class ContinueBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadingButton(
       onTap: onTap,
-      name: 'Next',
+      name: 'التالى',
     );
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +34,6 @@ final class LoginWithPhoneCubit extends Cubit<LoginWithPhoneState> {
       );
       emit(LoggedInState(user: user));
     } catch (e, s) {
-      log('Exception: $e $s');
       emit(ExceptionState(error: e));
     }
   }

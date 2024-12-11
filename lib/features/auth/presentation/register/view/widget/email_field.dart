@@ -29,14 +29,16 @@ class EmailField extends StatelessWidget {
           case EmailValidState.valid:
             return null;
           case EmailValidState.notValid:
-            return 'Not Valid Email';
+            return 'بريد إلكترونى غير صالح';
           case EmailValidState.cannotBeEmpty:
-            return 'Required Field';
+            return 'هذا الحقل مطلوب';
         }
       },
       style: const TextStyle(color: AppColors.white),
       decoration: const InputDecoration(
-        hintText: 'Email Address',
+        fillColor: Colors.white,
+        filled: true,
+        hintText: 'البريد الإلكترونى',
         errorStyle: TextStyle(color: AppColors.appRed),
       ),
     );

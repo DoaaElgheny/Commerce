@@ -34,8 +34,10 @@ class _ConfirmPasswordFieldState extends State<ConfirmPasswordField> {
       ],
       style: const TextStyle(color: AppColors.black),
       decoration: InputDecoration(
-        labelText: 'Confirm Password',
-        hintText: 'Enter Your Confirm Password',
+        fillColor: Colors.white,
+        filled: true,
+        labelText: 'تأكيد كلمة المرور',
+        hintText: 'قم بتأكيد كلمة المرور هنا',
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 15.0,
           vertical: 10.0,

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,7 +31,6 @@ final class LoginCubit extends Cubit<LoginState> {
       );
       emit(LoggedInState(user: user));
     } catch (e, s) {
-      log('Exception: $e $s');
       emit(ExceptionState(error: e));
     }
   }
@@ -44,7 +41,6 @@ final class LoginCubit extends Cubit<LoginState> {
           .loginWithSocialMedia(credentials: credentials);
       emit(LoggedInState(user: user));
     } catch (e, s) {
-      log('Exception: $e, $s');
       emit(ExceptionState(error: e));
     }
   }

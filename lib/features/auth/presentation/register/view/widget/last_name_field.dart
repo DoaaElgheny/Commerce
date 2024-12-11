@@ -29,14 +29,16 @@ class LastNameField extends StatelessWidget {
           case NameValidState.valid:
             return null;
           case NameValidState.notValid:
-            return 'Min 3 Characters';
+            return '3 حروف على الأقل';
           case NameValidState.cannotBeEmpty:
-            return 'Required Field';
+            return 'هذا الحقل مطلوب';
         }
       },
       style: const TextStyle(color: AppColors.white),
       decoration: const InputDecoration(
-        hintText: 'Last Name',
+        fillColor: Colors.white,
+        filled: true,
+        hintText: 'إسم العائلة',
         errorStyle: TextStyle(color: AppColors.appRed),
       ),
     );

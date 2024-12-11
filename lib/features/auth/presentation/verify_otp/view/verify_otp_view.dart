@@ -116,7 +116,7 @@ class _VerifyResetPasswordOTPViewState
                                         const SizedBox(height: 40.0),
                                         const TextVerify(),
                                         const Text(
-                                          "Please enter the verification code that was sent to you",
+                                          "يرجى إدخال رمز التحقق الذي تم إرساله إليك",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.black54,
@@ -132,7 +132,7 @@ class _VerifyResetPasswordOTPViewState
                                         ),
                                         if (state is NotValidOTPState)
                                           const Text(
-                                            'Invalid OTP',
+                                            'رمز غير صالح',
                                             style: TextStyle(
                                               color: AppColors.appRed,
                                             ),
@@ -146,7 +146,7 @@ class _VerifyResetPasswordOTPViewState
                                           ),
                                         LoadingButton(
                                           onTap: cubit.verifyOTP,
-                                          name: 'Verify',
+                                          name: 'تأكيد',
                                         ),
                                         const SizedBox(height: 15),
                                         ResetCodeBtn(
@@ -209,7 +209,7 @@ class _VerifyResetPasswordOTPViewState
       case OtpVerifiedState(response: final response):
         SnackBarUtility.successSnackBar(
           context,
-          'OTP Verified Successfully',
+          'تم التأكيد بنجاح',
         );
         if (widget.parameters.popAfterVerify) {
           Navigator.pop(context, response);
@@ -224,13 +224,13 @@ class _VerifyResetPasswordOTPViewState
         final error = state.error;
         SnackBarUtility.errorSnackBar(
           context,
-          (error is ResponseException) ? error.message : 'Try Again',
+          (error is ResponseException) ? error.message : 'حاول مجددا',
         );
 
       case OtpSentState():
         SnackBarUtility.successSnackBar(
           context,
-          'OTP Sent Successfully',
+          'تم الإرسال بنجاح',
         );
     }
   }

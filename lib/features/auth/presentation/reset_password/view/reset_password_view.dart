@@ -130,14 +130,14 @@ class ResetPasswordView extends StatelessWidget {
                                                   return null;
                                                 case ConfirmPasswordValidState
                                                       .notMatch:
-                                                  return 'Password Not Match';
+                                                  return 'كلمة المرور غير متطابقة';
                                               }
                                             },
                                           ),
                                           const SizedBox(height: 40.0),
                                           LoadingButton(
                                             onTap: cubit.resetPassword,
-                                            name: 'Reset Password',
+                                            name: 'إعادة تعيين كلمة المرور',
                                           )
                                         ],
                                       ),
@@ -233,7 +233,7 @@ void _stateHandler(BuildContext context, ResetPasswordState state) {
       final error = state.error;
       SnackBarUtility.errorSnackBar(
         context,
-        (error is ResponseException) ? error.message : 'Try Again',
+        (error is ResponseException) ? error.message : 'حاول مجددا',
       );
   }
 }
