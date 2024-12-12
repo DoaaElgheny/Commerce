@@ -11,6 +11,7 @@ enum AuthField {
   otp(name: 'OTP', value: 'otp'),
   userName(name: 'Username', value: 'userName'),
   password(name: 'Password', value: 'password'),
+  countryCode(name: 'Phone Country Code', value: 'countryCode'),
   newPassword(name: 'New Password', value: 'newPassword'),
   passwordConfirmation(
     name: 'Password Confirmation',

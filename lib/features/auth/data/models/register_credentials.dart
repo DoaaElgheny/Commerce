@@ -8,6 +8,7 @@ final class RegisterCredentialsDTO extends RegisterCredentials {
     required super.email,
     required super.fullName,
     required super.password,
+    required super.countryCode,
     required super.phone,
     required super.otp,
   });
@@ -27,6 +28,7 @@ final class RegisterCredentialsDTO extends RegisterCredentials {
       fullName: json[AuthField.fullName.value] as String,
       email: json[AuthField.email.value] as String,
       password: json[AuthField.password.value] as String,
+      countryCode: json[AuthField.countryCode.value] as String,
       phone: json[AuthField.phone.value] as String,
       otp: json[AuthField.otp.value] as String,
     );
@@ -39,6 +41,7 @@ final class RegisterCredentialsDTO extends RegisterCredentials {
       fullName: entity.fullName,
       email: entity.email,
       password: entity.password,
+      countryCode: entity.countryCode,
       phone: entity.phone,
       otp: entity.otp,
     );
@@ -49,6 +52,7 @@ final class RegisterCredentialsDTO extends RegisterCredentials {
       AuthField.fullName.value: fullName,
       AuthField.email.value: email,
       AuthField.password.value: password,
+      AuthField.countryCode.value: countryCode,
       AuthField.phone.value: phone,
       AuthField.otp.value: otp,
     };

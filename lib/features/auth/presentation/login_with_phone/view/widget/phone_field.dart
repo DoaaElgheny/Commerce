@@ -4,10 +4,13 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 class LoginWithPhoneField extends StatelessWidget {
   const LoginWithPhoneField({
     required TextEditingController controller,
+    required TextEditingController countryCode,
     super.key,
-  }) : _controller = controller;
+  })  : _countryCode = countryCode,
+        _controller = controller;
 
   final TextEditingController _controller;
+  final TextEditingController _countryCode;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,8 @@ class LoginWithPhoneField extends StatelessWidget {
       textAlign: TextAlign.start,
       dropdownTextStyle: const TextStyle(color: Colors.black),
       onChanged: (v) {
-        _controller.text = v.completeNumber;
+        _countryCode.text = v.countryCode;
+        _controller.text = v.number;
       },
     );
   }

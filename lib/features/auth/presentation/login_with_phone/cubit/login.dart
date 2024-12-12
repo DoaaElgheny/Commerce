@@ -13,6 +13,7 @@ final class LoginWithPhoneCubit extends Cubit<LoginWithPhoneState> {
   }
 
   final formKey = GlobalKey<FormState>();
+  final countryCodeController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -28,6 +29,7 @@ final class LoginWithPhoneCubit extends Cubit<LoginWithPhoneState> {
       }
       final user = await AuthenticationProvider.instance.loginWithPhone(
         credentials: LoginWithPhoneCredentials(
+          countryCode: countryCodeController.text,
           phone: phoneController.text,
           password: passwordController.text,
         ),

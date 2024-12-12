@@ -21,6 +21,7 @@ final class RegisterCubit extends Cubit<RegisterState> {
 
   final fullNameController = TextEditingController();
   final emailController = TextEditingController();
+  final counteryCodeController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -56,6 +57,7 @@ final class RegisterCubit extends Cubit<RegisterState> {
         credentials: RegisterCredentials(
           fullName: fullNameController.text,
           email: emailController.text,
+          countryCode: counteryCodeController.text,
           phone: phoneController.text,
           password: passwordController.text,
           otp: res.otp,

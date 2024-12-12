@@ -103,6 +103,7 @@ class _VerifyResetPasswordOTPViewState
                           child: Container(
                             margin: const EdgeInsets.only(top: 0),
                             child: CustomScrollView(
+                              physics: const NeverScrollableScrollPhysics(),
                               slivers: [
                                 SliverPadding(
                                   padding: const EdgeInsets.symmetric(
