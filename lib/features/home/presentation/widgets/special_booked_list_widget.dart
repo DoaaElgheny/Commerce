@@ -4,7 +4,6 @@ import 'package:qubeCommerce/features/home/presentation/pages/home_screen.dart';
 import 'package:qubeCommerce/features/home/presentation/widgets/special_booked_widget.dart';
 
 import '../pages/deal_details.dart';
-import '../pages/stay_details_screen.dart';
 
 class SpecialBookedListCard extends StatefulWidget {
   final List<SpecialBookedCard> specialBookedCard;

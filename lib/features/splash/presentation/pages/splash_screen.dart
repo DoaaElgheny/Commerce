@@ -76,18 +76,13 @@ class _SplashScreenState extends State<SplashScreen> {
         return;
       } else {
         Navigator.of(context).pushNamedAndRemoveUntil(
-          Routes.homeScreen,
+          Routes.bottomNavigationBarScreen,
           (r) => false,
         );
         return;
       }
     }
 
-    // //we put Logic here if he logged go to home if not go to login
-    // Navigator.of(context).pushAndRemoveUntil(
-    //   MaterialPageRoute(builder: (_) => const LoginScreen()),
-    //   (r) => false,
-    // );
   }
 
   Future<void> _initAppDatabases() async {
@@ -240,113 +235,3 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 }
-
-// class SplashScreen extends StatefulWidget {
-//   const SplashScreen({super.key});
-
-//   @override
-//   State<SplashScreen> createState() => _SplashScreenState();
-// }
-
-// class _SplashScreenState extends State<SplashScreen> {
-//   late Timer _timer;
-
-//   // _startDelay() {
-//   //   Future.delayed(const Duration(seconds: 3), () {
-//   //     // Replace 'NextPage' with your desired page.
-//   //     Navigator.pushReplacement(
-//   //       context,
-//   //       MaterialPageRoute(builder: (context) => DealDetailsScreen()),
-//   //     );
-//   //   });
-
-//   //   // _timer = Timer(const Duration(milliseconds: 2000), () => _goNext());
-//   //   // _timer = Timer(
-//   //   //     const Duration(milliseconds: 2000),
-//   //   //     () async =>
-//   //   //         await qubeCommerceFirebaseRemoteConfig().versionCheck(context: context));
-//   // }
-
-//   // @override
-//   // void initState() {
-//   //   super.initState();
-//   //   _startDelay();
-//   // }
-
-//   // @override
-//   // void dispose() {
-//   //   _timer.cancel();
-//   //   super.dispose();
-//   // }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SafeArea(
-//         child: Stack(
-//           children: [
-//             Container(
-//               alignment: Alignment.topCenter,
-//               child: Image.asset(
-//                 'assets/images/png/SS-Top.png',
-//                 fit: BoxFit.cover,
-//                 height: 72,
-//                 width: 343,
-//               ),
-//             ),
-//             Positioned(
-//                 top: 260,
-//                 child: Container(
-//                   width: MediaQuery.of(context).size.width,
-//                   alignment: Alignment.center,
-//                   child: const Column(
-//                     children: [
-//                       Text(
-//                         "Qube",
-//                         style: TextStyle(
-//                             fontSize: 32,
-//                             fontWeight: FontWeight.w700,
-//                             color: Color(0xFF000080)),
-//                       ),
-//                       Text("Commerce",
-//                           style: TextStyle(
-//                               fontSize: 32,
-//                               fontWeight: FontWeight.w700,
-//                               color: Color(0xFF000080)))
-//                     ],
-//                   ),
-//                 )),
-//             Positioned(
-//               top: 399,
-//               child: Container(
-//                 width: MediaQuery.of(context).size.width,
-//                 alignment: Alignment.center,
-//                 //color: Colors.amber,
-//                 child: Image.asset(
-//                   'assets/images/png/SS_Middle.png',
-//                   fit: BoxFit.cover,
-//                   height: 379,
-//                   width: 265,
-//                 ),
-//               ),
-//             ),
-//             Positioned(
-//               top: 470,
-//               child: Container(
-//                 width: MediaQuery.of(context).size.width,
-//                 alignment: Alignment.center,
-//                 //color: Colors.amber,
-//                 child: Image.asset(
-//                   'assets/images/png/SS_Bottom.png',
-//                   fit: BoxFit.cover,
-//                   height: 342,
-//                   width: MediaQuery.of(context).size.width,
-//                 ),
-//               ),
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

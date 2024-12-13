@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qubeCommerce/config/routes/app_routes.dart';
 import 'package:qubeCommerce/features/auth/presentation/login_with_phone/view/widget/phone_field.dart';
+import 'package:qubeCommerce/features/auth/presentation/register/view/widget/already_have_account.dart';
 import 'package:qubeCommerce/shared/widget/auth.dart';
 
 import '../../../../../network/exception/response.dart';
@@ -55,7 +56,7 @@ class RegisterView extends StatelessWidget {
                             const SizedBox(height: 25.0),
                             const Center(
                               child: Text(
-                                "مرحبًا، لنقم بتسجيل الدخول ونبدأ!",
+                                "مرحبًا، لنقم بتسجيل البيانات ونبدأ!",
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 16.0,
@@ -80,13 +81,13 @@ class RegisterView extends StatelessWidget {
                             PasswordField(
                               controller: cubit.passwordController,
                             ),
-                            const SizedBox(height: 12),
-                            const SizedBox(height: 60),
+                            const SizedBox(height: 20),
                             RegisterBtn(
                               onTap: () async {
                                 await cubit.register(context);
                               },
                             ),
+                          const  AlreadyHaveAccountBtn(),
                           ],
                         ),
                       ),
@@ -119,7 +120,7 @@ void _stateHandler(BuildContext context, RegisterState state) {
       );
       Navigator.pushNamedAndRemoveUntil(
         context,
-        Routes.homeScreen,
+        Routes.bottomNavigationBarScreen,
         (route) => false,
       );
     case ExceptionState():

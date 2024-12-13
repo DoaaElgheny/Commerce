@@ -13,6 +13,8 @@ import 'dart:io' show Platform;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //
+      
   await SharedPrefController().initSharePre();
   await Firebase.initializeApp(
     options: Platform.isAndroid ? Constants.android : Constants.ios,

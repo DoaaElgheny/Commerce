@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qubeCommerce/features/auth/presentation/login_with_phone/view/widget/forget_password_btn.dart';
 import 'package:qubeCommerce/shared/widget/auth.dart';
 
 import '../../../../../config/routes/app_routes.dart';
@@ -71,7 +72,12 @@ class LoginWithPhoneView extends StatelessWidget {
                             PasswordField(
                               controller: cubit.passwordController,
                             ),
-                            const SizedBox(height: 30.0),
+                            
+                             Container(
+                                alignment: AlignmentDirectional.bottomEnd,
+                                child: const ForgetPasswordBtn(),
+                              ),
+                              const SizedBox(height: 10.0),
                             LoginBtn(onPressed: cubit.login),
                             const SizedBox(height: 5),
                             TextButton(
@@ -124,7 +130,7 @@ void _stateHandler(BuildContext context, LoginWithPhoneState state) {
 
       Navigator.pushNamedAndRemoveUntil(
         context,
-        Routes.homeScreen,
+        Routes.bottomNavigationBarScreen,
         (route) => false,
       );
     case ExceptionState():

@@ -70,5 +70,27 @@
   "description": "Description",
   "stays_location": "Stays Location",
   "deals": "Deals",
-  "wallet": "Wallet"
+  "wallet": "Wallet",
+  "language": "اللغة",
+  "setting": "الإعدادات",
+  "logout": "تسجيل الخروج",
+  "invite_friends": "دعوة الأصدقاء",
+  "contact_us": "تواصل معنا",
+
+  "change_language": "تغيير اللغة",
+  "arabic": "عربي",
+  "english": "انجليزي",
+  "delete_account": "حذف الحساب",
+  "are_you_sure":"هل أنت متأكد!",
+  "delete_account_Successfully": "تم حذف الحساب بنجاح",
+  "are_you_sure_logout_msg":"هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
+  "are_you_sure_delete_msg":"هل أنت متأكد من حذف حسابك؟",
+  "delete":"حذف",
+  "my_balance":"my_balance",
+  "View_all":"View all",
+  "deal":"Deal",
+  "Withdraw_balance":"Withdraw balance",
+  "Add_balance":"Add balance",
+  "My_deals":"My deals:",
+  "Expected_profits":"Expected profits"
 }

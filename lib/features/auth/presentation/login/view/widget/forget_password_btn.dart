@@ -14,7 +14,7 @@ class ForgetPasswordBtn extends StatelessWidget {
       },
       child: Text(
         'نسيت كلمة المرور',
-        textAlign: TextAlign.start,
+        textAlign: TextAlign.end,
         style: TextStyle(
           decoration: TextDecoration.underline,
           color: AppColors.primaryColor,

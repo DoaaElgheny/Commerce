@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qubeCommerce/di/dependency_injector.dart';
+import 'package:qubeCommerce/features/auth/presentation/register/view/widget/already_have_account.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../core/shared_widgets/images.dart';
@@ -139,7 +140,8 @@ class ResetPasswordView extends StatelessWidget {
                                           LoadingButton(
                                             onTap: cubit.resetPassword,
                                             name: 'إعادة تعيين كلمة المرور',
-                                          )
+                                          ),
+                                           const  AlreadyHaveAccountBtn(),
                                         ],
                                       ),
                                     ),

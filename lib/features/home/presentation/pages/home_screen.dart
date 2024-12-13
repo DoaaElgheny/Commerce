@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:qubeCommerce/config/locale/app_localizations.dart';
 import 'package:qubeCommerce/core/authentication/provider.dart';
+import 'package:qubeCommerce/core/prefs/my_shared_prefs.dart';
 import 'package:qubeCommerce/core/shared_widgets/elevated_btn.dart';
 import 'package:qubeCommerce/core/utils/app_colors.dart';
 import 'package:qubeCommerce/features/auth/presentation/login/view/login.dart';
@@ -79,24 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        label: const Text('تسجيل الخروج'),
-        onPressed: () async {
-          // log(
-          //   'Token: ${AuthenticationProvider.instance.currentUser?.accessToken}',
-          // );
-
-          await AuthenticationProvider.instance.logout();
-          if (context.mounted) {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              LoginView.routeName,
-              (r) => false,
-            );
-          }
-        },
-      ),
+    
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -110,7 +97,31 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        InkWell(
+                        
+                       Image.asset(
+                          'assets/images_new/user_image.png',
+                          width: 48,
+                        ),
+                         const SizedBox(width: 12),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            AppText(
+                              text: AuthenticationProvider
+                                      .instance.currentUser?.details.fullName ??
+                                  '',
+                              color: AppColors.primaryColor,
+                              weight: FontWeight.bold,
+                              fontSize: 16,
+                              align: TextAlign.start,
+                            ),
+                           
+                          ],
+                        ),
+                       
+                       const Spacer(),
+                        
+                       InkWell(
                           onTap: () {},
                           child: Container(
                             width: 40,
@@ -133,6 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: 18,
                                   ),
                                 ),
+                                
                                 Positioned(
                                   top: -2,
                                   right: 0,
@@ -160,43 +172,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        const Spacer(),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            AppText(
-                              text: AuthenticationProvider
-                                      .instance.currentUser?.details.fullName ??
-                                  '',
-                              color: AppColors.primaryColor,
-                              weight: FontWeight.bold,
-                              fontSize: 16,
-                              align: TextAlign.start,
-                            ),
-                            AppText(
-                              text: '#EM-001252',
-                              color: AppColors.primaryColor,
-                              weight: FontWeight.normal,
-                              fontSize: 16,
-                              align: TextAlign.start,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(width: 12),
-                        Image.asset(
-                          'assets/images_new/user_image.png',
-                          width: 48,
-                        ),
+                       
                       ],
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.only(top: 88.0),
                     child: Align(
                       alignment: Alignment.center,
                       child: ContainerBox(
-                        text: 'Expected profits',
+                        text:AppLocalizations.of(context)!.translate('Expected_profits')!,
+                        
                         number: '30.000',
                         onTap: () {},
                         boxColor: AppColors.productTextBlueColor,
@@ -209,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: ContainerBox(
-                        text: 'My balance',
+                        text: AppLocalizations.of(context)!.translate('my_balance')!,
                         number: '20.000',
                         onTap: () {},
                         boxColor: Colors.white,
@@ -224,10 +211,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         elevatedButtonWithoutWidth(
                           height: 48,
-                          width: 163,
+                          width: 175,
                           primaryColor: Colors.blue.shade900,
                           onpressed: () {},
-                          title: 'Withdraw balance',
+                          title: AppLocalizations.of(context)!.translate('Withdraw_balance')!,
                           borderRadius: 10,
                           icon: SvgPicture.asset(
                             'assets/icons/home_icons/withdraw_balance.svg',
@@ -242,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           primaryColor: Colors.blue.shade900,
                           borderRadius: 10,
                           onpressed: () {},
-                          title: 'Add balance',
+                          title: AppLocalizations.of(context)!.translate('Add_balance')!,
                           icon: SvgPicture.asset(
                             'assets/icons/home_icons/withdraw_balance.svg',
                             width: 16,
@@ -260,30 +247,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'View all',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                    ),
+                
                     Row(
                       children: [
-                        Text(
-                          '12 deal',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        const Padding(
+                        
+                        
+                         Padding(
                           padding: EdgeInsets.only(right: 16.0),
                           child: Text(
-                            'My deals:',
+                            AppLocalizations.of(context)!.translate('My_deals')!,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -291,8 +263,27 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
+                        const SizedBox(width: 8),
+                        Text(
+                          '12'+AppLocalizations.of(context)!.translate('deal')!,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
                       ],
                     )
+                     ,TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        AppLocalizations.of(context)!.translate('View_all')!,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                    ),
+                  
                   ],
                 ),
               ),
@@ -335,26 +326,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'View all',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                    ),
+                  
                     Row(
                       children: [
-                        Text(
-                          '938 transactions',
-                          style: TextStyle(
-                            color: AppColors.greyTextColor,
-                            fontSize: 14,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
                         Text(
                           'Available deals',
                           style: TextStyle(
@@ -363,8 +337,28 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                         const SizedBox(width: 8),
+                        Text(
+                          '938 transactions',
+                          style: TextStyle(
+                            color: AppColors.greyTextColor,
+                            fontSize: 14,
+                          ),
+                        ),
                       ],
                     ),
+                   TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        AppLocalizations.of(context)!.translate('View_all')!,
+                        
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                    ),
+                   
                   ],
                 ),
               ),

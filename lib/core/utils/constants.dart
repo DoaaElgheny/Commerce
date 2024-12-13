@@ -2,6 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:qubeCommerce/core/prefs/my_shared_prefs.dart';
+import 'package:qubeCommerce/core/shared_widgets/elevated_button.dart';
+import 'package:qubeCommerce/core/utils/app_colors.dart';
+import 'package:qubeCommerce/core/utils/app_strings.dart';
+import 'package:qubeCommerce/core/utils/assets_manager.dart';
+import 'package:sizer/sizer.dart';
 import '../../config/locale/app_localizations.dart';
 import '../shared_widgets/app_text.dart';
 import 'package:intl/intl.dart';
@@ -156,6 +162,129 @@ class Constants {
     String formattedDate = DateFormat('dd/MM/yyyy').format(dateTime);
 
     return formattedDate;
+  }
+  static void showLogoutOrDeleteAccount(
+      {required BuildContext context,
+      required Function() onPress,
+      required bool isLogout}) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              contentPadding: EdgeInsets.zero,
+              content: Container(
+                width: MediaQuery.of(context).size.width - 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Align(
+                                alignment:
+                                    SharedPrefController().languageCode ==
+                                            AppStrings.englishCode
+                                        ? Alignment.topLeft
+                                        : Alignment.topRight,
+                                child: const Icon(Icons.clear)),
+                          )),
+                      SizedBox(height: 1.h),
+                      isLogout
+                          ? SvgPicture.asset(
+                              ImageAssets.person,
+                              // height: 60,
+                              // width: 60,
+                            )
+                          : SvgPicture.asset(
+                              ImageAssets.person,
+                              height: 80,
+                              width: 80,
+                            ),
+                      AppText(
+                        text: AppLocalizations.of(context)!
+                            .translate('are_you_sure')!,
+                        color: Colors.black,
+                        weight: FontWeight.w700,
+                        fontSize: 22,
+                        align: TextAlign.center,
+                      ),
+                      SizedBox(height: 1.h),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15, left: 15),
+                        child: AppText(
+                          text: isLogout
+                              ? AppLocalizations.of(context)!
+                                  .translate('are_you_sure_logout_msg')!
+                              : AppLocalizations.of(context)!
+                                  .translate('are_you_sure_delete_msg')!,
+                          color: AppColors.black.withOpacity(0.5),
+                          weight: FontWeight.w400,
+                          fontSize: 14,
+                          align: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(height: 2.5.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Container(
+                          //   clipBehavior: Clip.antiAlias,
+                          //   decoration: BoxDecoration(
+                          //     boxShadow: [
+                          //       BoxShadow(
+                          //         color: AppColors.chipsFont.withOpacity(0.1),
+                          //         blurRadius: 6,
+                          //       ),
+                          //     ],
+                          //   ),
+                          //   child:
+                          //   elevatedButton(
+                          //     title: AppLocalizations.of(context)!.translate('back')!,
+                          //     onpressed: (){
+                          //       Navigator.pop(context);
+                          //     },
+                          //     primaryColor: Colors.white,
+                          //     height: 7.h,
+                          //     fontSizeChange: 15,
+                          //     fontWeight: FontWeight.w400,
+                          //     loading: false,
+                          //     width: MediaQuery.of(context).size.width * 0.26,
+                          //     textColor: AppColors.primaryColor,
+                          //   ),
+                          // ),
+                          // const SizedBox(
+                          //   width: 10,
+                          // ),
+                          elevatedButton(
+                            title: isLogout
+                                ? AppLocalizations.of(context)!
+                                    .translate('logout')!
+                                : AppLocalizations.of(context)!
+                                    .translate('confirm')!,
+                            onpressed: onPress,
+                            fontSizeChange: 16,
+                            primaryColor: AppColors.primaryColor,
+                            height: 7.h,
+                            width: MediaQuery.of(context).size.width / 2,
+                            loading: false,
+                            //width: MediaQuery.of(context).size.width * 0.60,
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 2.h),
+                    ],
+                  ),
+                ),
+              ),
+            ));
   }
 
   // static void showHomeDialog(

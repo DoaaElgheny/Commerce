@@ -11,6 +11,8 @@ final class EndPoints {
   static const String changeCurrentPassword =
       '${baseUrl}api/Auth/ChangeCurrentPassword';
   static const String forgetPassword = '${baseUrl}api/Auth/forgetPassword';
+static const String delete_account = '${baseUrl}api/Auth/delete_account';
+
 // user
   static const String myProfile = '${baseUrl}api/Users/me';
   static const String register = '${baseUrl}api/Users/register';
