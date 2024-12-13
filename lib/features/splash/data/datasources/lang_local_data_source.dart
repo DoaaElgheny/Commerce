@@ -18,13 +18,14 @@ class LangLocalDataSourceImpl implements LangLocalDataSource {
 
   @override
   Future<bool> changeLang({required String langCode}) async =>
+    
       await SharedPrefController().setLanguage(langCode);
-
+ 
   // await sharedPreferences.setString(AppStrings.locale, langCode);
 
   @override
   Future<String> getSavedLang() async =>
       sharedPreferences.containsKey(AppStrings.locale)
           ? SharedPrefController().languageCode
-          : AppStrings.englishCode;
+          : AppStrings.arabicCode;
 }

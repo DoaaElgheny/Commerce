@@ -75,7 +75,7 @@ class LoginView extends StatelessWidget {
                                 controller: cubit.passwordController,
                               ),
                               Container(
-                                alignment: AlignmentDirectional.centerStart,
+                                alignment: AlignmentDirectional.bottomEnd,
                                 child: const ForgetPasswordBtn(),
                               ),
                               const SizedBox(height: 20.0),
@@ -134,7 +134,7 @@ void _stateHandler(BuildContext context, LoginState state) {
 
       Navigator.pushNamedAndRemoveUntil(
         context,
-        Routes.homeScreen,
+        Routes.bottomNavigationBarScreen,
         (route) => false,
       );
     case ExceptionState():

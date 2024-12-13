@@ -1,11 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:qubeCommerce/config/locale/app_localizations.dart';
+import 'package:qubeCommerce/core/shared_widgets/elevated_btn.dart';
 import 'package:qubeCommerce/core/shared_widgets/elevated_button_full_width.dart';
 import 'package:qubeCommerce/core/utils/app_colors.dart';
 
 import '../pages/deal_details.dart';
-import '../pages/stay_details_screen.dart';
 
 class SpecialBookedCard extends StatefulWidget {
   final String image;
@@ -173,7 +174,7 @@ class _SpecialBookedCardState extends State<SpecialBookedCard> {
                           ),
                           if (widget.linearProgressIndicator != null)
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Container(
                                   padding: const EdgeInsets.only(right: 8.0),
@@ -239,9 +240,11 @@ class _SpecialBookedCardState extends State<SpecialBookedCard> {
                               ),
                             ),
                           if (widget.showButton)
-                            elevatedButtonFullWidth(
+                            elevatedButtonWithoutWidth(
+                              icon: Text(''),
+                              width: double.infinity,
                               height: 42,
-                              primaryColor: Colors.blue,
+                              primaryColor: AppColors.primaryColor,
                               onpressed: () {
                                 Navigator.push(
                                   context,
@@ -250,7 +253,7 @@ class _SpecialBookedCardState extends State<SpecialBookedCard> {
                                           const DealDetailsScreen()),
                                 );
                               },
-                              title: 'View details',
+                              title: AppLocalizations.of(context)!.translate('View_details')!,
                               loading: false,
                             ),
                         ],

@@ -13,16 +13,10 @@ import 'features/splash/injection_container.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  //هادي علي مستوي التطبيق كل الاشياء المشتركة
-  //باختصار الكوبيت كانت بتحتاج الي usecases وهادا يحتاج الي ريبو  وهادا يحتاج الي الداد سورس وهادا يحتاج الي http وكل هادا يكون داخل السيرفر لوكيتور بيجمع كل هدول
-  //كل حاجة تستخدم في المشروع كديبنتنسي لازم تكون هان
-  //بتحط الbloc والusecase والباقي
-  //نحتفظ بسجل مركزي يوفر من مكان واحد
-  // initRandomQute();
+
   initSplash();
-  initHomeCvees();
-  // initLoginqubeCommerce();
-  // initSignUp();
+  initHome();
+
   initButtomnavigationbarGotGame();
 
   //! Core

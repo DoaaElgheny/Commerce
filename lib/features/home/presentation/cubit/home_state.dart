@@ -1,27 +1,26 @@
-// import '../../../porfile/domain/entities/user_data.dart';
-// import '../../data/models/classification_list_model.dart';
-// import '../../domain/entities/search_jobs_list.dart';
-//
-// class HomeState {
-//   List<ClassificationListModel>? classificationList;
-//   List<Items>? recentJobsList;
-//   UserData? userData;
-//
-//   HomeState({
-//     required this.classificationList,
-//     required this.recentJobsList,
-//     required this.userData,
-//   });
-//
-//   HomeState copyWith({
-//     List<ClassificationListModel>? classificationList,
-//     List<Items>? recentJobsList,
-//     UserData? userData,
-//   }) {
-//     return HomeState(
-//       classificationList: classificationList ?? this.classificationList,
-//       recentJobsList: recentJobsList ?? this.recentJobsList,
-//       userData: userData ?? this.userData,
-//     );
-//   }
-// }
+
+import 'package:qubeCommerce/features/home/data/models/deal_model.dart';
+import 'package:qubeCommerce/features/home/domain/entities/deals_entity.dart';
+
+class HomeState {
+  DealsEntity? avaliableDealsList;
+  DealsEntity? myDealsList;
+
+  HomeState({
+    required this.avaliableDealsList,
+    required this.myDealsList,
+
+  });
+
+  HomeState copyWith({
+    DealsEntity? avaliableDealsList,
+    DealsEntity? myDealsList,
+
+  }) {
+    return HomeState(
+      avaliableDealsList: avaliableDealsList ?? this.avaliableDealsList,
+      myDealsList: myDealsList ?? this.myDealsList,
+  
+    );
+  }
+}

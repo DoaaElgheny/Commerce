@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qubeCommerce/features/setting/presentation/pages/change_lang_screen.dart';
 import 'package:qubeCommerce/injection_container.dart' as di;
 
 import '../../core/utils/app_strings.dart';
@@ -20,6 +21,7 @@ class Routes {
 
   // static const String loginScreen = '/login';
   static const String homeScreen = '/homeScreen';
+   static const String changeLanguageScreen = '/changeLanguageScreen';
 
   // static const String signUpScreen = '/signUpScreen';
 
@@ -142,10 +144,10 @@ class AppRoutes {
       //   return MaterialPageRoute(builder: ((context) {
       //     return AboutMeScreen(fromHome: false,);
       //   }));
-      // case Routes.changeLanguageScreen:
-      //   return MaterialPageRoute(builder: ((context) {
-      //     return ChangeLanguageScreen();
-      //   }));
+      case Routes.changeLanguageScreen:
+        return MaterialPageRoute(builder: ((context) {
+          return ChangeLanguageScreen();
+        }));
       // case Routes.contactUsScreen:
       //   return MaterialPageRoute(builder: ((context) {
       //     return ContactUsScreen();

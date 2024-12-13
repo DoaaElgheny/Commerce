@@ -41,7 +41,7 @@ class SharedPrefController {
   }
 
   String get languageCode =>
-      _sharedPreferences.getString(AppStrings.locale) ?? 'en';
+      _sharedPreferences.getString(AppStrings.locale) ?? 'ar';
 
   Future<bool> setFirstLoginFlag(bool value) async {
     return await _sharedPreferences.setBool(AppStrings.firstLogin, value);

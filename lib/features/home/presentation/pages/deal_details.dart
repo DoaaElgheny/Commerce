@@ -149,20 +149,17 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                             child: Column(
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Row(
                                       children: [
-                                        const Text(
-                                          '5', // Dynamic count
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Color(0XFF06A6F1),
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                        Image.asset(
+                                          "assets/images/png/people.png",
+                                          height: 16,
+                                          fit: BoxFit.cover,
                                         ),
                                         const SizedBox(width: 5),
-                                        const Text(
+                                           const Text(
                                           ':عدد المشتركين',
                                           style: TextStyle(
                                             fontSize: 20,
@@ -171,21 +168,27 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                                           ),
                                         ),
                                         const SizedBox(width: 5),
-                                        Image.asset(
-                                          "assets/images/png/people.png",
-                                          height: 16,
-                                          fit: BoxFit.cover,
+                                     
+                                        const Text(
+                                          '5', // Dynamic count
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Color(0XFF06A6F1),
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
+                                        
+                                        
                                       ],
                                     ),
                                   ],
                                 ),
                                 const SizedBox(height: 8),
                                 Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Text(
-                                      ':مدى ربحية الصفقة',
+                                      'مدى ربحية الصفقة',
                                       style: TextStyle(
                                         fontSize: 20,
                                         color: Colors.green,
@@ -208,6 +211,7 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                                         minHeight: 13,
                                       ),
                                     ),
+                                
                                   ],
                                 ),
                               ],
@@ -219,8 +223,15 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                         height: 15,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          Image.asset(
+                            "assets/images/png/Time1.png",
+                            height: 23,
+                            fit: BoxFit.cover,
+                          ),
+                          const SizedBox(width: 10),
+                          
                           const Text(
                             'تاريخ الصفقات السابقة',
                             style: TextStyle(
@@ -229,12 +240,7 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          const SizedBox(width: 10),
-                          Image.asset(
-                            "assets/images/png/Time1.png",
-                            height: 23,
-                            fit: BoxFit.cover,
-                          ),
+                          
                         ],
                       ),
                       const SizedBox(
@@ -242,55 +248,7 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                       ),
                       Column(
                         children: [
-                          Card(
-                            elevation: 1,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                // crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  _buildRow(
-                                    'assets/images/png/Calendar.png',
-                                    "تاريخ الحملة",
-                                    "2024-10-5",
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  _buildRow(
-                                    'assets/images/png/Time2.png',
-                                    "مدة الحملة",
-                                    "14 يوم",
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  _buildRow(
-                                    'assets/images/png/tick.png',
-                                    "الطلبات الناجحة",
-                                    "1653",
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  _buildRow(
-                                    'assets/images/png/XML.png',
-                                    "متوسط الأرباح",
-                                    "14%",
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
+     
                       Column(
                         children: [
                           Card(
@@ -340,6 +298,58 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                           )
                         ],
                       ),
+                  
+ const SizedBox(
+                        height: 15,
+                      ),
+                 
+                          Card(
+                            elevation: 1,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _buildRow(
+                                    'assets/images/png/Calendar.png',
+                                    "تاريخ الحملة",
+                                    "2024-10-5",
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  _buildRow(
+                                    'assets/images/png/Time2.png',
+                                    "مدة الحملة",
+                                    "14 يوم",
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  _buildRow(
+                                    'assets/images/png/tick.png',
+                                    "الطلبات الناجحة",
+                                    "1653",
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  _buildRow(
+                                    'assets/images/png/XML.png',
+                                    "متوسط الأرباح",
+                                    "14%",
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                     
                     ],
                   ),
                 ),
@@ -442,7 +452,48 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        InkWell(
+
+                     
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:  Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                ":الحد الأدنى للإنضمام",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "ج.م",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Color(0xFF38A169),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    "1000",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Color(0xFF38A169),
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                           InkWell(
                           onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -450,7 +501,7 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                           ),
                           child: Container(
                             height: 56,
-                            width: 198,
+                            width: 195,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               gradient: const LinearGradient(
@@ -483,42 +534,7 @@ class _DealDetailsScreenState extends State<DealDetailsScreen> {
                             ),
                           ),
                         ),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              ":الحد الأدنى للإنضمام",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "ج.م",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Color(0xFF38A169),
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                Text(
-                                  "1000",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Color(0xFF38A169),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        )
+                       
                       ],
                     )
                   ],

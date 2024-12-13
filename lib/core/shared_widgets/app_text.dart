@@ -30,7 +30,7 @@ class AppText extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
       maxLines: maxLine,
       style: TextStyle(
-        fontFamily: AppStrings.fontFamilyGilroy,
+        
         fontWeight: weight,
         fontSize: fontSize,
         color: color,

@@ -63,15 +63,23 @@ class elevatedButtonWithoutWidth extends StatelessWidget {
         label: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AppText(
-              text: title,
-              color: textColor,
-              weight: fontWeight,
-              fontSize: fontSizeChange,
-              align: TextAlign.start,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4,vertical: 4),
+              child: icon,
             ),
-            const SizedBox(width: 4),
-            icon,
+            
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: AppText(
+                text: title,
+                color: textColor,
+                weight: fontWeight,
+                fontSize: fontSizeChange,
+                align: TextAlign.start,
+                
+              ),
+            ),
+           
           ],
         ),
       ),

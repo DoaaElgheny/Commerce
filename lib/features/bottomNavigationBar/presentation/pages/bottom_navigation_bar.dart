@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:qubeCommerce/features/setting/presentation/pages/setting_screen.dart';
 import 'package:qubeCommerce/features/wallet/presentation/pages/wallet.dart';
 
 import '../../../../config/locale/app_localizations.dart';
@@ -46,7 +47,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
           } else if (currentIndex == SelectedTabNavigationBar.wallet) {
             return const MyWalletScreen();
           } else {
-            return const HomeScreen();
+            return const SettingScreen();
           }
         },
       ),

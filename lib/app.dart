@@ -8,7 +8,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:qubeCommerce/injection_container.dart' as di;
 import 'package:sizer/sizer.dart';
-import 'package:uni_links/uni_links.dart';
+
 
 import 'config/locale/app_localizations_setup.dart';
 import 'config/routes/app_routes.dart';
@@ -47,24 +47,24 @@ class _qubeCommerceAppState extends State<qubeCommerceApp> {
   }
 
   Future<void> initUniLinks() async {
-    try {
-      String? initialLink = await getInitialLink();
-      if (initialLink != null) {
-        handleDeepLink(initialLink);
-      }
-    } on PlatformException {
-      // Handle exception
-    }
+    // try {
+    //   String? initialLink = await getInitialLink();
+    //   if (initialLink != null) {
+    //     handleDeepLink(initialLink);
+    //   }
+    // } on PlatformException {
+    //   // Handle exception
+    // }
 
     // Listen for deep links
-    _sub = uriLinkStream.listen((Uri? uri) {
-      if (uri != null) {
-        var path = uri.path;
-        handleDeepLink(path);
-      }
-    }, onError: (err) {
-      // Handle errors
-    });
+    // _sub = uriLinkStream.listen((Uri? uri) {
+    //   if (uri != null) {
+    //     var path = uri.path;
+    //     handleDeepLink(path);
+    //   }
+    // }, onError: (err) {
+    //   // Handle errors
+    // });
   }
 
   Future<void> handleDeepLink(String link) async {
@@ -112,8 +112,8 @@ class _qubeCommerceAppState extends State<qubeCommerceApp> {
                       return MaterialApp(
                         navigatorKey: navigatorKey,
                         title: AppStrings.appName,
-                        // locale: state.locale,
-                        locale: const Locale(AppStrings.arabicCode),
+                       locale: state.locale,
+                        //locale: const Locale(AppStrings.arabicCode),
                         debugShowCheckedModeBanner: false,
                         theme: appTheme(),
                         builder: EasyLoading.init(),

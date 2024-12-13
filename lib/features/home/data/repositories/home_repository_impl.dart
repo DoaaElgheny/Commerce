@@ -5,15 +5,15 @@
 // import '../../domain/entities/search_jobs_list.dart';
 // import '../../domain/repositories/home_repository.dart';
 // import '../datasources/home_remote_data_source.dart';
-//
-//
+
+
 // class HomeRepositoryImpl implements HomeRepository {
 //   final HomeRemoteDataSource homeRemoteDataSource;
-//
+
 //   HomeRepositoryImpl({
 //     required this.homeRemoteDataSource,
 //   });
-//
+
 //   @override
 //   Future<Either<Failure, List<ClassificationListModel>>> getClassificationList() async {
 //     try {
@@ -23,7 +23,7 @@
 //       return Left(ServerFailure());
 //     }
 //   }
-//
+
 //   @override
 //   Future<Either<Failure, SearchJobsList>> getRecentJobsList() async {
 //     try {
@@ -33,5 +33,5 @@
 //       return Left(ServerFailure());
 //     }
 //   }
-//
+
 // }
