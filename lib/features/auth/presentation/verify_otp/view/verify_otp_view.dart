@@ -143,7 +143,7 @@ class _VerifyResetPasswordOTPViewState
                                           Text(
                                             cubit.params.otp,
                                             style: const TextStyle(
-                                              color: Colors.black,
+                                              color: Colors.white,
                                             ),
                                           ),
                                         LoadingButton(
