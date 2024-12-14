@@ -46,6 +46,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
             return const HomeScreen();
           } else if (currentIndex == SelectedTabNavigationBar.wallet) {
             return const MyWalletScreen();
+          } else if (currentIndex == SelectedTabNavigationBar.profile) {
+            return const MyWalletScreen();
           } else {
             return const SettingScreen();
           }
@@ -55,8 +57,12 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
           BlocBuilder<ButtomnavigationbarCubit, SelectedTabNavigationBar>(
         builder: (context, currentIndex) {
           return Container(
+            height: 70,
             decoration: const BoxDecoration(
-              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20),
+                topLeft: Radius.circular(20),
+              ),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
@@ -66,9 +72,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
             ),
             child: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
-              backgroundColor: Colors.white,
               currentIndex: currentIndex.index,
-              selectedItemColor: AppColors.primaryColor,
+              selectedItemColor: AppColors.selectColorHome,
               unselectedItemColor: AppColors.loginTitleColor,
               onTap: (index) {
                 tabCubit.setTabIndex(index);
@@ -76,33 +81,51 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
               items: [
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
-                    currentIndex == SelectedTabNavigationBar.home
-                        ? ImageAssets.select_home
-                        : ImageAssets.home,
+                    color: currentIndex == SelectedTabNavigationBar.home
+                        ? AppColors.selectColorHome
+                        : AppColors.loginTitleColor,
+                    width: 28,
+                    ImageAssets.home,
                   ),
                   label: AppLocalizations.of(context)!.translate('home')!,
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
-                    currentIndex == SelectedTabNavigationBar.deals
-                        ? ImageAssets.select_explor
-                        : ImageAssets.search_explor,
+                    width: 28,
+                    color: currentIndex == SelectedTabNavigationBar.deals
+                        ? AppColors.selectColorHome
+                        : AppColors.loginTitleColor,
+                    ImageAssets.deal,
                   ),
                   label: AppLocalizations.of(context)!.translate('deals')!,
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
-                    currentIndex == SelectedTabNavigationBar.wallet
-                        ? ImageAssets.select_booking
-                        : ImageAssets.calendar,
+                    width: 28,
+                    color: currentIndex == SelectedTabNavigationBar.wallet
+                        ? AppColors.selectColorHome
+                        : AppColors.loginTitleColor,
+                    ImageAssets.wallet,
                   ),
                   label: AppLocalizations.of(context)!.translate('wallet')!,
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
-                    currentIndex == SelectedTabNavigationBar.more
-                        ? ImageAssets.select_moew
-                        : ImageAssets.circleEllipsis,
+                    width: 28,
+                    color: currentIndex == SelectedTabNavigationBar.profile
+                        ? AppColors.selectColorHome
+                        : AppColors.loginTitleColor,
+                    ImageAssets.profile,
+                  ),
+                  label: AppLocalizations.of(context)!.translate('my_profile')!,
+                ),
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    width: 28,
+                    color: currentIndex == SelectedTabNavigationBar.more
+                        ? AppColors.selectColorHome
+                        : AppColors.loginTitleColor,
+                    ImageAssets.more,
                   ),
                   label: AppLocalizations.of(context)!.translate('more')!,
                 ),

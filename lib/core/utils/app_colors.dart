@@ -4,7 +4,8 @@ import 'hex_color.dart';
 
 class AppColors {
   static Color primaryColor = Color(0xFF000080);
-  static Color onBordingTitle = HexColor("#242D38");
+
+  static Color selectColorHome = HexColor("#1007FA");
   static Color onBordingSubTitle = HexColor("#B4AEAE");
   static Color hintColor = HexColor("#808080");
   static Color skipColor = HexColor("#9A9696");

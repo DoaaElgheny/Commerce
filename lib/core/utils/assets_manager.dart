@@ -5,13 +5,15 @@ const String pngPath = '$imgPath/png';
 
 class ImageAssets {
  // static const String splashImage = '$pngPath/intro.png';
-  static const String splashImage = '$pngPath/splash.png';
-  static const String onBording1 = '$pngPath/on_bording1.png';
-  static const String onBording2 = '$pngPath/on_bording2.png';
-  static const String onBording3 = '$pngPath/on_bording3.png';
-  static const String loginBackgorund = '$pngPath/login_backgorund.png';
-  static const String footer_ar_png = '$pngPath/footer_ar.png';
-  static const String footer_en_png = '$pngPath/footer_en.png';
+
+// Home Bar Icon /Users/apple/Desktop/MyWork/Qube_commerce/Commerce/assets/icons/homebar
+static const String selesct_home = 'assets/icons/homebar/Home.svg';
+static const String home = 'assets/icons/homebar/Home.svg';
+
+static const String wallet = 'assets/icons/homebar/Wallet.svg';
+static const String deal = 'assets/icons/homebar/My deals.svg';
+static const String profile = 'assets/icons/homebar/Account.svg';
+static const String more = 'assets/icons/homebar/menu.svg';
 
 
 
@@ -26,7 +28,7 @@ class ImageAssets {
   static const String circle_exclamation = '$svgPath/circle_exclamation.svg';
   static const String calendar = '$svgPath/calendar.svg';
   static const String circleEllipsis = '$svgPath/circle_ellipsis.svg';
-  static const String home = '$svgPath/home.svg';
+  //static const String home = '$svgPath/home.svg';
   static const String search_explor = '$svgPath/search_explor.svg';
   static const String select_home = '$svgPath/select_home.svg';
   static const String select_explor = '$svgPath/select_explor.svg';

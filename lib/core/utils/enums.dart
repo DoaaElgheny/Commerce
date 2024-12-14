@@ -12,7 +12,7 @@ enum FiType { pdf, image, mp4 }
 
 enum ConnectionStatus { connected, disconnected, connecting }
 
-enum SelectedTabNavigationBar { home, deals, wallet, more }
+enum SelectedTabNavigationBar { home, deals, wallet,profile, more }
 
 enum ReactTypeName { Like, Love, Support, Funny, Insightful, Celebrate }
 
